@@ -106,18 +106,10 @@ class benchmarkemaillite_reports {
 			</p>
 		';
 
-		// Try To Use Cache
-		$response = get_transient( "benchmarkemaillite_{$meta->campaign}" );
-		if( ! isset( $response['unopens'] ) || $flush ) {
-
-			// Get Campaign Stats
-			$response = benchmarkemaillite_api::campaign_summary( $meta->campaign );
-			$response['unopens'] = intval( $response['mailSent'] ) - intval( $response['opens'] ) - intval( $response['bounces'] );
-			$response['clicks_percent'] = ( $response['opens'] ) ? 100 * $response['clicks'] / $response['opens'] : 0;
-
-			// Cache Email Specifics For 5 Minutes
-			set_transient( "benchmarkemaillite_{$meta->campaign}", $response, 300 );
-		}
+		// Get Campaign Stats
+		$response = benchmarkemaillite_api::campaign_summary( $meta->campaign );
+		$response['unopens'] = intval( $response['mailSent'] ) - intval( $response['opens'] ) - intval( $response['bounces'] );
+		$response['clicks_percent'] = ( $response['opens'] ) ? 100 * $response['clicks'] / $response['opens'] : 0;
 
 		// Output
 		require( dirname( __FILE__ ) . '/../views/reports.level2.html.php' );

@@ -4,7 +4,12 @@
 
 <?php echo $description; ?>
 
-<form class="benchmarkemaillite-subscribe" method="post" action="#benchmark-email-lite-<?php echo $uniqid; ?>" onsubmit="return benchmarkemaillite_<?php echo $uniqid; ?>(this);">
+<form
+	class="benchmarkemaillite-subscribe"
+	method="post"
+	action="#benchmark-email-lite-<?php echo $uniqid; ?>"
+	onsubmit="return benchmarkemaillite_<?php echo $uniqid; ?>(this);">
+
 	<input type="hidden" name="formid" value="benchmark-email-lite-<?php echo $uniqid; ?>" />
 	<input type="hidden" name="widgetid" value="<?php echo $widgetid; ?>" />
 	<input type="hidden" name="uniqid" value="<?php echo $uniqid; ?>" />
@@ -18,6 +23,7 @@
 
 	<div><input type="submit" value="<?php echo $instance['button']; ?>" /></div>
 	<div><?php echo $printresponse; ?></div>
+
 </form>
 
 <p id="subscribe_spinner-<?php echo $uniqid; ?>" style="display: none; text-align: center;">
@@ -26,8 +32,10 @@
 </p>
 
 <script type="text/javascript">
-function benchmarkemaillite_<?php echo $uniqid; ?>(theForm) {
+
+function benchmarkemaillite_<?php echo $uniqid; ?>( theForm ) {
 	var errors = new Array();
+
 	<?php
 	foreach( $instance['fields'] as $key => $field ) {
 		$label = isset( $instance['fields_labels'][$key] ) ? $instance['fields_labels'][$key] : $field;
@@ -35,10 +43,16 @@ function benchmarkemaillite_<?php echo $uniqid; ?>(theForm) {
 		$id = "{$field}-{$key}-{$widgetid}-{$uniqid}";
 		if( isset( $instance['fields_required'][$key] ) && $instance['fields_required'][$key] == '1' ) {
 	?>
+
 	var elem = document.getElementById( '<?php echo $id; ?>' );
-	if (elem.value == '') { errors.push( '<?php echo $label; ?>' ); }
-	<?php } } ?>
-	if (errors.length > 0) {
+	if( elem.value == '' ) { errors.push( '<?php echo $label; ?>' ); }
+
+	<?php
+		}
+	}
+	?>
+
+	if( errors.length > 0 ) {
 		alert( '<?php _e( 'Please complete the field(s):', 'benchmark-email-lite' ); ?>\n' + errors.join( '\n' ) );
 		return false;
 	}
@@ -46,6 +60,7 @@ function benchmarkemaillite_<?php echo $uniqid; ?>(theForm) {
 	theForm.style.display = 'none';
 	return true;
 }
+
 </script>
 
 <?php echo $after_widget; ?>

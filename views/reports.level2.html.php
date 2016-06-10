@@ -1,15 +1,18 @@
 <div style="float: left; min-width: 500px; width: 50%;">
+
 	<p>
 		<strong><?php _e( 'Email name', 'benchmark-email-lite' ); ?>:</strong> <?php echo $response['emailName']; ?>
 		<br /><strong><?php _e( 'Subject', 'benchmark-email-lite' ); ?>:</strong> <?php echo $response['subject']; ?>
 	</p>
-	<div style="height: 400px;">
-		<div id="chart_div"></div>
-	</div>
+
+	<div style="height: 400px;"><div id="chart_div"></div></div>
+
 </div>
 
 <div style="float: right; width: 50%;">
+
 	<h3><?php _e( 'Email Statistics', 'benchmark-email-lite' ); ?></h3>
+
 	<table class="widefat">
 		<thead>
 			<tr>
@@ -85,23 +88,31 @@
 	</table>
 
 	<h3><?php _e( 'Email Reports', 'benchmark-email-lite' ); ?></h3>
-	<p>
-		<form method="get" action="">
-			<input type="hidden" name="page" value="benchmark-email-lite" />
-			<input type="hidden" name="campaign" value="<?php echo $meta->campaign; ?>" />
-			<button class="button-primary" type="submit" name="show" value="opens"
-				<?php if( ! $response['opens'] ) { echo 'disabled="disabled"'; } ?>><?php _e( 'Opens', 'benchmark-email-lite' ); ?></button>
-			<button class="button-primary" type="submit" name="show" value="bounces"
-				<?php if( ! $response['bounces'] ) { echo 'disabled="disabled"'; } ?>><?php _e( 'Bounces', 'benchmark-email-lite' ); ?></button>
-			<button class="button-primary" type="submit" name="show" value="unsubscribes"
-				<?php if( ! $response['unsubscribes'] ) { echo 'disabled="disabled"'; } ?>><?php _e( 'Unsubscribes', 'benchmark-email-lite' ); ?></button>
-			<button class="button-primary" type="submit" name="show" value="forwards"
-				<?php if( ! $response['forwards'] ) { echo 'disabled="disabled"'; } ?>><?php _e( 'Forwards', 'benchmark-email-lite' ); ?></button>
-			<button class="button-primary" type="submit" name="show" value="unopens"
-				<?php if( ! $response['unopens'] ) { echo 'disabled="disabled"'; } ?>><?php _e( 'Unopens', 'benchmark-email-lite' ); ?></button>
-		</form>
-	</p>
+
+	<form method="get" action="">
+
+		<input type="hidden" name="page" value="benchmark-email-lite" />
+		<input type="hidden" name="campaign" value="<?php echo $meta->campaign; ?>" />
+
+		<button class="button-primary" type="submit" name="show" value="opens"
+			<?php if( ! $response['opens'] ) { echo 'disabled="disabled"'; } ?>><?php _e( 'Opens', 'benchmark-email-lite' ); ?></button>
+
+		<button class="button-primary" type="submit" name="show" value="bounces"
+			<?php if( ! $response['bounces'] ) { echo 'disabled="disabled"'; } ?>><?php _e( 'Bounces', 'benchmark-email-lite' ); ?></button>
+
+		<button class="button-primary" type="submit" name="show" value="unsubscribes"
+			<?php if( ! $response['unsubscribes'] ) { echo 'disabled="disabled"'; } ?>><?php _e( 'Unsubscribes', 'benchmark-email-lite' ); ?></button>
+
+		<button class="button-primary" type="submit" name="show" value="forwards"
+			<?php if( ! $response['forwards'] ) { echo 'disabled="disabled"'; } ?>><?php _e( 'Forwards', 'benchmark-email-lite' ); ?></button>
+
+		<button class="button-primary" type="submit" name="show" value="unopens"
+			<?php if( ! $response['unopens'] ) { echo 'disabled="disabled"'; } ?>><?php _e( 'Unopens', 'benchmark-email-lite' ); ?></button>
+
+	</form>
+
 </div>
+
 <div style="clear:both;"> </div>
 
 <?php
@@ -121,9 +132,12 @@ if( $response['clicks'] ) {
 ?>
 
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
 <script type="text/javascript">
+
 google.load( 'visualization', '1', { packages:['corechart'] } );
 google.setOnLoadCallback( drawChart );
+
 function drawChart() {
 	var data = google.visualization.arrayToDataTable( [
 		['Item', 'Quantity'],
@@ -143,4 +157,5 @@ function drawChart() {
 	var chart = new google.visualization.PieChart( document.getElementById( 'chart_div' ) );
 	chart.draw( data, options );
 }
+
 </script>

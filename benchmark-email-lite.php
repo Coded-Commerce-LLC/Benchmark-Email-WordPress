@@ -54,7 +54,6 @@ add_action( 'admin_menu', array( 'benchmarkemaillite_settings', 'admin_menu' ) )
 add_action( 'admin_notices', array( 'benchmarkemaillite_settings', 'admin_notices' ) );
 add_action( 'init', array( 'benchmarkemaillite_settings', 'init' ) );
 add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), array( 'benchmarkemaillite_settings', 'plugin_action_links' ) );
-add_filter( 'plugin_row_meta', array( 'benchmarkemaillite_settings', 'plugin_row_meta' ), 10, 2 );
 
 // Internationalization
 function benchmarkemaillite_i18n() {

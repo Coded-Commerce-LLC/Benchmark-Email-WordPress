@@ -1,7 +1,3 @@
-<p>
-	<a href="<?php echo $url; ?>&amp;flush=1"><?php _e( 'Refresh Data', 'benchmark-email-lite' ); ?></a>
-</p>
-
 <div style="float: left; min-width: 500px; width: 50%;">
 	<p>
 		<strong><?php _e( 'Email name', 'benchmark-email-lite' ); ?>:</strong> <?php echo $response['emailName']; ?>

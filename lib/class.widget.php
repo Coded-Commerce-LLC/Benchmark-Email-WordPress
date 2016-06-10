@@ -54,7 +54,9 @@ class benchmarkemaillite_widget extends WP_Widget {
 				$widgets[$instance]['fields_required'] = array( 0, 0, 1 );
 			}
 		}
-		if ( $changed ) { update_option( 'widget_benchmarkemaillite_widget', $widgets ); }
+		if ( $changed ) {
+			update_option( 'widget_benchmarkemaillite_widget', $widgets );
+		}
 	}
 
 	// Deactivate Widgets of Deleted API Keys
@@ -212,7 +214,7 @@ class benchmarkemaillite_widget extends WP_Widget {
 		);
 
 		// Get Widget ID And Saved Values
-		$instance = wp_parse_args( (array) $instance, $defaults );
+		$instance = wp_parse_args( ( array ) $instance, $defaults );
 		$instance['id'] = $this->id;
 		$instance['widget_id'] = $this->number;
 
@@ -336,7 +338,7 @@ class benchmarkemaillite_widget extends WP_Widget {
 		}
 
 		// Output Widget
-		require( dirname( __FILE__ ) . '/../views/widget.frontend.html.php');
+		require( dirname( __FILE__ ) . '/../views/widget.frontend.html.php' );
 	}
 
 
@@ -348,10 +350,7 @@ class benchmarkemaillite_widget extends WP_Widget {
 	static function widgets_init() {
 
 		// Proceed Processing Upon Widget Form Submission
-		if(
-			isset( $_POST['formid'] )
-			&& strstr( $_POST['formid'], 'benchmark-email-lite' )
-		) {
+		if( isset( $_POST['formid'] ) && strstr( $_POST['formid'], 'benchmark-email-lite' ) ) {
 
 			// Get Widget Options for this Instance
 			$instance = get_option( 'widget_benchmarkemaillite_widget' );
@@ -376,7 +375,8 @@ class benchmarkemaillite_widget extends WP_Widget {
 	static function process_subscription( $bmelist, $data ) {
 
 		// Get List Info
-		list( benchmarkemaillite_api::$token, $listname, benchmarkemaillite_api::$listid ) = explode( '|', $bmelist );
+		list( benchmarkemaillite_api::$token, $listname, benchmarkemaillite_api::$listid )
+			= explode( '|', $bmelist );
 
 		// Try to Run Live Subscription
 		$response = benchmarkemaillite_api::subscribe( $bmelist, $data );

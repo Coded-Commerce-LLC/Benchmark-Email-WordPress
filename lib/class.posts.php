@@ -28,7 +28,7 @@ class benchmarkemaillite_posts {
 
 		// Open Benchmark Email Connection and Locate List
 		$options = get_option('benchmark-email-lite_group');
-		if ( ! isset( $options[1][0] ) || ! $options[1][0] ) {
+		if( ! isset( $options[1][0] ) || ! $options[1][0] ) {
 			$val = benchmarkemaillite_settings::badconfig_message();
 			echo "<strong style='color:red;'>{$val}</strong>";
 		} else {
@@ -56,8 +56,10 @@ class benchmarkemaillite_posts {
 
 		// Set Variables
 		$bmelist = isset( $_POST['bmelist'] ) ? esc_attr( $_POST['bmelist'] ) : false;
-		if ( $bmelist ) {
-			list( benchmarkemaillite_api::$token, $listname, benchmarkemaillite_api::$listid ) = explode( '|', $bmelist );
+		if( $bmelist ) {
+			list(
+				benchmarkemaillite_api::$token, $listname, benchmarkemaillite_api::$listid
+			) = explode( '|', $bmelist );
 		}
 		$bmetitle = isset( $_POST['bmetitle'] ) ? stripslashes( strip_tags( $_POST['bmetitle'] ) ) : false;
 		$bmefrom = isset( $_POST['bmefrom'] ) ? stripslashes( strip_tags( $_POST['bmefrom'] ) ) : false;
@@ -74,9 +76,7 @@ class benchmarkemaillite_posts {
 		set_transient( 'bmetestto', $bmetestto, 15 );
 
 		// Don't Work With Post Revisions Or Other Post Actions
-		if ( wp_is_post_revision($postID) || !isset($_POST['bmesubmit']) || $_POST['bmesubmit'] != 'yes' ) {
-			return;
-		}
+		if( wp_is_post_revision($postID) || !isset($_POST['bmesubmit']) || $_POST['bmesubmit'] != 'yes' ) { return; }
 
 		// Get User Info
 		if ( ! $user = wp_get_current_user() ) { return; }
@@ -86,13 +86,18 @@ class benchmarkemaillite_posts {
 		$name = trim( $name );
 
 		// Get Post Info
-		if ( ! $post = get_post( $postID ) ) { return; }
+		if( ! $post = get_post( $postID ) ) { return; }
 
 		// Prepare Campaign Data
 		$tags = wp_get_post_tags( $postID );
-		foreach( $tags as $i => $val ) { $tags[$i] = $val->slug; }
+		foreach( $tags as $i => $val ) {
+			$tags[$i] = $val->slug;
+		}
 		$categories = wp_get_post_categories( $postID );
-		foreach( $categories as $i => $val ) { $val = get_category( $val ); $categories[$i] = $val->slug; }
+		foreach( $categories as $i => $val ) {
+			$val = get_category( $val );
+			$categories[$i] = $val->slug;
+		}
 		$data = array(
 			'body' => apply_filters( 'the_content', $post->post_content ),
 			'categories' => implode( ', ', $categories ),
@@ -112,10 +117,12 @@ class benchmarkemaillite_posts {
 		$permissionMessage = isset( $options[4] ) ? $options[4] : '';
 
 		// Create Campaign
-		$result = benchmarkemaillite_api::campaign( $bmetitle, $bmefrom, $bmesubject, $content, $webpageVersion, $permissionMessage );
+		$result = benchmarkemaillite_api::campaign(
+			$bmetitle, $bmefrom, $bmesubject, $content, $webpageVersion, $permissionMessage
+		);
 
 		// Handle Error Condition: Preexists
-		if ( $result == __( 'preexists', 'benchmark-email-lite' ) ) {
+		if( $result == __( 'preexists', 'benchmark-email-lite' ) ) {
 			set_transient(
 				'benchmark-email-lite_error',
 				__( 'An email campaign by this name was previously sent and cannot be updated or sent again. Please choose another email name.', 'benchmark-email-lite' )
@@ -123,17 +130,18 @@ class benchmarkemaillite_posts {
 			return;
 
 		// Handle Error Condition: Other
-		} else if ( ! is_numeric( benchmarkemaillite_api::$campaignid ) ) {
+		} else if( ! is_numeric( benchmarkemaillite_api::$campaignid ) ) {
+			$error = isset( benchmarkemaillite_api::$campaignid['faultString'] ) ? benchmarkemaillite_api::$campaignid['faultCode'] : '';
 			set_transient(
 				'benchmark-email-lite_error',
 				__( 'There was a problem creating or updating your email campaign. Please try again later.', 'benchmark-email-lite' )
-				. ( isset( benchmarkemaillite_api::$campaignid['faultString'] ) ? ' ' . benchmarkemaillite_api::$campaignid['faultCode'] : '' )
+				. ' ' . $error
 			);
 			return;
 		}
 
 		// Clear Fields After Successful Send
-		if ( in_array( $bmeaction, array( 2, 3 ) ) ) {
+		if( in_array( $bmeaction, array( 2, 3 ) ) ) {
 			delete_transient( 'bmelist' );
 			delete_transient( 'bmeaction' );
 			delete_transient( 'bmetitle' );
@@ -144,14 +152,14 @@ class benchmarkemaillite_posts {
 		}
 
 		// Schedule Campaign
-		switch ( $bmeaction ) {
+		switch( $bmeaction ) {
 			case '1':
 
 				// Send Test Emails
-				foreach ( $bmetestto as $i => $bmetest ) {
+				foreach( $bmetestto as $i => $bmetest ) {
 
 					// Limit To 5 Recipients
-					$overage = ( $i >= 5 ) ? true : false;
+					$overage = $i >= 5 ? true : false;
 					if( $i >= 5 ) { continue; }
 
 					// Send
@@ -160,7 +168,7 @@ class benchmarkemaillite_posts {
 				}
 
 				// Report
-				$overage = ( $overage ) ? __( 'Sending was capped at the first 5 test addresses.', 'benchmark-email-lite' ) : '';
+				$overage = $overage ? __( 'Sending was capped at the first 5 test addresses.', 'benchmark-email-lite' ) : '';
 				set_transient(
 					'benchmark-email-lite_updated', sprintf(
 						__( 'A test of your campaign %s was successfully sent.', 'benchmark-email-lite' ),

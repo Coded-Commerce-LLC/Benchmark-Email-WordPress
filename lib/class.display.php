@@ -15,7 +15,8 @@ class benchmarkemaillite_display {
 				'after_widget' => '',
 				'before_title' => '<h2 class="widgettitle">',
 				'after_title' => '</h2>',
-			), $atts
+			),
+			$atts
 		);
 		$widgets = get_option( 'widget_benchmarkemaillite_widget' );
 
@@ -61,7 +62,9 @@ class benchmarkemaillite_display {
 					$response = call_user_func( array( 'benchmarkemaillite_api', 'lists' ) );
 					if( is_array( $response ) ) {
 						foreach( $response as $key => $val ) {
-							if( isset( $val['listname'] ) ) { $response[$key]['name'] = $val['listname']; }
+							if( isset( $val['listname'] ) ) {
+								$response[$key]['name'] = $val['listname'];
+							}
 						}
 						$lists[$api] = array_merge( $lists[$api], $response );
 					}
@@ -227,7 +230,6 @@ class benchmarkemaillite_display {
 
 		// Handle Errors
 		$errors = libxml_get_errors();
-		//if( $errors ) { print_r( $errors ); }
 
 		// Output
 		return $newdoc;
@@ -261,8 +263,8 @@ class benchmarkemaillite_display {
 		<tbody>
 			<?php foreach( $data as $i => $val ) { ?>
 			<tr>
-				<td><?php echo ( $i + 1 ); ?></td>
-				<?php foreach ( $val as $i2 => $val2 ) { ?>
+				<td><?php echo ++ $i; ?></td>
+				<?php foreach( $val as $i2 => $val2 ) { ?>
 				<td><?php echo $val2; ?></td>
 				<?php } ?>
 			</tr>

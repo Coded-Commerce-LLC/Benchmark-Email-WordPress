@@ -37,8 +37,16 @@ class benchmarkemaillite_api {
 		// If Over Limit, Disable for Five Minutes And Produce Warning
 		if ( $lapsed >= $timeout ) {
 			$error = sprintf(
-				__( 'Error connecting to Benchmark Email API server. Connection throttled until %s to prevent sluggish behavior. If this occurs frequently, try increasing your %sConnection Timeout setting.%s', 'benchmark-email-lite' ),
-				date( 'H:i:s', ( current_time( 'timestamp' ) + 300 ) ), '<a href="admin.php?page=benchmark-email-lite-settings">', '</a>'
+				__(
+					'
+						Error connecting to Benchmark Email API server.
+						Connection throttled until %s to prevent sluggish behavior.
+						If this occurs frequently, try increasing your %sConnection Timeout setting.%s
+					', 'benchmark-email-lite'
+				),
+				date( 'H:i:s', ( current_time( 'timestamp' ) + 300 ) ),
+				'<a href="admin.php?page=benchmark-email-lite-settings">',
+				'</a>'
 			);
 			set_transient( 'benchmark-email-lite_serverdown', true, 300 );
 			set_transient( 'benchmark-email-lite_error', $error, 300 );
@@ -156,7 +164,7 @@ class benchmarkemaillite_api {
 	static function campaign( $title, $from, $subject, $body, $webpageVersion, $permissionMessage ) {
 		$data = array(
 			'emailName' => $title,
-			'toListID' => (int) self::$listid,
+			'toListID' => ( int ) self::$listid,
 			'fromName' => $from,
 			'subject' => $subject,
 			'templateContent' => $body,

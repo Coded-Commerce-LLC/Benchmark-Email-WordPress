@@ -5,7 +5,7 @@ class benchmarkemaillite_reports {
 
 	// Generates Internal Data/URLs
 	static function meta() {
-		return (object) array(
+		return ( object ) array(
 			'campaign' => isset( $_GET['campaign'] ) ? intval( $_GET['campaign'] ) : '',
 			'show' => isset( $_GET['show'] ) ? strtolower( esc_attr( $_GET['show'] ) ) : '',
 		);
@@ -52,7 +52,7 @@ class benchmarkemaillite_reports {
 	static function showListings() {
 		$options = get_option( 'benchmark-email-lite_group' );
 		$url = self::url();
-		$flush = ( isset( $_REQUEST['flush'] ) && $_REQUEST['flush'] == '1' ) ? true : false;
+		$flush = isset( $_REQUEST['flush'] ) && $_REQUEST['flush'] == '1' ? true : false;
 
 		// Try To Load From Cache
 		$data = get_transient( 'benchmarkemaillite_emails' );
@@ -95,7 +95,6 @@ class benchmarkemaillite_reports {
 	static function showCampaignSummary() {
 		$meta = self::meta();
 		$url = self::$base_url . http_build_query( $meta );
-		$flush = ( isset( $_REQUEST['flush'] ) && $_REQUEST['flush'] == '1' ) ? true : false;
 
 		// Output Back Link
 		echo '
@@ -109,7 +108,7 @@ class benchmarkemaillite_reports {
 		// Get Campaign Stats
 		$response = benchmarkemaillite_api::campaign_summary( $meta->campaign );
 		$response['unopens'] = intval( $response['mailSent'] ) - intval( $response['opens'] ) - intval( $response['bounces'] );
-		$response['clicks_percent'] = ( $response['opens'] ) ? 100 * $response['clicks'] / $response['opens'] : 0;
+		$response['clicks_percent'] = $response['opens'] ? 100 * $response['clicks'] / $response['opens'] : 0;
 
 		// Output
 		require( dirname( __FILE__ ) . '/../views/reports.level2.html.php' );
@@ -124,7 +123,7 @@ class benchmarkemaillite_reports {
 		while( $run ) {
 			$response = call_user_func_array( array( 'benchmarkemaillite_api', 'query' ), $args );
 			if( ! is_array( $response ) ) { break; }
-			$run = ( sizeof( $response ) == 100 ) ? true : false;
+			$run = sizeof( $response ) == 100 ? true : false;
 			$data = array_merge( $data, $response );
 			foreach( $args as $key => $val ) {
 				if( $val === $page ) {

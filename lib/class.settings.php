@@ -16,17 +16,6 @@ class benchmarkemaillite_settings {
 	 WP Hook Methods
 	 ***************/
 
-	// Administrative Links
-	static function plugin_row_meta( $links, $file ) {
-		if( basename( $file ) == basename( __FILE__ ) ) {
-			$link = '<a target="_blank" href="http://www.beautomated.com/contact/">' . __( 'Contact Developer', 'benchmark-email-lite' ) . '</a>';
-			array_unshift( $links, $link );
-			$link = '<a target="_blank" href="' . __( 'http://www.benchmarkemail.com/Register?p=68907', 'benchmark-email-lite' ) . '">' . __( 'Sign up for a FREE lifetime account', 'benchmark-email-lite' ) . '</a>';
-			array_unshift( $links, $link );
-		}
-		return $links;
-	}
-
 	// Admin Area Notices
 	static function admin_notices() {
 
@@ -148,7 +137,10 @@ class benchmarkemaillite_settings {
 
 	// Plugins Page Settings Link
 	static function plugin_action_links( $links ) {
-		$links['settings'] = '<a href="admin.php?page=benchmark-email-lite-settings">' . __( 'Settings', 'benchmark-email-lite' ) . '</a>';
+		$links['settings'] = sprintf(
+			'<a href="admin.php?page=benchmark-email-lite-settings">%s</a>',
+			__( 'Settings', 'benchmark-email-lite' )
+		);
 		return $links;
 	}
 
@@ -174,13 +166,19 @@ class benchmarkemaillite_settings {
 		settings_fields( $group );
 		do_settings_sections( $page );
 		submit_button( __( 'Save Changes', 'benchmark-email-lite' ), 'primary', 'submit', false );
-		echo '&nbsp; <input type="reset" class="button-secondary" value="' . __( 'Reset Changes', 'benchmark-email-lite' ) . '" />';
+		echo sprintf(
+			'&nbsp; <input type="reset" class="button-secondary" value="%s" />',
+			__( 'Reset Changes', 'benchmark-email-lite' )
+		);
 
 		// Email Template Footer
 		switch( $page ) {
 			case 'bmel-pg2':
-				echo '&nbsp; <input name="submit" type="submit" class="button-secondary" value="' . __( 'Reset to Defaults', 'benchmark-email-lite' ) . '"
-					onclick="return confirm( \'' . __( 'Are you sure you wish to load the default values and lose your customizations?', 'benchmark-email-lite' ) . '\' );" />';
+				echo sprintf(
+					'&nbsp; <input name="submit" type="submit" class="button-secondary" value="%s" onclick="return confirm( \'%s\' );" />',
+					__( 'Reset to Defaults', 'benchmark-email-lite' ),
+					__( 'Are you sure you wish to load the default values and lose your customizations?', 'benchmark-email-lite' )
+				);
 		}
 		echo '</form>';
 	}
@@ -188,28 +186,36 @@ class benchmarkemaillite_settings {
 	// Settings API Sections Follow
 	static function section_campaign() { }
 	static function section_main() {
+		$links = array(
+			'signup' => sprintf(
+				'<a target="BenchmarkEmail" href="http://www.benchmarkemail.com/Register?p=68907" target="BenchmarkEmail">%s</a>',
+				__( 'Sign up for a FREE lifetime account', 'benchmark-email-lite')
+			),
+			'getkey' => sprintf(
+				'<a target="BenchmarkEmail" href="http://ui.benchmarkemail.com/EditSetting#ContentPlaceHolder1_UC_ClientSettings1_lnkGenerate" target="BenchmarkEmail">%s</a>',
+				__( 'log in to Benchmark Email to get your API key', 'benchmark-email-lite' )
+			),
+		);
 		echo '
 			<p>
 				' . __( 'The API Key(s) connect your WordPress site with your Benchmark Email account(s).', 'benchmark-email-lite' ) . '
 				' . __( 'Only one key is required per Benchmark Email account.', 'benchmark-email-lite' ) . '
 				' . __( 'API Key(s) may expire after one year.', 'benchmark-email-lite' ) . '
 			</p>
-			<p>
-				<a target="_blank" href="' . __( 'http://www.benchmarkemail.com/Register?p=68907', 'benchmark-email-lite' ) . '" target="BenchmarkEmail">
-				' . __( 'Sign up for a FREE lifetime account', 'benchmark-email-lite') . '
-				</a>,
-				' . __( 'or', 'benchmark-email-lite' ) . '
-				<a target="_blank" href="http://ui.benchmarkemail.com/EditSetting#ContentPlaceHolder1_UC_ClientSettings1_lnkGenerate" target="BenchmarkEmail">
-				' . __( 'log in to Benchmark Email to get your API key', 'benchmark-email-lite' ) . '
-				</a>.
-			</p>
 		';
+		echo sprintf(
+			'<p>%s %s %s</p>',
+			$links['signup'],
+			__( 'or', 'benchmark-email-lite' ),
+			$links['getkey']
+		);
 	}
 	static function section_diagnostics() { }
 	static function section_template() {
-		echo '
-			<p>' . __( 'The following is for advanced users to customize the HTML template that wraps the output of the post-to-campaign feature.', 'benchmark-email-lite' ) . '</p>
-		';
+		echo sprintf(
+			'<p>%s</p>',
+			__( 'The following is for advanced users to customize the HTML template that wraps the output of the post-to-campaign feature.', 'benchmark-email-lite' )
+		);
 	}
 
 	// Settings API Fields Follow
@@ -217,10 +223,11 @@ class benchmarkemaillite_settings {
 		$options = get_option( 'benchmark-email-lite_group' );
 		$results = array();
 		$key = $options[1];
-		for ( $i = 0; $i < 5; $i ++ ) {
+		for( $i = 0; $i < 5; $i ++ ) {
 			$key[$i] = isset( $key[$i] ) ? $key[$i] : '';
-			if ( ! $key[$i] ) { $results[$i] = '<img style="vertical-align:middle;opacity:0;" src="images/yes.png" alt="" width="16" height="16" />'; }
-			else {
+			if( ! $key[$i] ) {
+				$results[$i] = '<img style="vertical-align:middle;opacity:0;" src="images/yes.png" alt="" width="16" height="16" />';
+			} else {
 				benchmarkemaillite_api::$token = $key[$i];
 				$results[$i] = ( is_array( benchmarkemaillite_api::lists() ) )
 					? '<img style="vertical-align:middle;" src="images/yes.png" alt="Yes" title="' . self::goodconnection_message() . '" width="16" height="16" />'
@@ -237,9 +244,11 @@ class benchmarkemaillite_settings {
 	}
 	static function field_webpage_flag() {
 		$options = get_option( 'benchmark-email-lite_group' );
-		$checked = checked( 'yes', $options[2], false );
-		echo "<input id='benchmark-email-lite_group_2' type='checkbox' name='benchmark-email-lite_group[2]' value='yes'{$checked} /> "
-			. __( 'Include the link to view a Webpage Version at the top of emails?', 'benchmark-email-lite' );
+		echo sprintf(
+			'<input id="benchmark-email-lite_group_2" type="checkbox" name="benchmark-email-lite_group[2]" value="yes"%s /> %s ',
+			checked( 'yes', $options[2], false ),
+			__( 'Include the link to view a Webpage Version at the top of emails?', 'benchmark-email-lite' )
+		);
 	}
 	static function field_connection_timeout() {
 		$options = get_option( 'benchmark-email-lite_group' );

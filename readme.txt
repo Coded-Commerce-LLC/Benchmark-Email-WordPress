@@ -139,7 +139,8 @@ Two reasons. First, Benchmark Email requested that we use this method because it
 
 * Added: new email template anchors for categories, excerpt, featured image, permalink, tags thanks to a suggestion from Pedro on Forum
 * Added: communication logging and admin area UI tab displaying last 25 communications for diagnostic use.
-* Updated: BenchmarkEmail API server version from 1.0 to 1.3 
+* Updated: Benchmark Email API server version from 1.0 to 1.3
+* Updated: post metabox JS form validation to place multiple errors into a single pop-up message to match the front end
 * Fixed: widget constructor deprecated notice since WP 4.3.0 when DEBUG mode is ON.
 
 = 2.5 on 2015-04-13 =

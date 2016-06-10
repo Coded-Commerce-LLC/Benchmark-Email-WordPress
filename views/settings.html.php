@@ -57,30 +57,44 @@
 				__( '<h3>Displaying %d recent communication logs</h3>', 'benchmark-email-lite' ),
 				sizeof( $logs )
 			);
-			echo '
-				<table class="widefat fixed">
-					<thead>
-						<tr>
-							<th>Time</th>
-							<th>Method</th>
-							<th>Show/Hide</th>
-						</tr>
-					</thead>
-					<tbody>
-			';
-			foreach( $logs as $i => $log ) {
-				echo '
+			?>
+
+			<table class="widefat fixed">
+				<thead>
 					<tr>
-						<th scope="row">' . $log['Time'] . '</th>
-						<th scope="row">' . $log['Request'][0] . '</th>
-						<th scope="row"><a href="#" title="Show/Hide" onclick="jQuery( \'#log-' . $i . '\' ).toggle();return false;"><div class="dashicons dashicons-sort"></div></a></th>
+						<th>Began</th>
+						<th>Lapsed</th>
+						<th>Method</th>
+						<th>Show/Hide</th>
 					</tr>
+				</thead>
+				<tbody>
+
+					<?php foreach( $logs as $i => $log ) { ?>
 					<tr>
-						<td colspan="3"><pre style="display:none;" id="log-' . $i . '">' . print_r( $log, true ) . '</pre></td>
+						<td><?php echo $log['Time']; ?></td>
+						<td><?php echo $log['Lapsed']; ?></td>
+						<td><?php echo $log['Request'][0]; ?></td>
+						<td>
+							<a href="#" title="Show/Hide" onclick="jQuery( '#log-<?php echo $i; ?>' ).toggle();return false;">
+								<div class="dashicons dashicons-sort"></div>
+							</a>
+						</td>
 					</tr>
-				';
-			}
-			echo '</tbody></table>';
+					<tr id="log-<?php echo $i; ?>" style="display: none;">
+						<td colspan="4">
+							<p><strong><?php _e( 'Request', 'benchmark-email-lite' ); ?></strong></p>
+							<pre><?php print_r( $log['Request'] ); ?></pre>
+							<p><strong><?php _e( 'Response', 'benchmark-email-lite' ); ?></strong></p>
+							<pre><?php print_r( $log['Response'] ); ?></pre>
+						</td>
+					</tr>
+					<?php } ?>
+
+				</tbody>
+			</table>
+
+			<?php
 			break;
 	}
 

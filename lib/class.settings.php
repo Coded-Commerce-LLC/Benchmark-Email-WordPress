@@ -220,28 +220,48 @@ class benchmarkemaillite_settings {
 
 	// Settings API Fields Follow
 	static function field_api_keys() {
+
 		$options = get_option( 'benchmark-email-lite_group' );
 		$results = array();
 		$key = $options[1];
+
 		for( $i = 0; $i < 5; $i ++ ) {
 			$key[$i] = isset( $key[$i] ) ? $key[$i] : '';
+
+			// Token Not Set
 			if( ! $key[$i] ) {
 				$results[$i] = '<img style="vertical-align:middle;opacity:0;" src="images/yes.png" alt="" width="16" height="16" />';
+
+			// Check Token
 			} else {
 				benchmarkemaillite_api::$token = $key[$i];
-				$results[$i] = ( is_array( benchmarkemaillite_api::lists() ) )
-					? '<img style="vertical-align:middle;" src="images/yes.png" alt="Yes" title="' . self::goodconnection_message() . '" width="16" height="16" />'
-					: '<img style="vertical-align:middle;" style="" src="images/no.png" alt="No" title="' . self::badconnection_message() . '" width="16" height="16" />';
+				$results[$i] = is_array( benchmarkemaillite_api::lists() )
+					? sprintf(
+						'<img style="vertical-align:middle;" src="images/yes.png" alt="Yes" title="%s" width="16" height="16" />',
+						self::goodconnection_message()
+					) : sprintf(
+						'<img style="vertical-align:middle;" src="images/no.png" alt="No" title="%s" width="16" height="16" />',
+						self::badconnection_message()
+					);
 			}
 		}
-		echo "
-			{$results[0]} <input type='text' size='36' maxlength='50' name='benchmark-email-lite_group[1][]' value='{$key[0]}' /> Primary<br />
-			{$results[1]} <input type='text' size='36' maxlength='50' name='benchmark-email-lite_group[1][]' value='{$key[1]}' /> Optional<br />
-			{$results[2]} <input type='text' size='36' maxlength='50' name='benchmark-email-lite_group[1][]' value='{$key[2]}' /> Optional <br />
-			{$results[3]} <input type='text' size='36' maxlength='50' name='benchmark-email-lite_group[1][]' value='{$key[3]}' /> Optional<br />
-			{$results[4]} <input type='text' size='36' maxlength='50' name='benchmark-email-lite_group[1][]' value='{$key[4]}' /> Optional
-		";
+
+		echo sprintf(
+			'
+				<div>%s <input type="text" size="36" maxlength="50" name="benchmark-email-lite_group[1][]" value="%s" /> Primary</div>
+				<div>%s <input type="text" size="36" maxlength="50" name="benchmark-email-lite_group[1][]" value="%s" /> Optional</div>
+				<div>%s <input type="text" size="36" maxlength="50" name="benchmark-email-lite_group[1][]" value="%s" /> Optional</div>
+				<div>%s <input type="text" size="36" maxlength="50" name="benchmark-email-lite_group[1][]" value="%s" /> Optional</div>
+				<div>%s <input type="text" size="36" maxlength="50" name="benchmark-email-lite_group[1][]" value="%s" /> Optional</div>
+			',
+			$results[0], $key[0],
+			$results[1], $key[1],
+			$results[2], $key[2],
+			$results[3], $key[3],
+			$results[4], $key[4]
+		);
 	}
+
 	static function field_webpage_flag() {
 		$options = get_option( 'benchmark-email-lite_group' );
 		echo sprintf(
@@ -250,43 +270,54 @@ class benchmarkemaillite_settings {
 			__( 'Include the link to view a Webpage Version at the top of emails?', 'benchmark-email-lite' )
 		);
 	}
+
 	static function field_connection_timeout() {
 		$options = get_option( 'benchmark-email-lite_group' );
 		echo sprintf(
-			__( 'If the connection with the Benchmark Email server takes %s seconds or longer, disable connections for 5 minutes to prevent site administration from becoming sluggish. (Default: 10)', 'benchmark-email-lite' ),
+			__( '
+				If the connection with the Benchmark Email server takes %s seconds or longer,
+				disable connections for 5 minutes to prevent site administration from becoming sluggish. (Default: 10)
+			', 'benchmark-email-lite' ),
 			"<input id='benchmark-email-lite_group_5' type='text' size='2' maxlength='2' name='benchmark-email-lite_group[5]' value='{$options[5]}' />"
 		);
 	}
+
 	static function field_template() {
 		$options = get_option( 'benchmark-email-lite_group_template' );
-		echo '
-			<textarea id="benchmark-email-template" name="benchmark-email-lite_group_template[html]" style="width:100%;" cols="30" rows="20">' . $options['html'] . '</textarea><br />
-			<ul style="list-style-type:square;">
-				<li>
-					<a target="_blank" href="' . __( 'https://ui.benchmarkemail.com/help-support/help-FAQ-details?id=100', 'benchmark-email-lite' ) . '">
-					' . __( 'This article helps you with email template coding.', 'benchmark-email-lite' ) . '
-					</a>
-				</li>
-				<li>
-					<a target="_blank" href="http://www.w3schools.com/tags/ref_colorpicker.asp">
-					' . __( 'Look up color codes here.', 'benchmark-email-lite' ) . '
-					</a>
-				</li>
-				<li><code>BODY_HERE</code>' . __( 'will be replaced with the WP post body.', 'benchmark-email-lite' ) . '</li>
-				<li><code>CATEGORIES</code>' . __( 'will be replaced with the WP post categories.', 'benchmark-email-lite' ) . '</li>
-				<li><code>EMAIL_MD5_HERE</code>' . __( 'will be replaced with the WP site admin email hash (for Gravatar).', 'benchmark-email-lite' ) . '</li>
-				<li><code>EXCERPT</code>' . __( 'will be replaced with the WP post excerpt.', 'benchmark-email-lite' ) . '</li>
-				<li><code>FEATURED_IMAGE_FULL</code>' . __( 'will be replaced with the WP post featured image in full size.', 'benchmark-email-lite' ) . '</li>
-				<li><code>FEATURED_IMAGE_LARGE</code>' . __( 'will be replaced with the WP post featured image in large size.', 'benchmark-email-lite' ) . '</li>
-				<li><code>FEATURED_IMAGE_MEDIUM</code>' . __( 'will be replaced with the WP post featured image in medium size.', 'benchmark-email-lite' ) . '</li>
-				<li><code>FEATURED_IMAGE_THUMBNAIL</code>' . __( 'will be replaced with the WP post featured image in thumbnail size.', 'benchmark-email-lite' ) . '</li>
-				<li><code>PERMALINK</code>' . __( 'will be replaced with the WP post permalink.', 'benchmark-email-lite' ) . '</li>
-				<li><code>TAGS</code>' . __( 'will be replaced with the WP post tags.', 'benchmark-email-lite' ) . '</li>
-				<li><code>TITLE_HERE</code>' . __( 'will be replaced with the WP post title.', 'benchmark-email-lite' ) . '</li>
-			</ul>
-			<h3>' . __( 'If caching is enabled on your hosting service, you may need to refresh cache after saving changes.', 'benchmark-email-lite' ) . '</h3>
-			<h3>' . __( 'Be sure to send email tests after making changes to the email template!', 'benchmark-email-lite' ) . '</h3>
-		';
+		?>
+
+		<textarea id="benchmark-email-template" name="benchmark-email-lite_group_template[html]"
+			style="width:100%;" cols="30" rows="20"><?php echo $options['html']; ?></textarea>
+
+		<ul style="list-style-type:square;">
+			<li>
+				<a target="_blank" href="https://ui.benchmarkemail.com/help-support/help-FAQ-details?id=100">
+					<?php _e( 'This article helps you with email template coding.', 'benchmark-email-lite' ); ?>
+				</a>
+			</li>
+			<li>
+				<a target="_blank" href="http://www.w3schools.com/tags/ref_colorpicker.asp">
+					<?php _e( 'Look up color codes here.', 'benchmark-email-lite' ); ?>
+				</a>
+			</li>
+			<li><code>BODY_HERE</code><?php _e( 'will be replaced with the WP post body.', 'benchmark-email-lite' ); ?></li>
+			<li><code>CATEGORIES</code><?php _e( 'will be replaced with the WP post categories.', 'benchmark-email-lite' ); ?></li>
+			<li><code>EMAIL_MD5_HERE</code><?php _e( 'will be replaced with the WP site admin email hash (for Gravatar).', 'benchmark-email-lite' ); ?></li>
+			<li><code>EXCERPT</code><?php _e( 'will be replaced with the WP post excerpt.', 'benchmark-email-lite' ); ?></li>
+			<li><code>FEATURED_IMAGE_FULL</code><?php _e( 'will be replaced with the WP post featured image in full size.', 'benchmark-email-lite' ); ?></li>
+			<li><code>FEATURED_IMAGE_LARGE</code><?php _e( 'will be replaced with the WP post featured image in large size.', 'benchmark-email-lite' ); ?></li>
+			<li><code>FEATURED_IMAGE_MEDIUM</code><?php _e( 'will be replaced with the WP post featured image in medium size.', 'benchmark-email-lite' ); ?></li>
+			<li><code>FEATURED_IMAGE_THUMBNAIL</code><?php _e( 'will be replaced with the WP post featured image in thumbnail size.', 'benchmark-email-lite' ); ?></li>
+			<li><code>PERMALINK</code><?php _e( 'will be replaced with the WP post permalink.', 'benchmark-email-lite' ); ?></li>
+			<li><code>TAGS</code><?php _e( 'will be replaced with the WP post tags.', 'benchmark-email-lite' ); ?></li>
+			<li><code>TITLE_HERE</code><?php _e( 'will be replaced with the WP post title.', 'benchmark-email-lite' ); ?></li>
+		</ul>
+
+		<h3><?php _e( 'If caching is enabled on your hosting service, you may need to refresh cache after saving changes.', 'benchmark-email-lite' ); ?></h3>
+
+		<h3><?php _e( 'Be sure to send email tests after making changes to the email template!', 'benchmark-email-lite' ); ?></h3>
+
+		<?php
 	}
 
 	// Settings API Field Validations

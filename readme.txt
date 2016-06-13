@@ -141,6 +141,8 @@ Two reasons. First, Benchmark Email requested that we use this method because it
 * Added: communication logging and admin area UI tab displaying last 25 communications for diagnostic use.
 * Updated: Benchmark Email API server version from 1.0 to 1.3
 * Updated: post metabox JS form validation to place multiple errors into a single pop-up message to match the front end
+* Updated: general code cleanups
+* Updated: removed transient caching of email report level 2 as it was unnecessary and was somewhat conflicting with level 1 cache
 * Fixed: widget constructor deprecated notice since WP 4.3.0 when DEBUG mode is ON.
 
 = 2.5 on 2015-04-13 =

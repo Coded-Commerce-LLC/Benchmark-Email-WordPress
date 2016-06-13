@@ -79,37 +79,37 @@
 			$required = isset( $instance['fields_required'][$key] ) ? $instance['fields_required'][$key] : 0;
 		?>
 
-		<tr<?php if ($i === 1) { echo ' style="display:none;" class="bmebase"'; } ?>>
+		<tr<?php if( $i === 1 ) { echo ' style="display:none;" class="bmebase"'; } ?>>
 
-			<?php if ( $selected == 'Email' ) { ?>
+			<?php if( $selected == 'Email' ) { ?>
 
 				<td>
 					<span style="padding:0 0 0 8px;">
-						<input type="hidden" value="Email" name="<?php echo $this->get_field_name('fields'); ?>[<?php echo $key; ?>]" />
+						<input type="hidden" value="Email" name="<?php echo $this->get_field_name( 'fields' ); ?>[<?php echo $key; ?>]" />
 						[<?php _e( 'Email address', 'benchmark-email-lite' ); ?>]
 					</span>
 				</td>
 				<td>
-					<input type="text" size="15" maxlength="50" value="<?php echo $label; ?>" name="<?php echo $this->get_field_name('fields_labels'); ?>[<?php echo $key; ?>]" />
+					<input type="text" size="15" maxlength="50" value="<?php echo $label; ?>" name="<?php echo $this->get_field_name( 'fields_labels' ); ?>[<?php echo $key; ?>]" />
 				</td>
 				<td style="text-align:center;">
-					<input type="hidden" value="1" name="<?php echo $this->get_field_name('fields_required'); ?>[<?php echo $key; ?>]" />
+					<input type="hidden" value="1" name="<?php echo $this->get_field_name( 'fields_required' ); ?>[<?php echo $key; ?>]" />
 					<img src="images/yes.png" width="16" height="16" />
 				</td>
 
 			<?php } else { ?>
 
 				<td>
-					<select class="bmefields" name="<?php echo $this->get_field_name('fields'); ?>[<?php echo $key; ?>]">
+					<select class="bmefields" name="<?php echo $this->get_field_name( 'fields' ); ?>[<?php echo $key; ?>]">
 
-					<?php foreach( $fields as $i => $field ) { ?>
-					<option value="<?php echo $field; ?>"<?php if( $selected == $field ) { echo ' selected="selected"'; } ?>><?php echo $fields_labels[$i]; ?></option>
+					<?php foreach( $fields as $field => $field_label ) { ?>
+					<option value="<?php echo $field; ?>"<?php if( $selected == $field ) { echo ' selected="selected"'; } ?>><?php echo $field_label; ?></option>
 					<?php } ?>
 
 					</select>
 				</td>
 				<td>
-					<input type="text" size="15" maxlength="50" class="bmelabels" value="<?php echo $label; ?>" name="<?php echo $this->get_field_name('fields_labels'); ?>[<?php echo $key; ?>]" />
+					<input type="text" size="15" maxlength="50" class="bmelabels" value="<?php echo $label; ?>" name="<?php echo $this->get_field_name( 'fields_labels' ); ?>[<?php echo $key; ?>]" />
 				</td>
 				<td style="text-align:center;">
 					<input type="checkbox" value="1" <?php checked( $required, '1' ); ?> name="<?php echo $this->get_field_name( 'fields_required' ); ?>[<?php echo $key; ?>]" />
@@ -127,7 +127,7 @@
 			</td>
 			<td>
 
-				<?php if ( $selected != 'Email' ) { ?>
+				<?php if( $selected != 'Email' ) { ?>
 				<a href="#" class="bmedelete" title="Delete" style="text-decoration:none;">
 					<img alt="Delete" src="images/no.png" width="16" height="16" />
 				</a>
@@ -151,7 +151,18 @@
 	<?php if( is_numeric( $instance['widget_id'] ) ) { ?>
 		<strong>[benchmark-email-lite widget_id="<?php echo $instance['widget_id']; ?>"]</strong><br />
 		<small>
-			<?php _e( 'To optionally use this widget inside of any post or page content, copy and paste this shortcode where you would like the signup form to be placed. You may also drag this widget into the Inactive Widgets section to prevent sidebar placement.', 'benchmark-email-lite' ); ?>
+
+			<?php
+			_e(
+				'
+					To optionally use this widget inside of any post or page content,
+					copy and paste this shortcode where you would like the signup form to be placed.
+					You may also drag this widget into the Inactive Widgets section to prevent sidebar placement.
+				',
+				'benchmark-email-lite'
+			);
+			?>
+
 		</small>
 	<?php } else { ?>
 		<small><?php _e( 'Click the Save button to generate a shortcode for this widget.', 'benchmark-email-lite' ); ?></small>

@@ -21,14 +21,23 @@
 
 		<h3><?php _e( 'Connection Timeout', 'benchmark-email-lite' ); ?></h3>
 
-		<p><?php echo sprintf(
-			__( 'Due to sluggish communications, the Benchmark Email connection is automatically suspended for up to 5 minutes. If you encounter this error often, you may set the Connection Timeout setting to a higher value. %s', 'benchmark-email-lite' )
-		, '
-			<br /><br />
-			<form method="post" action="">
-			<input type="submit" class="button-primary" name="force_reconnect" value="' . __( 'Attempt to Reconnect', 'benchmark-email-lite' ) . '" />
-			</form>
-		' ); ?></p>
+		<p><?php
+		echo sprintf(
+			__( '
+				Due to sluggish communications, the Benchmark Email connection is automatically suspended for up to 5 minutes.
+				If you encounter this error often, you may set the Connection Timeout setting to a higher value. %s
+			', 'benchmark-email-lite' ),
+			sprintf(
+				'
+					<br /><br />
+					<form method="post" action="">
+					<input type="submit" class="button-primary" name="force_reconnect" value="%s" />
+					</form>
+				',
+				__( 'Attempt to Reconnect', 'benchmark-email-lite' )
+			)
+		);
+		?></p>
 
 	</div>
 
@@ -51,21 +60,28 @@
 			break;
 
 		case 'benchmark-email-lite-log':
+
+			// Get Communication Logs
 			$logs = get_transient( 'benchmark-email-lite_log' );
 			$logs = is_array( $logs ) ? $logs : array();
+
+			// Heading
 			echo sprintf(
-				__( '<h3>Displaying %d recent communication logs</h3>', 'benchmark-email-lite' ),
-				sizeof( $logs )
+				'<h3>%s</h3>',
+				sprintf(
+					__( 'Displaying %d recent communication logs', 'benchmark-email-lite' ),
+					sizeof( $logs )
+				)
 			);
 			?>
 
 			<table class="widefat fixed">
 				<thead>
 					<tr>
-						<th>Began</th>
-						<th>Lapsed</th>
-						<th>Method</th>
-						<th>Show/Hide</th>
+						<th><?php _e( 'Started', 'benchmark-email-lite' ); ?></th>
+						<th><?php _e( 'Lapsed', 'benchmark-email-lite' ); ?></th>
+						<th><?php _e( 'Method', 'benchmark-email-lite' ); ?></th>
+						<th><?php _e( 'Show/Hide', 'benchmark-email-lite' ); ?></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -94,29 +110,44 @@
 				</tbody>
 			</table>
 
+			<?php if( $crons ) { ?>
+
 			<h3><?php _e( 'Queue schedule in cron', 'benchmark-email-lite' ); ?></h3>
 
+			<table class="widefat fixed">
+				<thead>
+					<tr>
+						<th><?php _e( 'Starts', 'benchmark-email-lite' ); ?></th>
+						<th><?php _e( 'API Key', 'benchmark-email-lite' ); ?></th>
+						<th><?php _e( 'List or Form', 'benchmark-email-lite' ); ?></th>
+						<th><?php _e( 'Show/Hide', 'benchmark-email-lite' ); ?></th>
+					</tr>
+				</thead>
+				<tbody>
+
+					<?php foreach( $crons as $log ) { ?>
+					<tr>
+						<td><?php echo $log['starts']; ?></td>
+						<td><?php echo $log['key']; ?></td>
+						<td><?php echo $log['list']; ?> (<?php echo $log['list_id']; ?>)</td>
+						<td>
+							<a href="#" title="Show/Hide" onclick="jQuery( '#cron-<?php echo $i; ?>' ).toggle();return false;">
+								<div class="dashicons dashicons-sort"></div>
+							</a>
+						</td>
+					</tr>
+					<tr id="cron-<?php echo $i; ?>" style="display: none;">
+						<td colspan="4">
+							<p><strong><?php _e( 'Fields', 'benchmark-email-lite' ); ?></strong></p>
+							<pre><?php print_r( $log['fields'] ); ?></pre>
+						</td>
+					</tr>
+					<?php } ?>
+
+				</tbody>
+			</table>
+
 			<?php
-			$schedule = get_option( 'cron' );
-			foreach( $schedule as $timestamp => $jobs ) {
-				if( ! is_array( $jobs ) ) { continue; }
-				foreach( $jobs as $slug => $job ) {
-					if( $slug != 'benchmarkemaillite_queue' ) { continue; }
-					$logs = get_option( 'benchmarkemaillite_queue' );
-					$logs = explode( "\n", $logs );
-					foreach( $logs as $log ) {
-						if( ! $log ) { continue; }
-						$output = array();
-						$log = explode( '||', $log );
-						list( $output['API Key'], $output['List or Form Name'], $output['List or Form ID'] ) = explode( '|', $log[0] );
-						$output['Fields'] = unserialize( $log[1] );
-						echo sprintf(
-							'<div>%s</div><pre>%s</pre>',
-							date( 'r', $timestamp ),
-							print_r( $output, true )
-						);
-					}
-				}
 			}
 			break;
 	}

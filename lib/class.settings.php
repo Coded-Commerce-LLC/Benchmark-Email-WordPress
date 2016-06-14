@@ -159,8 +159,42 @@ class benchmarkemaillite_settings {
 			'benchmark-email-lite-log' => __( 'Communication Log', 'benchmark-email-lite' ),
 		);
 		$current = isset( $_GET['page'] ) ? esc_attr( $_GET['page'] ) : 'benchmark-email-lite';
+
+		// Get Scheduled Cron Jobs
+		$crons = false;
+		if( $current == 'benchmark-email-lite-log' ) {
+			$schedule = get_option( 'cron' );
+			foreach( $schedule as $timestamp => $jobs ) {
+				if( ! is_array( $jobs ) ) { continue; }
+				foreach( $jobs as $slug => $job ) {
+					if( $slug != 'benchmarkemaillite_queue' ) { continue; }
+
+					// Get Scheduled Jobs
+					$logs = get_option( 'benchmarkemaillite_queue' );
+					$logs = explode( "\n", $logs );
+					foreach( $logs as $log ) {
+						if( ! $log ) { continue; }
+
+						// Print Scheduled Job Details
+						$log = explode( '||', $log );
+						$list_info = explode( '|', $log[0] );
+						$crons[] = array(
+							'fields' => unserialize( $log[1] ),
+							'key' => $list_info[0],
+							'list_id' => $list_info[2],
+							'list' => $list_info[1],
+							'starts' => date( 'r', $timestamp ),
+						);
+					}
+				}
+			}
+		}
+
+		// Output
 		require( dirname( __FILE__ ) . '/../views/settings.html.php');
 	}
+
+	// Renders WP Settings API Forms
 	static function print_settings( $page, $group ) {
 		echo '<form method="post" action="options.php">';
 		settings_fields( $group );

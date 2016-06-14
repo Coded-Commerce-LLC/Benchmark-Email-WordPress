@@ -347,6 +347,11 @@ class benchmarkemaillite_widget extends WP_Widget {
 	// Main Subscription Logic
 	static function process_subscription( $bmelist, $data ) {
 
+		// Handle Missing Email Address
+		if( ! isset( $data['Email'] ) || ! is_email( $data['Email'] ) ) {
+			return __( 'Please enter a valid email address.', 'benchmark-email-lite' );
+		}
+
 		// Get List Info
 		list( benchmarkemaillite_api::$token, $listname, benchmarkemaillite_api::$listid ) = explode( '|', $bmelist );
 
@@ -355,13 +360,9 @@ class benchmarkemaillite_widget extends WP_Widget {
 
 		// Handle Responses
 		switch( $response ) {
-			case 'fail-email': return array( false, __( 'Please enter a valid email address.', 'benchmark-email-lite' ) );
-			case 'success-queue': return array( true, __( 'Successfully queued subscription.', 'benchmark-email-lite' ) );
-			case 'fail-add': return array( false, __( 'Failed to add subscription. Please try again later.', 'benchmark-email-lite' ) );
-			case 'success-add': return array( true, __( 'A verification email has been sent.', 'benchmark-email-lite' ) );
-			case 'fail-update': return array( false, __( 'Failed to update subscription. Please try again later.', 'benchmark-email-lite' ) );
-			case 'success-update': return array( true, __( 'Successfully updated subscription.', 'benchmark-email-lite' ) );
-			default: return array( false, __( 'Failed to communicate. Please try again later.', 'benchmark-email-lite' ) );
+			case 'added': return array( true, __( 'A verification email has been sent.', 'benchmark-email-lite' ) );
+			case 'updated': return array( true, __( 'Successfully updated subscription.', 'benchmark-email-lite' ) );
+			case 'queued': return array( true, __( 'Successfully queued subscription.', 'benchmark-email-lite' ) );
 		}
 	}
 
@@ -385,7 +386,7 @@ class benchmarkemaillite_widget extends WP_Widget {
 		if( ! $queue = get_option( 'benchmarkemaillite_queue' ) ) { return; }
 		delete_option( 'benchmarkemaillite_queue' );
 
-		// Attempt to Subscribe Each Queued Record, Or Fail Back To Queue
+		// Attempt to Subscribe Each Queued Record, Or Fail Back Into Queue
 		$queue = explode( "\n", $queue );
 		foreach( $queue as $row ) {
 			$row = explode( '||', $row );

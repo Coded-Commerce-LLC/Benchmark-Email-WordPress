@@ -94,7 +94,30 @@
 				</tbody>
 			</table>
 
+			<h3><?php _e( 'Queue schedule in cron', 'benchmark-email-lite' ); ?></h3>
+
 			<?php
+			$schedule = get_option( 'cron' );
+			foreach( $schedule as $timestamp => $jobs ) {
+				if( ! is_array( $jobs ) ) { continue; }
+				foreach( $jobs as $slug => $job ) {
+					if( $slug != 'benchmarkemaillite_queue' ) { continue; }
+					$logs = get_option( 'benchmarkemaillite_queue' );
+					$logs = explode( "\n", $logs );
+					foreach( $logs as $log ) {
+						if( ! $log ) { continue; }
+						$output = array();
+						$log = explode( '||', $log );
+						list( $output['API Key'], $output['List or Form Name'], $output['List or Form ID'] ) = explode( '|', $log[0] );
+						$output['Fields'] = unserialize( $log[1] );
+						echo sprintf(
+							'<div>%s</div><pre>%s</pre>',
+							date( 'r', $timestamp ),
+							print_r( $output, true )
+						);
+					}
+				}
+			}
 			break;
 	}
 

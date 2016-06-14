@@ -59,10 +59,9 @@ class benchmarkemaillite_api {
 
 	// Register Vendor
 	static function handshake( $tokens ) {
-		if ( ! $tokens || ! is_array( $tokens ) ) { return; }
-		foreach ( $tokens as $token ) {
-			if ( ! $token ) { continue; }
-			return self::query( 'UpdatePartner', $token, 'beautomated' );
+		foreach( $tokens as $token ) {
+			if( ! $token ) { continue; }
+			self::query( 'UpdatePartner', $token, 'beautomated' );
 		}
 	}
 

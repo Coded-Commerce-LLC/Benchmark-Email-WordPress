@@ -6,7 +6,7 @@ class benchmarkemaillite_api {
 	// Executes Query with Time Tracking
 	static function query() {
 		$options = get_option( 'benchmark-email-lite_group' );
-		$timeout = ( isset( $options[5] ) ) ? $options[5] : 10;
+		$timeout = ( isset( $options[5] ) ) ? $options[5] : 20;
 		ini_set( 'default_socket_timeout', $timeout );
 		require_once( ABSPATH . WPINC . '/class-IXR.php' );
 

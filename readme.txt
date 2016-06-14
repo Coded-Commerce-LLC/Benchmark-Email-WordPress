@@ -137,13 +137,18 @@ Two reasons. First, Benchmark Email requested that we use this method because it
 
 = Development Version =
 
-* Added: new email template anchors for categories, excerpt, featured image, permalink, tags thanks to a suggestion from Pedro on Forum
+* Added: new email template anchors for categories, excerpt, featured image, permalink, tags thanks to a suggestion from Pedro on Forum.
 * Added: communication logging and admin area UI tab displaying last 25 communications for diagnostic use.
+* Added: cron queue viewer to Comm Log tab.
 * Updated: Benchmark Email API server version from 1.0 to 1.3
-* Updated: post metabox JS form validation to place multiple errors into a single pop-up message to match the front end
-* Updated: general code cleanups
-* Updated: removed transient caching of email report level 2 as it was unnecessary and was somewhat conflicting with level 1 cache
+* Updated: post metabox JS form validation to place multiple errors into a single pop-up message to match the front end.
+* Updated: general code cleanups.
+* Updated: removed transient caching of email report level 2 as it was unnecessary and was somewhat conflicting with level 1 cache.
+* Updated: Increased jQuery UI version to the latest stable 1.11.4 minified version.
+* Updated: Increased commection timeout default to 20 seconds to reflect latest testing.
+* Updated: subscription logic to fix a few issues, addresses user sometimes receiving "Failed to add subscription" error message and a problem where sign up forms with multiple lists were only updating the first list.
 * Fixed: widget constructor deprecated notice since WP 4.3.0 when DEBUG mode is ON.
+* Fixed: vendor handshake to set all API keys instead of just the first one.
 
 = 2.5 on 2015-04-13 =
 
@@ -151,7 +156,6 @@ Two reasons. First, Benchmark Email requested that we use this method because it
 * Added: Localization logic with embedded translation files for Spanish, Portuguese/BR, and Chinese/Traditional/TW regions.
 * Added: Pre-population of Metabox Admin email name and from name fields.
 * Updated: Consolidated loading graphic to WP core image. Replaced subscribe form LIs with DIVs.
-* Fixed: to existing subscribee updating on multiple list signup forms, returns error if any one list fails to update properly.
 
 = 2.4.6 on 2014-06-17 =
 
@@ -351,6 +355,14 @@ Two reasons. First, Benchmark Email requested that we use this method because it
 * Added: Initial Plugin release.
 
 == Upgrade Notice ==
+
+= 2.5 =
+
+* Added support for sign up form lists and several geographic localizations.
+
+= 2.4.6 =
+
+* Added UI improvements to pages/posts metabox, a few misc updates and fixes.
 
 = 2.4.5 =
 

@@ -187,7 +187,7 @@ class benchmarkemaillite_settings {
 							'key' => $list_info[0],
 							'list_id' => $list_info[2],
 							'list' => $list_info[1],
-							'starts' => date( 'm/d/Y h:i:s A', $timestamp ),
+							'starts' => date( 'm/d/Y h:i:s A', $timestamp + wp_timezone_override_offset() * 3600 ),
 						);
 					}
 				}

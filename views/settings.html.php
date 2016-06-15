@@ -113,7 +113,7 @@
 			<table class="widefat">
 				<thead>
 					<tr>
-						<th><?php _e( 'Starts (UTC)', 'benchmark-email-lite' ); ?></th>
+						<th><?php _e( 'Starts', 'benchmark-email-lite' ); ?></th>
 						<th><?php _e( 'API Key', 'benchmark-email-lite' ); ?></th>
 						<th><?php _e( 'List or Form', 'benchmark-email-lite' ); ?></th>
 						<th><?php _e( 'Show/Hide', 'benchmark-email-lite' ); ?></th>

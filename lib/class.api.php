@@ -86,8 +86,16 @@ class benchmarkemaillite_api {
 
 	// Add or Update Subscriber
 	static function subscribe( $bmelist, $data ) {
-		$data['email'] = $data['Email'];
 		$matched_to_list = false;
+
+		// Clean Up Submitted Data
+		if( ! isset( $data['cleaned'] ) ) {
+			$data['email'] = $data['Email'];
+			foreach( $data as $key => $val ) {
+				$data[$key] = stripslashes( $val );
+			}
+			$data['cleaned'] = 1;
+		}
 
 		// Check To See If Requested ID Matches A List
 		$lists = self::lists();
@@ -112,20 +120,21 @@ class benchmarkemaillite_api {
 
 					// Match To Applicable Contact List
 					foreach( $lists as $list ) {
-						if( $list['listname'] == $listname ) {
+						if( $list['listname'] != $listname ) { continue; }
 
-							// Check for List Subscription Preexistance
-							$contactID = self::find( $data['Email'], $list['id'] );
+						// Check for List Subscription Preexistance
+						$contactID = self::find( $data['Email'], $list['id'] );
 
-							// Update Preexisting List Subscription
-							if( is_numeric( $contactID ) ) {
-								$response = self::query( 'listUpdateContactDetails', self::$token, $list['id'], $contactID, $data );
-								if( is_array( $response ) ) {
-									$matched_existing_subscription = 'updated';
-								} else {
-									benchmarkemaillite_widget::queue_subscription( $bmelist, $data );
-									$matched_existing_subscription = 'queued';
-								}
+						// Update Preexisting List Subscription
+						if( is_numeric( $contactID ) ) {
+							$response = self::query(
+								'listUpdateContactDetails', self::$token, $list['id'], $contactID, $data
+							);
+							if( is_array( $response ) ) {
+								$matched_existing_subscription = 'updated';
+							} else {
+								benchmarkemaillite_widget::queue_subscription( $bmelist, $data );
+								$matched_existing_subscription = 'queued';
 							}
 						}
 					}

@@ -61,21 +61,17 @@
 
 		case 'benchmark-email-lite-log':
 
-			// Get Communication Logs
-			$logs = get_transient( 'benchmark-email-lite_log' );
-			$logs = is_array( $logs ) ? $logs : array();
-
 			// Heading
 			echo sprintf(
 				'<h3>%s</h3>',
 				sprintf(
 					__( 'Displaying %d recent communication logs', 'benchmark-email-lite' ),
-					sizeof( $logs )
+					sizeof( $communications )
 				)
 			);
 			?>
 
-			<table class="widefat fixed">
+			<table class="widefat">
 				<thead>
 					<tr>
 						<th><?php _e( 'Started', 'benchmark-email-lite' ); ?></th>
@@ -86,7 +82,7 @@
 				</thead>
 				<tbody>
 
-					<?php foreach( $logs as $i => $log ) { ?>
+					<?php foreach( $communications as $i => $log ) { ?>
 					<tr>
 						<td><?php echo $log['Time']; ?></td>
 						<td><?php echo $log['Lapsed']; ?></td>
@@ -114,10 +110,10 @@
 
 			<h3><?php _e( 'Queue schedule in cron', 'benchmark-email-lite' ); ?></h3>
 
-			<table class="widefat fixed">
+			<table class="widefat">
 				<thead>
 					<tr>
-						<th><?php _e( 'Starts', 'benchmark-email-lite' ); ?></th>
+						<th><?php _e( 'Starts (UTC)', 'benchmark-email-lite' ); ?></th>
 						<th><?php _e( 'API Key', 'benchmark-email-lite' ); ?></th>
 						<th><?php _e( 'List or Form', 'benchmark-email-lite' ); ?></th>
 						<th><?php _e( 'Show/Hide', 'benchmark-email-lite' ); ?></th>
@@ -125,7 +121,7 @@
 				</thead>
 				<tbody>
 
-					<?php foreach( $crons as $log ) { ?>
+					<?php foreach( $crons as $i => $log ) { ?>
 					<tr>
 						<td><?php echo $log['starts']; ?></td>
 						<td><?php echo $log['key']; ?></td>

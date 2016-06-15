@@ -160,6 +160,10 @@ class benchmarkemaillite_settings {
 		);
 		$current = isset( $_GET['page'] ) ? esc_attr( $_GET['page'] ) : 'benchmark-email-lite';
 
+		// Get Communication Logs
+		$communications = get_transient( 'benchmark-email-lite_log' );
+		$communications = is_array( $communications ) ? $communications : array();
+
 		// Get Scheduled Cron Jobs
 		$crons = false;
 		if( $current == 'benchmark-email-lite-log' ) {
@@ -183,7 +187,7 @@ class benchmarkemaillite_settings {
 							'key' => $list_info[0],
 							'list_id' => $list_info[2],
 							'list' => $list_info[1],
-							'starts' => date( 'r', $timestamp ),
+							'starts' => date( 'm/d/Y h:i:s A', $timestamp ),
 						);
 					}
 				}

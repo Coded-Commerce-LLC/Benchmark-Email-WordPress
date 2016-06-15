@@ -65,6 +65,12 @@ class benchmarkemaillite_settings {
 			update_option( 'benchmark-email-lite_group_template', $options_template );
 		}
 
+		// Check For Compatible Vendor Handshake
+		$handshake = get_transient( 'benchmark-email-lite_handshake' );
+		if( $handshake != benchmarkemaillite_api::$handshake_version ) {
+			benchmarkemaillite_api::handshake( $options[1] );
+		}
+
 		// Exit If Already Configured
 		if( isset( $options[1][0] ) && $options[1][0] ) { return; }
 

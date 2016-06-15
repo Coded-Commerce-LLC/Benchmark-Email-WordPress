@@ -1,7 +1,8 @@
 <?php
 
 class benchmarkemaillite_api {
-	static $token, $listid, $campaignid, $apiurl = 'https://api.benchmarkemail.com/1.3/';
+	static $token, $listid, $campaignid, $handshake_version = '2.6',
+		$apiurl = 'https://api.benchmarkemail.com/1.3/';
 
 	// Executes Query with Time Tracking
 	static function query() {
@@ -57,12 +58,15 @@ class benchmarkemaillite_api {
 		return $response;
 	}
 
-	// Register Vendor
+	// Register Vendor With API Key
 	static function handshake( $tokens ) {
 		foreach( $tokens as $token ) {
 			if( ! $token ) { continue; }
 			self::query( 'UpdatePartner', $token, 'beautomated' );
 		}
+
+		// Mark As Updated For This Version For One Month
+		set_transient( 'benchmark-email-lite_handshake', self::$handshake_version, 86400 * 30 );
 	}
 
 	// Lookup Lists For Account

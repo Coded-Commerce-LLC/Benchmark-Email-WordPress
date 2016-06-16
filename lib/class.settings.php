@@ -40,7 +40,10 @@ class benchmarkemaillite_settings {
 	// Bad Configuration Message
 	static function badconfig_message() {
 		return sprintf(
-			__( 'Please configure your API key(s) on the %sBenchmark Email Lite settings page.%s', 'benchmark-email-lite' ),
+			__(
+				'Please configure your API key(s) on the %sBenchmark Email Lite settings page.%s',
+				'benchmark-email-lite'
+			),
 			'<a href="admin.php?page=benchmark-email-lite-settings">', '</a>'
 		);
 	}
@@ -318,10 +321,11 @@ class benchmarkemaillite_settings {
 	static function field_connection_timeout() {
 		$options = get_option( 'benchmark-email-lite_group' );
 		echo sprintf(
-			__( '
-				If the connection with the Benchmark Email server takes %s seconds or longer,
-				disable connections for 5 minutes to prevent site administration from becoming sluggish. (Default: 20)
-			', 'benchmark-email-lite' ),
+			__(
+				'If the connection with the Benchmark Email server takes %s seconds or longer, '
+				. 'disable connections for 5 minutes to prevent site administration from becoming sluggish. (Default: 20)',
+				'benchmark-email-lite'
+			),
 			"<input id='benchmark-email-lite_group_5' type='text' size='2' maxlength='2' name='benchmark-email-lite_group[5]' value='{$options[5]}' />"
 		);
 	}

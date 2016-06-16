@@ -23,11 +23,11 @@
 
 		<p><?php
 		echo sprintf(
-			__( '
-				Due to sluggish communications, the Benchmark Email connection is automatically suspended for up to 5 minutes.
-				If you encounter this error often, you may set the Connection Timeout setting to a higher value. %s
-			', 'benchmark-email-lite' ),
-			sprintf(
+			__(
+				'Due to sluggish communications, the Benchmark Email connection is automatically suspended for up to 5 minutes. '
+				. 'If you encounter this error often, you may set the Connection Timeout setting to a higher value. %s',
+				'benchmark-email-lite'
+			), sprintf(
 				'
 					<br /><br />
 					<form method="post" action="">

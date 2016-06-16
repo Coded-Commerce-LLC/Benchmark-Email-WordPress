@@ -154,11 +154,9 @@
 
 			<?php
 			_e(
-				'
-					To optionally use this widget inside of any post or page content,
-					copy and paste this shortcode where you would like the signup form to be placed.
-					You may also drag this widget into the Inactive Widgets section to prevent sidebar placement.
-				',
+				'To optionally use this widget inside of any post or page content, '
+				. 'copy and paste this shortcode where you would like the signup form to be placed. '
+				. 'You may also drag this widget into the Inactive Widgets section to prevent sidebar placement.',
 				'benchmark-email-lite'
 			);
 			?>

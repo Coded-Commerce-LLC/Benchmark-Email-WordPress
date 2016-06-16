@@ -39,11 +39,10 @@ class benchmarkemaillite_api {
 		if ( $lapsed >= $timeout ) {
 			$error = sprintf(
 				__(
-					'
-						Error connecting to Benchmark Email API server.
-						Connection throttled until %s to prevent sluggish behavior.
-						If this occurs frequently, try increasing your %sConnection Timeout setting.%s
-					', 'benchmark-email-lite'
+					'Error connecting to Benchmark Email API server. '
+					. 'Connection throttled until %s to prevent sluggish behavior. '
+					. 'If this occurs frequently, try increasing your %sConnection Timeout setting.%s ',
+					'benchmark-email-lite'
 				),
 				date( 'H:i:s', ( current_time( 'timestamp' ) + 300 ) ),
 				'<a href="admin.php?page=benchmark-email-lite-settings">',

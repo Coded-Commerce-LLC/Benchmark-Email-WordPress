@@ -148,7 +148,8 @@ Two reasons. First, Benchmark Email requested that we use this method because it
 * Updated: Increased commection timeout default to 20 seconds to reflect latest testing.
 * Updated: subscription logic to fix a few issues, addresses user sometimes receiving "Failed to add subscription" error message and a problem where sign up forms with multiple lists were only updating the first list.
 * Fixed: widget constructor deprecated notice since WP 4.3.0 when DEBUG mode is ON.
-* Fixed: vendor handshake to set all API keys instead of just the first one.
+* Fixed: vendor handshake to set all API keys instead of just the first one, and to refresh every 30 days.
+* Fixed: escaping of values during transmission of subscriptions for characters like backslash, single quote, double quote.
 
 = 2.5 on 2015-04-13 =
 

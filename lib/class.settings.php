@@ -293,19 +293,21 @@ class benchmarkemaillite_settings {
 			}
 		}
 
+		$primary = __( 'Primary', 'benchmark-email-lite' );
+		$optional = __( 'Optional', 'benchmark-email-lite' );
 		echo sprintf(
 			'
-				<div>%s <input type="text" size="36" maxlength="50" name="benchmark-email-lite_group[1][]" value="%s" /> Primary</div>
-				<div>%s <input type="text" size="36" maxlength="50" name="benchmark-email-lite_group[1][]" value="%s" /> Optional</div>
-				<div>%s <input type="text" size="36" maxlength="50" name="benchmark-email-lite_group[1][]" value="%s" /> Optional</div>
-				<div>%s <input type="text" size="36" maxlength="50" name="benchmark-email-lite_group[1][]" value="%s" /> Optional</div>
-				<div>%s <input type="text" size="36" maxlength="50" name="benchmark-email-lite_group[1][]" value="%s" /> Optional</div>
+				<div>%s <input type="text" size="36" maxlength="50" name="benchmark-email-lite_group[1][]" value="%s" /> %s</div>
+				<div>%s <input type="text" size="36" maxlength="50" name="benchmark-email-lite_group[1][]" value="%s" /> %s</div>
+				<div>%s <input type="text" size="36" maxlength="50" name="benchmark-email-lite_group[1][]" value="%s" /> %s</div>
+				<div>%s <input type="text" size="36" maxlength="50" name="benchmark-email-lite_group[1][]" value="%s" /> %s</div>
+				<div>%s <input type="text" size="36" maxlength="50" name="benchmark-email-lite_group[1][]" value="%s" /> %s</div>
 			',
-			$results[0], $key[0],
-			$results[1], $key[1],
-			$results[2], $key[2],
-			$results[3], $key[3],
-			$results[4], $key[4]
+			$results[0], $key[0], $primary,
+			$results[1], $key[1], $optional,
+			$results[2], $key[2], $optional,
+			$results[3], $key[3], $optional,
+			$results[4], $key[4], $optional
 		);
 	}
 

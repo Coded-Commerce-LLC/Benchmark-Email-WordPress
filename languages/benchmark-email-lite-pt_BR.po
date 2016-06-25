@@ -6,7 +6,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/benchmark-email-"
 "lite\n"
 "POT-Creation-Date: 2016-06-16 08:58-0700\n"
-"PO-Revision-Date: 2016-06-16 08:58-0700\n"
+"PO-Revision-Date: 2016-06-25 14:48-0700\n"
 "Last-Translator: Sean Conklin <support@benchmarkemail.com>\n"
 "Language-Team: Benchmark Email Support <support@benchmarkemail.com>\n"
 "Language: pt_BR\n"
@@ -18,7 +18,7 @@ msgstr ""
 
 #: lib/class.api.php:31
 msgid " seconds"
-msgstr ""
+msgstr "segundos"
 
 #: lib/class.api.php:201 lib/class.posts.php:125
 msgid "preexists"
@@ -236,7 +236,7 @@ msgstr "Configurações"
 
 #: lib/class.settings.php:144 lib/class.settings.php:168
 msgid "Communication Log"
-msgstr ""
+msgstr "Log de Comunicação"
 
 #: lib/class.settings.php:215
 msgid "Save Changes"
@@ -307,11 +307,11 @@ msgstr "Veja os códigos de cores aqui."
 
 #: lib/class.settings.php:351
 msgid "will be replaced with the WP post body."
-msgstr ""
+msgstr "será substituído pelo corpo do post WP."
 
 #: lib/class.settings.php:352
 msgid "will be replaced with the WP post categories."
-msgstr ""
+msgstr "será substituído pela categoria do post WP."
 
 #: lib/class.settings.php:353
 msgid "will be replaced with the WP site admin email hash (for Gravatar)."
@@ -321,41 +321,44 @@ msgstr ""
 
 #: lib/class.settings.php:354
 msgid "will be replaced with the WP post excerpt."
-msgstr ""
+msgstr "será substituído pelo resumo do post WP."
 
 #: lib/class.settings.php:355
 msgid "will be replaced with the WP post featured image in full size."
 msgstr ""
+"será substituído pela imagem em destaque do post WP, em seu tamanho original."
 
 #: lib/class.settings.php:356
 msgid "will be replaced with the WP post featured image in large size."
-msgstr ""
+msgstr "será substituído pela imagem em destaque do post WP, tamanho grande."
 
 #: lib/class.settings.php:357
 msgid "will be replaced with the WP post featured image in medium size."
-msgstr ""
+msgstr "será substituído pela imagem em destaque do post WP, tamanho médio."
 
 #: lib/class.settings.php:358
 msgid "will be replaced with the WP post featured image in thumbnail size."
-msgstr ""
+msgstr "será substituído pela imagem em destaque do post WP, em miniatura."
 
 #: lib/class.settings.php:359
 msgid "will be replaced with the WP post permalink."
-msgstr ""
+msgstr "será substituído pelo permalink do post WP."
 
 #: lib/class.settings.php:360
 msgid "will be replaced with the WP post tags."
-msgstr ""
+msgstr "será substituído pelos tags do post WP."
 
 #: lib/class.settings.php:361
 msgid "will be replaced with the WP post title."
-msgstr ""
+msgstr "será substituído pelo título do post WP."
 
 #: lib/class.settings.php:364
 msgid ""
 "If caching is enabled on your hosting service, you may need to refresh cache "
 "after saving changes."
 msgstr ""
+"Se o cache estiver ativado no seu serviço de hospedagem, você poderá "
+"precisar atualizar o cache após salvar as alterações."
 
 #: lib/class.settings.php:366
 msgid "Be sure to send email tests after making changes to the email template!"
@@ -585,23 +588,24 @@ msgstr "Ajuda? Ligue para Benchmark! BR +55 11 22462778 | PT +351 21 112 1819"
 
 #: views/metabox.html.php:117
 msgid "Please enter an email name."
-msgstr ""
+msgstr "Favor inserir nome para o email."
 
 #: views/metabox.html.php:126
 msgid "Please enter a from name."
-msgstr ""
+msgstr "Favor inserir nome do remetente."
 
 #: views/metabox.html.php:135
 msgid "Please enter a subject."
-msgstr ""
+msgstr "Favor inserir um assunto."
 
 #: views/metabox.html.php:144
 msgid "Please enter email address(es) to send the test email to."
 msgstr ""
+"Favor inserir o(s) endereço(s) de email usado(s) para envio do email teste."
 
 #: views/metabox.html.php:148
 msgid "Please do not exceed the limit of 5 email addresses."
-msgstr ""
+msgstr "Favor não exceder o limite de 5 endereços de email."
 
 #: views/reports.level1.html.php:2
 msgid "Refresh Data"
@@ -728,51 +732,51 @@ msgstr "Tentar Reconectar"
 
 #: views/settings.html.php:68
 msgid "Displaying %d recent communication logs"
-msgstr ""
+msgstr "Exibindo %d recente dos logs de comunicação"
 
 #: views/settings.html.php:77
 msgid "Started"
-msgstr ""
+msgstr "Início"
 
 #: views/settings.html.php:78
 msgid "Lapsed"
-msgstr ""
+msgstr "Duração"
 
 #: views/settings.html.php:79
 msgid "Method"
-msgstr ""
+msgstr "Método"
 
 #: views/settings.html.php:80 views/settings.html.php:119
 msgid "Show/Hide"
-msgstr ""
+msgstr "Exibir/Ocultar"
 
 #: views/settings.html.php:98
 msgid "Request"
-msgstr ""
+msgstr "Solicitação"
 
 #: views/settings.html.php:100
 msgid "Response"
-msgstr ""
+msgstr "Resposta"
 
 #: views/settings.html.php:111
 msgid "Queue schedule in cron"
-msgstr ""
+msgstr "Fila programada no cron"
 
 #: views/settings.html.php:116
 msgid "Starts"
-msgstr ""
+msgstr "Início"
 
 #: views/settings.html.php:117
 msgid "API Key"
-msgstr ""
+msgstr "Chave API"
 
 #: views/settings.html.php:118
 msgid "List or Form"
-msgstr ""
+msgstr "Lista ou Formulário"
 
 #: views/settings.html.php:137
 msgid "Fields"
-msgstr ""
+msgstr "Campos"
 
 #: views/widget.admin.html.php:3
 msgid "Contact list or signup form relationship"

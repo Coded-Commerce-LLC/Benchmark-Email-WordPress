@@ -3,8 +3,8 @@ Contributors: beautomated, seanconklin, randywsandberg
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=B22PPZ3SC6WZE
 Tags: api, benchmark, benchmark email, campaign, campaigns, chinese, contact form, contact forms, contacts, email, email blast, emails, email marketing, form, forms, html, join, list, lists, mail, mailing, mailing list, mailing lists, mailings, newsletter, newsletters, portuguese, register, registration, responsive, responsive emails, sign up, signup form, sidebar, spanish, widget, widgets
 Requires at least: 3.1
-Tested up to: 4.5.2
-Stable tag: 2.5
+Tested up to: 4.5.3
+Stable tag: 2.6
 License: GPLv2
 
 Benchmark Email Lite lets you build an email list from your WordPress site, and easily send your subscribers email versions of your posts and pages.
@@ -135,7 +135,7 @@ Two reasons. First, Benchmark Email requested that we use this method because it
 
 == Changelog ==
 
-= Development Version =
+= 2.6 on 2016-06-25 =
 
 * Added: new email template anchors for categories, excerpt, featured image, permalink, tags thanks to a suggestion from Pedro on Forum.
 * Added: communication logging and admin area UI tab displaying last 25 communications for diagnostic use.
@@ -356,6 +356,10 @@ Two reasons. First, Benchmark Email requested that we use this method because it
 * Added: Initial Plugin release.
 
 == Upgrade Notice ==
+
+= 2.6 =
+
+* New email template variables, communication log, fixes and enhancements.
 
 = 2.5 =
 

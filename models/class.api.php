@@ -1,8 +1,89 @@
 <?php
 
 class benchmarkemaillite_api {
-	static $token, $listid, $campaignid, $handshake_version = '2.6',
-		$apiurl = 'https://api.benchmarkemail.com/1.3/';
+	static $token, $listid, $campaignid, $handshake_version = '2.6', $apiurl = 'https://api.benchmarkemail.com/1.3/';
+
+	// Makes Drop Down Lists From API Keys
+	static function print_lists( $apis, $select='', $command='lists' ) {
+
+		// Lookup Lists
+		$lists = array();
+
+		// Loop API Keys
+		foreach( $apis as $api ) {
+			if( ! $api ) { continue; }
+			$lists[$api] = array();
+			self::$token = $api;
+
+			// Different Requests
+			switch( $command ) {
+
+				// Get Signup Forms And Lists
+				case 'signup_forms':
+					$response = call_user_func( array( 'benchmarkemaillite_api', 'signup_forms' ) );
+					$lists[$api] = is_array( $response ) ? $response : array();
+
+				// Just Get Lists
+				case 'lists':
+					$response = call_user_func( array( 'benchmarkemaillite_api', 'lists' ) );
+					if( is_array( $response ) ) {
+						foreach( $response as $key => $val ) {
+							if( isset( $val['listname'] ) ) {
+								$response[$key]['name'] = $val['listname'];
+							}
+						}
+						$lists[$api] = array_merge( $lists[$api], $response );
+					}
+			}
+		}
+
+		// Generate Output
+		$output = '';
+		$i = 0;
+
+		// Loop Keys And Lists
+		foreach( $lists as $key => $list1 ) {
+			if( ! $key ) { continue; }
+			if( $i > 0 ) { $output .= "<option disabled='disabled' value=''></option>\n"; }
+
+			// Output API Key Heading
+			$output .= "<option disabled='disabled' value=''>{$key}</option>\n";
+
+			// Handle API Keys With No Lists
+			if( ! $list1 ) {
+				$i ++;
+				$list1 = array();
+				$output .= '
+					<option value=""' . ( ( $i == 1 ) ? ' selected="selected"' : '' ) . ' disabled="disabled">
+						↳ ' . benchmarkemaillite_settings::badconnection_message() . '
+					</option>
+				';
+				continue;
+			}
+
+			// Loop Lists For API Key
+			foreach( $list1 as $list ) {
+				$selected = false;
+				$id = $list['id'];
+				$name = $list['name'];
+				$val = "{$key}|{$name}|{$id}";
+
+				// Handle Pre Selection Of First Choice When No Choice Exists
+				$i ++;
+				$selected = ( $select === $val ) ? " selected='selected'" : '';
+				if( ! $select && $i == 1 ) { $selected = " selected='selected'"; }
+
+				// Skip Unsubscribe List
+				if( $name == 'Master Unsubscribe List' ) { continue; }
+
+				// Output List Choice
+				$output .= "<option value='{$val}'{$selected}>↳ {$name}</option>\n";
+			}
+		}
+
+		// Done
+		return $output;
+	}
 
 	// Executes Query with Time Tracking
 	static function query() {
@@ -245,5 +326,3 @@ class benchmarkemaillite_api {
 		return self::query( 'reportGetSummary', self::$token, (string) $id );
 	}
 }
-
-?>

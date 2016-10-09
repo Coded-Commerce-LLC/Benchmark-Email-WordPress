@@ -2,16 +2,6 @@
 
 class benchmarkemaillite_posts {
 
-	// Create Pages+Posts Metaboxes
-	static function admin_init() {
-		wp_enqueue_script( 'jquery-ui-slider', '', array( 'jquery', 'jquery-ui' ), false, true );
-		wp_enqueue_script( 'jquery-ui-datepicker', '', array( 'jquery', 'jquery-ui' ), false, true );
-		wp_enqueue_style( 'jquery-ui-theme', '//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.min.css' );
-		$metabox_fn = array( 'benchmarkemaillite_posts', 'metabox' );
-		add_meta_box( 'benchmark-email-lite', 'Benchmark Email Lite', $metabox_fn, 'post', 'side', 'default' );
-		add_meta_box( 'benchmark-email-lite', 'Benchmark Email Lite', $metabox_fn, 'page', 'side', 'default' );
-	}
-
 	// Page+Post Metabox Contents
 	static function metabox() {
 		global $post;
@@ -32,7 +22,7 @@ class benchmarkemaillite_posts {
 			$val = benchmarkemaillite_settings::badconfig_message();
 			echo "<strong style='color:red;'>{$val}</strong>";
 		} else {
-			$dropdown = benchmarkemaillite_display::print_lists( $options[1], $bmelist );
+			$dropdown = benchmarkemaillite_api::print_lists( $options[1], $bmelist );
 		}
 
 		// Round Time To Nearest Quarter Hours
@@ -47,7 +37,7 @@ class benchmarkemaillite_posts {
 		$localtime_zone = $dateTime->format( 'T' );
 
 		// Output Form
-		require( dirname( __FILE__ ) . '/../views/metabox.html.php' );
+		require( BMEL_DIR_PATH . 'admin/views/metabox.html.php' );
 	}
 
 	// Called when Adding, Creating or Updating any Page+Post
@@ -112,7 +102,7 @@ class benchmarkemaillite_posts {
 			'tags' => implode( ', ', $tags ),
 			'title' => $post->post_title,
 		);
-		$content = benchmarkemaillite_display::compile_email_theme( $data );
+		$content = self::compile_email_theme( $data );
 		$webpageVersion = ( $options[2] == 'yes' ) ? true : false;
 		$permissionMessage = isset( $options[4] ) ? $options[4] : '';
 
@@ -210,6 +200,119 @@ class benchmarkemaillite_posts {
 				break;
 		}
 	}
-}
 
-?>
+	/*
+	Formats Email Body Into Email Template
+	This Can Be Customized EXTERNALLY Using This Approach:
+	add_filter( 'benchmarkemaillite_compile_email_theme', 'my_custom_function', 10, 1 );
+	*/
+	static function compile_email_theme( $data ) {
+		$options = get_option( 'benchmark-email-lite_group_template' );
+
+		// Priority 1: Uses Child Plugin Customizations
+		if( has_filter( 'benchmarkemaillite_compile_email_theme' ) ) {
+			return apply_filters( 'benchmarkemaillite_compile_email_theme', $data );
+		}
+
+		// Priority 2: Uses Stored HTML
+		if ( isset( $options['html'] ) && $output = $options['html'] ) {
+			$admin_email = md5( strtolower( get_option( 'admin_email' ) ) );
+			$output = str_replace( 'BODY_HERE', $data['body'], $output );
+			$output = str_replace( 'CATEGORIES', $data['categories'], $output );
+			$output = str_replace( 'EMAIL_MD5_HERE', $admin_email, $output );
+			$output = str_replace( 'EXCERPT', $data['excerpt'], $output );
+			$output = str_replace( 'FEATURED_IMAGE_FULL', $data['featured_image']['full'], $output );
+			$output = str_replace( 'FEATURED_IMAGE_LARGE', $data['featured_image']['large'], $output );
+			$output = str_replace( 'FEATURED_IMAGE_MEDIUM', $data['featured_image']['medium'], $output );
+			$output = str_replace( 'FEATURED_IMAGE_THUMBNAIL', $data['featured_image']['thumbnail'], $output );
+			$output = str_replace( 'PERMALINK', $data['permalink'], $output );
+			$output = str_replace( 'TAGS', $data['tags'], $output );
+			$output = str_replace( 'TITLE_HERE', $data['title'], $output );
+			return self::normalize_html( $output );
+		}
+
+		// Priority 3: Uses Template File
+		ob_start();
+		require( BMEL_DIR_URL . 'admin/assets/email_templates/simple.html' );
+		$output = ob_get_contents();
+		ob_end_clean();
+		return self::normalize_html( $output );
+	}
+
+	// Convert WP Core CSS To Embedded
+	static function normalize_html( $html ) {
+
+		// Proceed Only When Possible
+		if( ! class_exists( 'DOMDocument' ) ) { return $html; }
+
+		// Rules To Apply
+		$rules = array(
+			'alignnone' => 'margin: 5px 20px 20px 0; ',
+			'aligncenter' => 'display: block; margin: 5px auto 5px auto; ',
+			'alignright' => 'float: right; margin: 5px 0 20px 20px; ',
+			'alignleft' => 'float: left; margin: 5px 20px 20px 0; ',
+			'wp-caption' => 'background: #fff; border: 1px solid #f0f0f0; max-width: 96%; padding: 5px 3px 10px; text-align: center; ',
+			'wp-caption-text' => 'font-size: 11px; line-height: 17px; margin:0; padding: 0 4px 5px; ',
+			//'wp-caption img' => 'border: 0 none; height: auto; margin: 0; max-width: 98.5%; padding: 0; width: auto;',
+		);
+
+		// Tags To Process
+		$searchtags = array( 'p', 'span', 'img', 'div', 'h1', 'h2', 'h3', 'h4' );
+
+		// Suppress PHP Warnings
+		libxml_use_internal_errors( true );
+
+		// Open HTML
+		$doc = @DOMDocument::loadHTML( $html );
+
+		// Loop Tags
+		foreach( $searchtags as $tag ) {
+
+			// Search For Matches
+			$foundtags = $doc->getElementsByTagName( $tag );
+			if( ! $foundtags ) { continue; }
+
+			// Loop Matching Tags
+			foreach( $foundtags as $para ) {
+
+				// Search For Classes
+				$classes = array();
+				if( $para->hasAttribute( 'class' ) ) {
+					$classes = $para->getAttribute( 'class' );
+					$para->removeAttribute( 'class' );
+					$classes = explode( ' ', $classes );
+				}
+
+				// Preserve Any Existing Styles
+				$style = '';
+				if( $para->hasAttribute( 'style' ) ) {
+					$style = trim( $para->getAttribute( 'style' ) );
+					if( ! strchr( $style, ';' ) ) { $style .= ';'; }
+					$style .= ' ';
+				}
+
+				// Loop Classes
+				foreach( $classes as $class ) {
+
+					// Skip Non Conversion Classes
+					if( ! in_array( $class, array_keys( $rules ) ) ) { continue; }
+
+					// Accumulate Styling Rules To Apply
+					$style .= $rules[$class];
+				}
+
+				// Store Rules Into Tag
+				if( $style ) { $para->setAttribute( 'style', $style ); }
+			}
+		}
+
+		// Assemble HTML
+		$newdoc = $doc->saveHTML();
+
+		// Handle Errors
+		$errors = libxml_get_errors();
+
+		// Output
+		return $newdoc;
+	}
+}

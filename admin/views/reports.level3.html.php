@@ -14,4 +14,4 @@
 	<?php echo $response['subject']; ?>
 </p>
 
-<?php benchmarkemaillite_display::maketable( $data ); ?>
+<?php benchmarkemaillite_reports::maketable( $data ); ?>

@@ -88,7 +88,7 @@ class benchmarkemaillite_reports {
 		}
 
 		// Output
-		require( dirname( __FILE__ ) . '/../views/reports.level1.html.php' );
+		require( BMEL_DIR_PATH . 'admin/views/reports.level1.html.php' );
 	}
 
 	// Show Email Campaign Summary
@@ -111,7 +111,7 @@ class benchmarkemaillite_reports {
 		$response['clicks_percent'] = $response['opens'] ? 100 * $response['clicks'] / $response['opens'] : 0;
 
 		// Output
-		require( dirname( __FILE__ ) . '/../views/reports.level2.html.php' );
+		require( BMEL_DIR_PATH . 'admin/views/reports.level2.html.php' );
 	}
 
 	// Used For All Reports - Loops And Accumulates Page Content
@@ -153,7 +153,7 @@ class benchmarkemaillite_reports {
 						__( 'Opens', 'benchmark-email-lite' ) => $row['openCount'],
 					);
 				}
-				benchmarkemaillite_display::maketable( $data );
+				self::maketable( $data );
 				return;
 
 			// Click Performance Report
@@ -167,7 +167,7 @@ class benchmarkemaillite_reports {
 						__( 'Percent', 'benchmark-email-lite' ) => $row['percent'] . '%',
 					);
 				}
-				benchmarkemaillite_display::maketable( $data );
+				self::maketable( $data );
 				return;
 
 			// Click Performance Sub Reports
@@ -278,8 +278,45 @@ class benchmarkemaillite_reports {
 		// Output Requested Report
 		$url = self::url( array( 'show' => '' ) );
 		$response = get_transient( "benchmarkemaillite_{$meta->campaign}" );
-		require( dirname( __FILE__ ) . '/../views/reports.level3.html.php' );
+		require( BMEL_DIR_PATH . 'admin/views/reports.level3.html.php' );
+	}
+
+	// HTML Table Generator
+	static function maketable( $data ) {
+
+		// Table Column Widths By Title
+		$widths = array(
+			__( 'URL', 'benchmark-email-lite' ) => '*',
+			__( 'Country', 'benchmark-email-lite' ) => '*',
+			__( 'Opens', 'benchmark-email-lite' ) => 50,
+			__( 'Clicks', 'benchmark-email-lite' ) => 50,
+			__( 'Percent', 'benchmark-email-lite' ) => 50,
+			__( 'Name', 'benchmark-email-lite' ) => 200,
+			__( 'Email', 'benchmark-email-lite' ) => '*',
+			__( 'Date', 'benchmark-email-lite' ) => 150,
+			__( 'Bounce Type', 'benchmark-email-lite' ) => 100,
+		);
+	?>
+	<table class="widefat" cellspacing="0">
+		<thead>
+			<tr>
+				<th width="5">#</th>
+				<?php foreach ( $data[0] as $i => $val ) { ?>
+				<th width="<?php echo $widths[$i]; ?>"><?php echo $i; ?></th>
+				<?php } ?>
+			</tr>
+		</thead>
+		<tbody>
+			<?php foreach( $data as $i => $val ) { ?>
+			<tr>
+				<td><?php echo ++ $i; ?></td>
+				<?php foreach( $val as $i2 => $val2 ) { ?>
+				<td><?php echo $val2; ?></td>
+				<?php } ?>
+			</tr>
+			<?php } ?>
+		</tbody>
+	</table>
+	<?php
 	}
 }
-
-?>

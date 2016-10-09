@@ -64,7 +64,8 @@ class benchmarkemaillite_settings {
 		// Check And Set Defaults For Template Settings
 		$options_template = get_option( 'benchmark-email-lite_group_template' );
 		if( ! isset( $options_template['html'] ) || ! strstr( $options_template['html'], 'BODY_HERE' ) ) {
-			$options_template['html'] = implode( '', file( dirname( __FILE__ ) . '/../templates/simple.html.php' ) );
+			$template_file = BMEL_DIR_PATH . 'admin/assets/email_templates/simple.html';
+			$options_template['html'] = implode( '', file( $template_file ) );
 			update_option( 'benchmark-email-lite_group_template', $options_template );
 		}
 
@@ -135,7 +136,7 @@ class benchmarkemaillite_settings {
 
 	// Admin Menu
 	static function admin_menu() {
-		$favicon = plugin_dir_url( __FILE__ ) . '../favicon.png';
+		$favicon = BMEL_DIR_URL . 'admin/assets/images/favicon.png';
 		$page_fn = array( 'benchmarkemaillite_settings', 'page' );
 		add_menu_page( 'Benchmark Email Lite', 'BenchmarkEmail', 'manage_options', 'benchmark-email-lite', '', $favicon );
 		add_submenu_page( 'benchmark-email-lite', 'Benchmark Email Lite Emails', __( 'Emails', 'benchmark-email-lite' ), 'manage_options', 'benchmark-email-lite', $page_fn );
@@ -204,7 +205,7 @@ class benchmarkemaillite_settings {
 		}
 
 		// Output
-		require( dirname( __FILE__ ) . '/../views/settings.html.php');
+		require( BMEL_DIR_PATH . 'admin/views/settings.html.php');
 	}
 
 	// Renders WP Settings API Forms
@@ -376,7 +377,8 @@ class benchmarkemaillite_settings {
 
 		// Handle Reset to Defaults
 		if( isset( $_REQUEST['submit'] ) && $_REQUEST['submit'] == 'Reset to Defaults' ) {
-			$values['html'] = implode( '', file( dirname( __FILE__ ) . '/../templates/simple.html.php' ) );
+			$template_file = BMEL_DIR_PATH . 'admin/assets/email_templates/simple.html';
+			$values['html'] = implode( '', file( $template_file ) );
 		}
 
 		foreach( $options as $key => $val ) {
@@ -417,5 +419,3 @@ class benchmarkemaillite_settings {
 		return $values;
 	}
 }
-
-?>

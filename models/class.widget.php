@@ -3,14 +3,6 @@
 class benchmarkemaillite_widget extends WP_Widget {
 	static $response = array(), $pagefilter = true, $is_shortcode=false;
 
-	// Load JavaScript Into Header On Widgets Page
-	static function admin_init() {
-		global $pagenow;
-		if ( $pagenow == 'widgets.php' ) {
-			wp_enqueue_script( 'bmel_widgetadmin', plugins_url( 'js/widget.admin.js', dirname( __FILE__ ) ), array(), false, false );
-		}
-	}
-
 	// Upgrade 1.x Widgets
 	static function upgrade_widgets_1() {
 		$tokens = array();
@@ -197,7 +189,7 @@ class benchmarkemaillite_widget extends WP_Widget {
 			$val = benchmarkemaillite_settings::badconfig_message();
 			echo "<strong style='color:red;'>{$val}</strong>";
 		}
-		$signup_forms = benchmarkemaillite_display::print_lists( $options[1], $instance['list'], 'signup_forms' );
+		$signup_forms = benchmarkemaillite_api::print_lists( $options[1], $instance['list'], 'signup_forms' );
 
 		// Insert "Add New" Hidden Row
 		array_unshift( $instance['fields'], '' );
@@ -205,7 +197,7 @@ class benchmarkemaillite_widget extends WP_Widget {
 		array_unshift( $instance['fields_required'], 0 );
 
 		// Print Widget
-		require( dirname( __FILE__ ) . '/../views/widget.admin.html.php' );
+		require( BMEL_DIR_PATH . 'admin/views/widget.html.php' );
 	}
 
 	// Save the Widget Settings - Cannot Be Static
@@ -311,7 +303,7 @@ class benchmarkemaillite_widget extends WP_Widget {
 		}
 
 		// Output Widget
-		require( dirname( __FILE__ ) . '/../views/widget.frontend.html.php' );
+		require( BMEL_DIR_PATH . 'frontend/views/widget.html.php' );
 	}
 
 
@@ -395,5 +387,3 @@ class benchmarkemaillite_widget extends WP_Widget {
 		}
 	}
 }
-
-?>

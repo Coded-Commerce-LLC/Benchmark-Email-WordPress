@@ -3,54 +3,6 @@
 class benchmarkemaillite_widget extends WP_Widget {
 	static $response = array(), $pagefilter = true, $is_shortcode=false;
 
-	// Upgrade 1.x Widgets
-	static function upgrade_widgets_1() {
-		$tokens = array();
-		$widgets = get_option( 'widget_benchmarkemaillite_widget' );
-		if( is_array( $widgets ) ) {
-			foreach( $widgets as $instance => $widget ) {
-				if( isset( $widget['token'] ) && $widget['token'] != '' ) {
-					$tokens[] = $widget['token'];
-
-					// Update List Selection In Widget
-					benchmarkemaillite_api::$token = $widget['token'];
-					$lists = benchmarkemaillite_api::lists();
-					if( ! is_array( $lists ) ) { continue; }
-					foreach( $lists as $list ) {
-						if( $list['listname'] == $widget['list'] ) {
-							$widgets[$instance]['list'] = "{$widget['token']}|{$widget['list']}|{$list['id']}";
-						}
-					}
-				}
-			}
-			update_option( 'widget_benchmarkemaillite_widget', $widgets );
-		}
-		return $tokens;
-	}
-
-	// Upgrade 2.0.x widgets
-	static function upgrade_widgets_2() {
-		$widgets = get_option( 'widget_benchmarkemaillite_widget' );
-		if( ! is_array( $widgets ) ) { return; }
-		$changed = false;
-		foreach ( $widgets as $instance => $widget ) {
-			if ( ! is_array( $widget ) || isset( $widget['fields'] ) ) { continue; }
-			$changed = true;
-			if ( isset( $widget['showname'] ) && $widget['showname'] != '1' ) {
-				$widgets[$instance]['fields'] = array( 'Email' );
-				$widgets[$instance]['fields_labels'] = array( 'Email' );
-				$widgets[$instance]['fields_required'] = array( 1 );
-			} else {
-				$widgets[$instance]['fields'] = array( 'First Name', 'Last Name', 'Email' );
-				$widgets[$instance]['fields_labels'] = array( 'First Name', 'Last Name', 'Email' );
-				$widgets[$instance]['fields_required'] = array( 0, 0, 1 );
-			}
-		}
-		if ( $changed ) {
-			update_option( 'widget_benchmarkemaillite_widget', $widgets );
-		}
-	}
-
 	// Deactivate Widgets of Deleted API Keys
 	static function cleanup_widgets( $api_keys ) {
 		$delete = array();

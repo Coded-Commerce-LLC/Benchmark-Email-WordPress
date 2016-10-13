@@ -78,9 +78,6 @@ class benchmarkemaillite_settings {
 		// Exit If Already Configured
 		if( isset( $options[1][0] ) && $options[1][0] ) { return; }
 
-		// Search For v1.x Widgets, Gather API Keys For Plugin Settings
-		$tokens = benchmarkemaillite_widget::upgrade_widgets_1();
-
 		// Gather Any Configured API Keys
 		if( isset( $options[1][0] ) ) { $tokens = array_merge( $tokens, $options[1] ); }
 
@@ -97,9 +94,6 @@ class benchmarkemaillite_settings {
 		// Save Initialized Settings
 		$args = array( 1 => $tokens, 2 => $options[2], 3 => $options[3], 4 => $options[4], 5 => $options[5] );
 		update_option( 'benchmark-email-lite_group', $args );
-
-		// Search For v2.0.x Widgets And Upgrade To 2.1
-		benchmarkemaillite_widget::upgrade_widgets_2();
 	}
 
 	// Admin Load

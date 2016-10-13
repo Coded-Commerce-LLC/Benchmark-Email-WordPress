@@ -90,7 +90,6 @@ class benchmarkemaillite_api {
 		$options = get_option( 'benchmark-email-lite_group' );
 		$timeout = ( isset( $options[5] ) ) ? $options[5] : 20;
 		ini_set( 'default_socket_timeout', $timeout );
-		require_once( ABSPATH . WPINC . '/class-IXR.php' );
 
 		// Skip This Request If Temporarily Disabled
 		if ( $disabled = get_transient( 'benchmark-email-lite_serverdown' ) ) { return false; }

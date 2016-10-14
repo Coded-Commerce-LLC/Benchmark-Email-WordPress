@@ -37,7 +37,7 @@ class benchmarkemaillite_posts {
 		$localtime_zone = $dateTime->format( 'T' );
 
 		// Output Form
-		require( BMEL_DIR_PATH . 'admin/views/metabox.html.php' );
+		require( BMEL_DIR_PATH . 'views/metabox.html.php' );
 	}
 
 	// Called when Adding, Creating or Updating any Page+Post
@@ -233,7 +233,7 @@ class benchmarkemaillite_posts {
 
 		// Priority 3: Uses Template File
 		ob_start();
-		require( BMEL_DIR_URL . 'admin/assets/email_templates/simple.html' );
+		require( BMEL_DIR_URL . 'assets/email_templates/simple.html' );
 		$output = ob_get_contents();
 		ob_end_clean();
 		return self::normalize_html( $output );

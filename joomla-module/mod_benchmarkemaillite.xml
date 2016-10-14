@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.1.0" client="site" method="upgrade">
+
+	<name>mod_benchmarkemaillite</name>
+	<author>beAutomated</author>
+	<version>1.0a</version>
+	<description>MOD_BENCHMARKEMAILLITE_DESC</description>
+
+	<files>
+		<filename>index.html</filename>
+		<filename>mod_benchmarkemaillite.xml</filename>
+		<filename module="mod_benchmarkemaillite">mod_benchmarkemaillite.php</filename>
+	</files>
+
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field
+					type="textarea"
+					name="introduction"
+					label="MOD_BENCHMARKEMAILLITE_FORM_INTRO" />
+				<field
+					type="list"
+					name="field1"
+					label="MOD_BENCHMARKEMAILLITE_FORM_FIELD1">
+					<option />
+					<option value="First Name">MOD_BENCHMARKEMAILLITE_FIELD_FIRST_NAME</option>
+					<option value="Middle Name">MOD_BENCHMARKEMAILLITE_FIELD_MIDDLE_NAME</option>
+					<option value="Last Name">MOD_BENCHMARKEMAILLITE_FIELD_LAST_NAME</option>
+					<option value="Email">MOD_BENCHMARKEMAILLITE_FIELD_EMAIL</option>
+					<option value="Address">MOD_BENCHMARKEMAILLITE_FIELD_ADDRESS</option>
+					<option value="City">MOD_BENCHMARKEMAILLITE_FIELD_CITY</option>
+					<option value="State">MOD_BENCHMARKEMAILLITE_FIELD_STATE</option>
+					<option value="Zip">MOD_BENCHMARKEMAILLITE_FIELD_ZIP</option>
+					<option value="Country">MOD_BENCHMARKEMAILLITE_FIELD_COUNTRY</option>
+					<option value="Phone">MOD_BENCHMARKEMAILLITE_FIELD_PHONE</option>
+					<option value="Fax">MOD_BENCHMARKEMAILLITE_FIELD_FAX</option>
+					<option value="Cell Phone">MOD_BENCHMARKEMAILLITE_FIELD_CELL</option>
+					<option value="Company Name">MOD_BENCHMARKEMAILLITE_FIELD_B_NAME</option>
+					<option value="Job Title">MOD_BENCHMARKEMAILLITE_FIELD_B_TITLE</option>
+					<option value="Business Phone">MOD_BENCHMARKEMAILLITE_FIELD_B_PHONE</option>
+					<option value="Business Fax">MOD_BENCHMARKEMAILLITE_FIELD_B_FAX</option>
+					<option value="Business Address">MOD_BENCHMARKEMAILLITE_FIELD_B_ADDRESS</option>
+					<option value="Business City">MOD_BENCHMARKEMAILLITE_FIELD_B_CITY</option>
+					<option value="Business State">MOD_BENCHMARKEMAILLITE_FIELD_B_STATE</option>
+					<option value="Business Zip">MOD_BENCHMARKEMAILLITE_FIELD_B_ZIP</option>
+					<option value="Business Country">MOD_BENCHMARKEMAILLITE_FIELD_B_COUNTRY</option>
+					<option value="Notes">MOD_BENCHMARKEMAILLITE_FIELD_NOTES</option>
+					<option value="Extra 3">MOD_BENCHMARKEMAILLITE_FIELD_EXTRA3</option>
+					<option value="Extra 4">MOD_BENCHMARKEMAILLITE_FIELD_EXTRA4</option>
+					<option value="Extra 5">MOD_BENCHMARKEMAILLITE_FIELD_EXTRA5</option>
+					<option value="Extra 6">MOD_BENCHMARKEMAILLITE_FIELD_EXTRA6</option>
+				</field>
+				<field
+					type="list"
+					name="field2"
+					label="MOD_BENCHMARKEMAILLITE_FORM_FIELD2">
+					<option />
+					<option value="First Name">MOD_BENCHMARKEMAILLITE_FIELD_FIRST_NAME</option>
+					<option value="Middle Name">MOD_BENCHMARKEMAILLITE_FIELD_MIDDLE_NAME</option>
+					<option value="Last Name">MOD_BENCHMARKEMAILLITE_FIELD_LAST_NAME</option>
+					<option value="Email">MOD_BENCHMARKEMAILLITE_FIELD_EMAIL</option>
+					<option value="Address">MOD_BENCHMARKEMAILLITE_FIELD_ADDRESS</option>
+					<option value="City">MOD_BENCHMARKEMAILLITE_FIELD_CITY</option>
+					<option value="State">MOD_BENCHMARKEMAILLITE_FIELD_STATE</option>
+					<option value="Zip">MOD_BENCHMARKEMAILLITE_FIELD_ZIP</option>
+					<option value="Country">MOD_BENCHMARKEMAILLITE_FIELD_COUNTRY</option>
+					<option value="Phone">MOD_BENCHMARKEMAILLITE_FIELD_PHONE</option>
+					<option value="Fax">MOD_BENCHMARKEMAILLITE_FIELD_FAX</option>
+					<option value="Cell Phone">MOD_BENCHMARKEMAILLITE_FIELD_CELL</option>
+					<option value="Company Name">MOD_BENCHMARKEMAILLITE_FIELD_B_NAME</option>
+					<option value="Job Title">MOD_BENCHMARKEMAILLITE_FIELD_B_TITLE</option>
+					<option value="Business Phone">MOD_BENCHMARKEMAILLITE_FIELD_B_PHONE</option>
+					<option value="Business Fax">MOD_BENCHMARKEMAILLITE_FIELD_B_FAX</option>
+					<option value="Business Address">MOD_BENCHMARKEMAILLITE_FIELD_B_ADDRESS</option>
+					<option value="Business City">MOD_BENCHMARKEMAILLITE_FIELD_B_CITY</option>
+					<option value="Business State">MOD_BENCHMARKEMAILLITE_FIELD_B_STATE</option>
+					<option value="Business Zip">MOD_BENCHMARKEMAILLITE_FIELD_B_ZIP</option>
+					<option value="Business Country">MOD_BENCHMARKEMAILLITE_FIELD_B_COUNTRY</option>
+					<option value="Notes">MOD_BENCHMARKEMAILLITE_FIELD_NOTES</option>
+					<option value="Extra 3">MOD_BENCHMARKEMAILLITE_FIELD_EXTRA3</option>
+					<option value="Extra 4">MOD_BENCHMARKEMAILLITE_FIELD_EXTRA4</option>
+					<option value="Extra 5">MOD_BENCHMARKEMAILLITE_FIELD_EXTRA5</option>
+					<option value="Extra 6">MOD_BENCHMARKEMAILLITE_FIELD_EXTRA6</option>
+				</field>
+				<field
+					type="list"
+					name="field3"
+					label="MOD_BENCHMARKEMAILLITE_FORM_FIELD3">
+					<option />
+					<option value="First Name">MOD_BENCHMARKEMAILLITE_FIELD_FIRST_NAME</option>
+					<option value="Middle Name">MOD_BENCHMARKEMAILLITE_FIELD_MIDDLE_NAME</option>
+					<option value="Last Name">MOD_BENCHMARKEMAILLITE_FIELD_LAST_NAME</option>
+					<option value="Email">MOD_BENCHMARKEMAILLITE_FIELD_EMAIL</option>
+					<option value="Address">MOD_BENCHMARKEMAILLITE_FIELD_ADDRESS</option>
+					<option value="City">MOD_BENCHMARKEMAILLITE_FIELD_CITY</option>
+					<option value="State">MOD_BENCHMARKEMAILLITE_FIELD_STATE</option>
+					<option value="Zip">MOD_BENCHMARKEMAILLITE_FIELD_ZIP</option>
+					<option value="Country">MOD_BENCHMARKEMAILLITE_FIELD_COUNTRY</option>
+					<option value="Phone">MOD_BENCHMARKEMAILLITE_FIELD_PHONE</option>
+					<option value="Fax">MOD_BENCHMARKEMAILLITE_FIELD_FAX</option>
+					<option value="Cell Phone">MOD_BENCHMARKEMAILLITE_FIELD_CELL</option>
+					<option value="Company Name">MOD_BENCHMARKEMAILLITE_FIELD_B_NAME</option>
+					<option value="Job Title">MOD_BENCHMARKEMAILLITE_FIELD_B_TITLE</option>
+					<option value="Business Phone">MOD_BENCHMARKEMAILLITE_FIELD_B_PHONE</option>
+					<option value="Business Fax">MOD_BENCHMARKEMAILLITE_FIELD_B_FAX</option>
+					<option value="Business Address">MOD_BENCHMARKEMAILLITE_FIELD_B_ADDRESS</option>
+					<option value="Business City">MOD_BENCHMARKEMAILLITE_FIELD_B_CITY</option>
+					<option value="Business State">MOD_BENCHMARKEMAILLITE_FIELD_B_STATE</option>
+					<option value="Business Zip">MOD_BENCHMARKEMAILLITE_FIELD_B_ZIP</option>
+					<option value="Business Country">MOD_BENCHMARKEMAILLITE_FIELD_B_COUNTRY</option>
+					<option value="Notes">MOD_BENCHMARKEMAILLITE_FIELD_NOTES</option>
+					<option value="Extra 3">MOD_BENCHMARKEMAILLITE_FIELD_EXTRA3</option>
+					<option value="Extra 4">MOD_BENCHMARKEMAILLITE_FIELD_EXTRA4</option>
+					<option value="Extra 5">MOD_BENCHMARKEMAILLITE_FIELD_EXTRA5</option>
+					<option value="Extra 6">MOD_BENCHMARKEMAILLITE_FIELD_EXTRA6</option>
+				</field>
+				<field
+					type="list"
+					name="field4"
+					label="MOD_BENCHMARKEMAILLITE_FORM_FIELD4">
+					<option />
+					<option value="First Name">MOD_BENCHMARKEMAILLITE_FIELD_FIRST_NAME</option>
+					<option value="Middle Name">MOD_BENCHMARKEMAILLITE_FIELD_MIDDLE_NAME</option>
+					<option value="Last Name">MOD_BENCHMARKEMAILLITE_FIELD_LAST_NAME</option>
+					<option value="Email">MOD_BENCHMARKEMAILLITE_FIELD_EMAIL</option>
+					<option value="Address">MOD_BENCHMARKEMAILLITE_FIELD_ADDRESS</option>
+					<option value="City">MOD_BENCHMARKEMAILLITE_FIELD_CITY</option>
+					<option value="State">MOD_BENCHMARKEMAILLITE_FIELD_STATE</option>
+					<option value="Zip">MOD_BENCHMARKEMAILLITE_FIELD_ZIP</option>
+					<option value="Country">MOD_BENCHMARKEMAILLITE_FIELD_COUNTRY</option>
+					<option value="Phone">MOD_BENCHMARKEMAILLITE_FIELD_PHONE</option>
+					<option value="Fax">MOD_BENCHMARKEMAILLITE_FIELD_FAX</option>
+					<option value="Cell Phone">MOD_BENCHMARKEMAILLITE_FIELD_CELL</option>
+					<option value="Company Name">MOD_BENCHMARKEMAILLITE_FIELD_B_NAME</option>
+					<option value="Job Title">MOD_BENCHMARKEMAILLITE_FIELD_B_TITLE</option>
+					<option value="Business Phone">MOD_BENCHMARKEMAILLITE_FIELD_B_PHONE</option>
+					<option value="Business Fax">MOD_BENCHMARKEMAILLITE_FIELD_B_FAX</option>
+					<option value="Business Address">MOD_BENCHMARKEMAILLITE_FIELD_B_ADDRESS</option>
+					<option value="Business City">MOD_BENCHMARKEMAILLITE_FIELD_B_CITY</option>
+					<option value="Business State">MOD_BENCHMARKEMAILLITE_FIELD_B_STATE</option>
+					<option value="Business Zip">MOD_BENCHMARKEMAILLITE_FIELD_B_ZIP</option>
+					<option value="Business Country">MOD_BENCHMARKEMAILLITE_FIELD_B_COUNTRY</option>
+					<option value="Notes">MOD_BENCHMARKEMAILLITE_FIELD_NOTES</option>
+					<option value="Extra 3">MOD_BENCHMARKEMAILLITE_FIELD_EXTRA3</option>
+					<option value="Extra 4">MOD_BENCHMARKEMAILLITE_FIELD_EXTRA4</option>
+					<option value="Extra 5">MOD_BENCHMARKEMAILLITE_FIELD_EXTRA5</option>
+					<option value="Extra 6">MOD_BENCHMARKEMAILLITE_FIELD_EXTRA6</option>
+				</field>
+				<field
+					type="list"
+					name="field5"
+					label="MOD_BENCHMARKEMAILLITE_FORM_FIELD5">
+					<option />
+					<option value="First Name">MOD_BENCHMARKEMAILLITE_FIELD_FIRST_NAME</option>
+					<option value="Middle Name">MOD_BENCHMARKEMAILLITE_FIELD_MIDDLE_NAME</option>
+					<option value="Last Name">MOD_BENCHMARKEMAILLITE_FIELD_LAST_NAME</option>
+					<option value="Email">MOD_BENCHMARKEMAILLITE_FIELD_EMAIL</option>
+					<option value="Address">MOD_BENCHMARKEMAILLITE_FIELD_ADDRESS</option>
+					<option value="City">MOD_BENCHMARKEMAILLITE_FIELD_CITY</option>
+					<option value="State">MOD_BENCHMARKEMAILLITE_FIELD_STATE</option>
+					<option value="Zip">MOD_BENCHMARKEMAILLITE_FIELD_ZIP</option>
+					<option value="Country">MOD_BENCHMARKEMAILLITE_FIELD_COUNTRY</option>
+					<option value="Phone">MOD_BENCHMARKEMAILLITE_FIELD_PHONE</option>
+					<option value="Fax">MOD_BENCHMARKEMAILLITE_FIELD_FAX</option>
+					<option value="Cell Phone">MOD_BENCHMARKEMAILLITE_FIELD_CELL</option>
+					<option value="Company Name">MOD_BENCHMARKEMAILLITE_FIELD_B_NAME</option>
+					<option value="Job Title">MOD_BENCHMARKEMAILLITE_FIELD_B_TITLE</option>
+					<option value="Business Phone">MOD_BENCHMARKEMAILLITE_FIELD_B_PHONE</option>
+					<option value="Business Fax">MOD_BENCHMARKEMAILLITE_FIELD_B_FAX</option>
+					<option value="Business Address">MOD_BENCHMARKEMAILLITE_FIELD_B_ADDRESS</option>
+					<option value="Business City">MOD_BENCHMARKEMAILLITE_FIELD_B_CITY</option>
+					<option value="Business State">MOD_BENCHMARKEMAILLITE_FIELD_B_STATE</option>
+					<option value="Business Zip">MOD_BENCHMARKEMAILLITE_FIELD_B_ZIP</option>
+					<option value="Business Country">MOD_BENCHMARKEMAILLITE_FIELD_B_COUNTRY</option>
+					<option value="Notes">MOD_BENCHMARKEMAILLITE_FIELD_NOTES</option>
+					<option value="Extra 3">MOD_BENCHMARKEMAILLITE_FIELD_EXTRA3</option>
+					<option value="Extra 4">MOD_BENCHMARKEMAILLITE_FIELD_EXTRA4</option>
+					<option value="Extra 5">MOD_BENCHMARKEMAILLITE_FIELD_EXTRA5</option>
+					<option value="Extra 6">MOD_BENCHMARKEMAILLITE_FIELD_EXTRA6</option>
+				</field>
+				<field
+					type="list"
+					name="field6"
+					label="MOD_BENCHMARKEMAILLITE_FORM_FIELD6">
+					<option />
+					<option value="First Name">MOD_BENCHMARKEMAILLITE_FIELD_FIRST_NAME</option>
+					<option value="Middle Name">MOD_BENCHMARKEMAILLITE_FIELD_MIDDLE_NAME</option>
+					<option value="Last Name">MOD_BENCHMARKEMAILLITE_FIELD_LAST_NAME</option>
+					<option value="Email">MOD_BENCHMARKEMAILLITE_FIELD_EMAIL</option>
+					<option value="Address">MOD_BENCHMARKEMAILLITE_FIELD_ADDRESS</option>
+					<option value="City">MOD_BENCHMARKEMAILLITE_FIELD_CITY</option>
+					<option value="State">MOD_BENCHMARKEMAILLITE_FIELD_STATE</option>
+					<option value="Zip">MOD_BENCHMARKEMAILLITE_FIELD_ZIP</option>
+					<option value="Country">MOD_BENCHMARKEMAILLITE_FIELD_COUNTRY</option>
+					<option value="Phone">MOD_BENCHMARKEMAILLITE_FIELD_PHONE</option>
+					<option value="Fax">MOD_BENCHMARKEMAILLITE_FIELD_FAX</option>
+					<option value="Cell Phone">MOD_BENCHMARKEMAILLITE_FIELD_CELL</option>
+					<option value="Company Name">MOD_BENCHMARKEMAILLITE_FIELD_B_NAME</option>
+					<option value="Job Title">MOD_BENCHMARKEMAILLITE_FIELD_B_TITLE</option>
+					<option value="Business Phone">MOD_BENCHMARKEMAILLITE_FIELD_B_PHONE</option>
+					<option value="Business Fax">MOD_BENCHMARKEMAILLITE_FIELD_B_FAX</option>
+					<option value="Business Address">MOD_BENCHMARKEMAILLITE_FIELD_B_ADDRESS</option>
+					<option value="Business City">MOD_BENCHMARKEMAILLITE_FIELD_B_CITY</option>
+					<option value="Business State">MOD_BENCHMARKEMAILLITE_FIELD_B_STATE</option>
+					<option value="Business Zip">MOD_BENCHMARKEMAILLITE_FIELD_B_ZIP</option>
+					<option value="Business Country">MOD_BENCHMARKEMAILLITE_FIELD_B_COUNTRY</option>
+					<option value="Notes">MOD_BENCHMARKEMAILLITE_FIELD_NOTES</option>
+					<option value="Extra 3">MOD_BENCHMARKEMAILLITE_FIELD_EXTRA3</option>
+					<option value="Extra 4">MOD_BENCHMARKEMAILLITE_FIELD_EXTRA4</option>
+					<option value="Extra 5">MOD_BENCHMARKEMAILLITE_FIELD_EXTRA5</option>
+					<option value="Extra 6">MOD_BENCHMARKEMAILLITE_FIELD_EXTRA6</option>
+				</field>
+				<field
+					type="list"
+					name="field7"
+					label="MOD_BENCHMARKEMAILLITE_FORM_FIELD7">
+					<option />
+					<option value="First Name">MOD_BENCHMARKEMAILLITE_FIELD_FIRST_NAME</option>
+					<option value="Middle Name">MOD_BENCHMARKEMAILLITE_FIELD_MIDDLE_NAME</option>
+					<option value="Last Name">MOD_BENCHMARKEMAILLITE_FIELD_LAST_NAME</option>
+					<option value="Email">MOD_BENCHMARKEMAILLITE_FIELD_EMAIL</option>
+					<option value="Address">MOD_BENCHMARKEMAILLITE_FIELD_ADDRESS</option>
+					<option value="City">MOD_BENCHMARKEMAILLITE_FIELD_CITY</option>
+					<option value="State">MOD_BENCHMARKEMAILLITE_FIELD_STATE</option>
+					<option value="Zip">MOD_BENCHMARKEMAILLITE_FIELD_ZIP</option>
+					<option value="Country">MOD_BENCHMARKEMAILLITE_FIELD_COUNTRY</option>
+					<option value="Phone">MOD_BENCHMARKEMAILLITE_FIELD_PHONE</option>
+					<option value="Fax">MOD_BENCHMARKEMAILLITE_FIELD_FAX</option>
+					<option value="Cell Phone">MOD_BENCHMARKEMAILLITE_FIELD_CELL</option>
+					<option value="Company Name">MOD_BENCHMARKEMAILLITE_FIELD_B_NAME</option>
+					<option value="Job Title">MOD_BENCHMARKEMAILLITE_FIELD_B_TITLE</option>
+					<option value="Business Phone">MOD_BENCHMARKEMAILLITE_FIELD_B_PHONE</option>
+					<option value="Business Fax">MOD_BENCHMARKEMAILLITE_FIELD_B_FAX</option>
+					<option value="Business Address">MOD_BENCHMARKEMAILLITE_FIELD_B_ADDRESS</option>
+					<option value="Business City">MOD_BENCHMARKEMAILLITE_FIELD_B_CITY</option>
+					<option value="Business State">MOD_BENCHMARKEMAILLITE_FIELD_B_STATE</option>
+					<option value="Business Zip">MOD_BENCHMARKEMAILLITE_FIELD_B_ZIP</option>
+					<option value="Business Country">MOD_BENCHMARKEMAILLITE_FIELD_B_COUNTRY</option>
+					<option value="Notes">MOD_BENCHMARKEMAILLITE_FIELD_NOTES</option>
+					<option value="Extra 3">MOD_BENCHMARKEMAILLITE_FIELD_EXTRA3</option>
+					<option value="Extra 4">MOD_BENCHMARKEMAILLITE_FIELD_EXTRA4</option>
+					<option value="Extra 5">MOD_BENCHMARKEMAILLITE_FIELD_EXTRA5</option>
+					<option value="Extra 6">MOD_BENCHMARKEMAILLITE_FIELD_EXTRA6</option>
+				</field>
+				<field
+					type="list"
+					name="field8"
+					label="MOD_BENCHMARKEMAILLITE_FORM_FIELD8">
+					<option />
+					<option value="First Name">MOD_BENCHMARKEMAILLITE_FIELD_FIRST_NAME</option>
+					<option value="Middle Name">MOD_BENCHMARKEMAILLITE_FIELD_MIDDLE_NAME</option>
+					<option value="Last Name">MOD_BENCHMARKEMAILLITE_FIELD_LAST_NAME</option>
+					<option value="Email">MOD_BENCHMARKEMAILLITE_FIELD_EMAIL</option>
+					<option value="Address">MOD_BENCHMARKEMAILLITE_FIELD_ADDRESS</option>
+					<option value="City">MOD_BENCHMARKEMAILLITE_FIELD_CITY</option>
+					<option value="State">MOD_BENCHMARKEMAILLITE_FIELD_STATE</option>
+					<option value="Zip">MOD_BENCHMARKEMAILLITE_FIELD_ZIP</option>
+					<option value="Country">MOD_BENCHMARKEMAILLITE_FIELD_COUNTRY</option>
+					<option value="Phone">MOD_BENCHMARKEMAILLITE_FIELD_PHONE</option>
+					<option value="Fax">MOD_BENCHMARKEMAILLITE_FIELD_FAX</option>
+					<option value="Cell Phone">MOD_BENCHMARKEMAILLITE_FIELD_CELL</option>
+					<option value="Company Name">MOD_BENCHMARKEMAILLITE_FIELD_B_NAME</option>
+					<option value="Job Title">MOD_BENCHMARKEMAILLITE_FIELD_B_TITLE</option>
+					<option value="Business Phone">MOD_BENCHMARKEMAILLITE_FIELD_B_PHONE</option>
+					<option value="Business Fax">MOD_BENCHMARKEMAILLITE_FIELD_B_FAX</option>
+					<option value="Business Address">MOD_BENCHMARKEMAILLITE_FIELD_B_ADDRESS</option>
+					<option value="Business City">MOD_BENCHMARKEMAILLITE_FIELD_B_CITY</option>
+					<option value="Business State">MOD_BENCHMARKEMAILLITE_FIELD_B_STATE</option>
+					<option value="Business Zip">MOD_BENCHMARKEMAILLITE_FIELD_B_ZIP</option>
+					<option value="Business Country">MOD_BENCHMARKEMAILLITE_FIELD_B_COUNTRY</option>
+					<option value="Notes">MOD_BENCHMARKEMAILLITE_FIELD_NOTES</option>
+					<option value="Extra 3">MOD_BENCHMARKEMAILLITE_FIELD_EXTRA3</option>
+					<option value="Extra 4">MOD_BENCHMARKEMAILLITE_FIELD_EXTRA4</option>
+					<option value="Extra 5">MOD_BENCHMARKEMAILLITE_FIELD_EXTRA5</option>
+					<option value="Extra 6">MOD_BENCHMARKEMAILLITE_FIELD_EXTRA6</option>
+				</field>
+				<field
+					type="list"
+					name="field9"
+					label="MOD_BENCHMARKEMAILLITE_FORM_FIELD9">
+					<option />
+					<option value="First Name">MOD_BENCHMARKEMAILLITE_FIELD_FIRST_NAME</option>
+					<option value="Middle Name">MOD_BENCHMARKEMAILLITE_FIELD_MIDDLE_NAME</option>
+					<option value="Last Name">MOD_BENCHMARKEMAILLITE_FIELD_LAST_NAME</option>
+					<option value="Email">MOD_BENCHMARKEMAILLITE_FIELD_EMAIL</option>
+					<option value="Address">MOD_BENCHMARKEMAILLITE_FIELD_ADDRESS</option>
+					<option value="City">MOD_BENCHMARKEMAILLITE_FIELD_CITY</option>
+					<option value="State">MOD_BENCHMARKEMAILLITE_FIELD_STATE</option>
+					<option value="Zip">MOD_BENCHMARKEMAILLITE_FIELD_ZIP</option>
+					<option value="Country">MOD_BENCHMARKEMAILLITE_FIELD_COUNTRY</option>
+					<option value="Phone">MOD_BENCHMARKEMAILLITE_FIELD_PHONE</option>
+					<option value="Fax">MOD_BENCHMARKEMAILLITE_FIELD_FAX</option>
+					<option value="Cell Phone">MOD_BENCHMARKEMAILLITE_FIELD_CELL</option>
+					<option value="Company Name">MOD_BENCHMARKEMAILLITE_FIELD_B_NAME</option>
+					<option value="Job Title">MOD_BENCHMARKEMAILLITE_FIELD_B_TITLE</option>
+					<option value="Business Phone">MOD_BENCHMARKEMAILLITE_FIELD_B_PHONE</option>
+					<option value="Business Fax">MOD_BENCHMARKEMAILLITE_FIELD_B_FAX</option>
+					<option value="Business Address">MOD_BENCHMARKEMAILLITE_FIELD_B_ADDRESS</option>
+					<option value="Business City">MOD_BENCHMARKEMAILLITE_FIELD_B_CITY</option>
+					<option value="Business State">MOD_BENCHMARKEMAILLITE_FIELD_B_STATE</option>
+					<option value="Business Zip">MOD_BENCHMARKEMAILLITE_FIELD_B_ZIP</option>
+					<option value="Business Country">MOD_BENCHMARKEMAILLITE_FIELD_B_COUNTRY</option>
+					<option value="Notes">MOD_BENCHMARKEMAILLITE_FIELD_NOTES</option>
+					<option value="Extra 3">MOD_BENCHMARKEMAILLITE_FIELD_EXTRA3</option>
+					<option value="Extra 4">MOD_BENCHMARKEMAILLITE_FIELD_EXTRA4</option>
+					<option value="Extra 5">MOD_BENCHMARKEMAILLITE_FIELD_EXTRA5</option>
+					<option value="Extra 6">MOD_BENCHMARKEMAILLITE_FIELD_EXTRA6</option>
+				</field>
+				<field
+					type="list"
+					name="field10"
+					label="MOD_BENCHMARKEMAILLITE_FORM_FIELD10">
+					<option />
+					<option value="First Name">MOD_BENCHMARKEMAILLITE_FIELD_FIRST_NAME</option>
+					<option value="Middle Name">MOD_BENCHMARKEMAILLITE_FIELD_MIDDLE_NAME</option>
+					<option value="Last Name">MOD_BENCHMARKEMAILLITE_FIELD_LAST_NAME</option>
+					<option value="Email">MOD_BENCHMARKEMAILLITE_FIELD_EMAIL</option>
+					<option value="Address">MOD_BENCHMARKEMAILLITE_FIELD_ADDRESS</option>
+					<option value="City">MOD_BENCHMARKEMAILLITE_FIELD_CITY</option>
+					<option value="State">MOD_BENCHMARKEMAILLITE_FIELD_STATE</option>
+					<option value="Zip">MOD_BENCHMARKEMAILLITE_FIELD_ZIP</option>
+					<option value="Country">MOD_BENCHMARKEMAILLITE_FIELD_COUNTRY</option>
+					<option value="Phone">MOD_BENCHMARKEMAILLITE_FIELD_PHONE</option>
+					<option value="Fax">MOD_BENCHMARKEMAILLITE_FIELD_FAX</option>
+					<option value="Cell Phone">MOD_BENCHMARKEMAILLITE_FIELD_CELL</option>
+					<option value="Company Name">MOD_BENCHMARKEMAILLITE_FIELD_B_NAME</option>
+					<option value="Job Title">MOD_BENCHMARKEMAILLITE_FIELD_B_TITLE</option>
+					<option value="Business Phone">MOD_BENCHMARKEMAILLITE_FIELD_B_PHONE</option>
+					<option value="Business Fax">MOD_BENCHMARKEMAILLITE_FIELD_B_FAX</option>
+					<option value="Business Address">MOD_BENCHMARKEMAILLITE_FIELD_B_ADDRESS</option>
+					<option value="Business City">MOD_BENCHMARKEMAILLITE_FIELD_B_CITY</option>
+					<option value="Business State">MOD_BENCHMARKEMAILLITE_FIELD_B_STATE</option>
+					<option value="Business Zip">MOD_BENCHMARKEMAILLITE_FIELD_B_ZIP</option>
+					<option value="Business Country">MOD_BENCHMARKEMAILLITE_FIELD_B_COUNTRY</option>
+					<option value="Notes">MOD_BENCHMARKEMAILLITE_FIELD_NOTES</option>
+					<option value="Extra 3">MOD_BENCHMARKEMAILLITE_FIELD_EXTRA3</option>
+					<option value="Extra 4">MOD_BENCHMARKEMAILLITE_FIELD_EXTRA4</option>
+					<option value="Extra 5">MOD_BENCHMARKEMAILLITE_FIELD_EXTRA5</option>
+					<option value="Extra 6">MOD_BENCHMARKEMAILLITE_FIELD_EXTRA6</option>
+				</field>
+				<field
+					type="text"
+					name="button"
+					default="Subscribe"
+					label="MOD_BENCHMARKEMAILLITE_FORM_BUTTON" />
+			</fieldset>
+		</fields>
+	</config>
+
+</extension>

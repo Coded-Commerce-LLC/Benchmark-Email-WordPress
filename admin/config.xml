@@ -2,8 +2,10 @@
 <config>
 	<fieldset name="settings" label="COM_BENCHMARKEMAILLITE_SECTION1_LABEL"
 		description="COM_BENCHMARKEMAILLITE_CONFIG1_DESC1">
-		<field name="api_keys" type="text" label="COM_BENCHMARKEMAILLITE_CONFIG1_LABEL" default=""
-			description="COM_BENCHMARKEMAILLITE_CONFIG1_DESC1">COM_BENCHMARKEMAILLITE_CONFIG1_DESC3
-		</field>
+		<field
+			type="text"
+			name="api_keys"
+			label="COM_BENCHMARKEMAILLITE_CONFIG1_LABEL"
+			description="COM_BENCHMARKEMAILLITE_CONFIG1_DESC1" />
 	</fieldset>
 </config>

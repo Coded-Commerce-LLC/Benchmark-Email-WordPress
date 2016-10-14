@@ -14,15 +14,6 @@
 	<!-- The description is optional and defaults to the name -->
 	<description>COM_BENCHMARKEMAILLITE_DESC</description>
 
-	<!-- Site Main File Copy Section -->
-	<files folder="frontend">
-		<filename>index.html</filename>
-		<filename>controllers/index.html</filename>
-		<filename>controllers/joomla-module.php</filename>
-		<folder>models</folder>
-		<folder>views</folder>
-	</files>
-
 	<administration>
 
 		<!-- Administration Menu Section -->

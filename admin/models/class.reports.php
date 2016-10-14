@@ -88,7 +88,7 @@ class benchmarkemaillite_reports {
 		}
 
 		// Output
-		require( BMEL_DIR_PATH . 'admin/views/reports.level1.html.php' );
+		require( BMEL_DIR_PATH . 'views/reports.level1.html.php' );
 	}
 
 	// Show Email Campaign Summary
@@ -111,7 +111,7 @@ class benchmarkemaillite_reports {
 		$response['clicks_percent'] = $response['opens'] ? 100 * $response['clicks'] / $response['opens'] : 0;
 
 		// Output
-		require( BMEL_DIR_PATH . 'admin/views/reports.level2.html.php' );
+		require( BMEL_DIR_PATH . 'views/reports.level2.html.php' );
 	}
 
 	// Used For All Reports - Loops And Accumulates Page Content
@@ -278,7 +278,7 @@ class benchmarkemaillite_reports {
 		// Output Requested Report
 		$url = self::url( array( 'show' => '' ) );
 		$response = get_transient( "benchmarkemaillite_{$meta->campaign}" );
-		require( BMEL_DIR_PATH . 'admin/views/reports.level3.html.php' );
+		require( BMEL_DIR_PATH . 'views/reports.level3.html.php' );
 	}
 
 	// HTML Table Generator

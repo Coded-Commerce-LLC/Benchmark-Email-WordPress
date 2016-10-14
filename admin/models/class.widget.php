@@ -149,7 +149,7 @@ class benchmarkemaillite_widget extends WP_Widget {
 		array_unshift( $instance['fields_required'], 0 );
 
 		// Print Widget
-		require( BMEL_DIR_PATH . 'admin/views/widget.html.php' );
+		require( BMEL_DIR_PATH . 'views/widget-setup.html.php' );
 	}
 
 	// Save the Widget Settings - Cannot Be Static
@@ -255,7 +255,7 @@ class benchmarkemaillite_widget extends WP_Widget {
 		}
 
 		// Output Widget
-		require( BMEL_DIR_PATH . 'frontend/views/widget.html.php' );
+		require( BMEL_DIR_PATH . 'views/widget.html.php' );
 	}
 
 

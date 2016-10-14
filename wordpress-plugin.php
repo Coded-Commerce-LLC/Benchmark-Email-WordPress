@@ -12,8 +12,8 @@ Domain Path: /languages/
 */
 
 // Get Folders
-define( 'BMEL_DIR_PATH', plugin_dir_path( __FILE__ ) );
-define( 'BMEL_DIR_URL', plugin_dir_url( __FILE__ ) );
+define( 'BMEL_DIR_PATH', plugin_dir_path( __FILE__ ) . 'admin/' );
+define( 'BMEL_DIR_URL', plugin_dir_url( __FILE__ ) . 'admin/' );
 
 // Include Plugin Object Files
 require_once( ABSPATH . WPINC . '/class-IXR.php' );
@@ -22,8 +22,7 @@ require_once( 'admin/models/class.api.php' );
 require_once( 'admin/models/class.posts.php' );
 require_once( 'admin/models/class.reports.php' );
 require_once( 'admin/models/class.settings.php' );
-require_once( 'frontend/controllers/wordpress.php' );
-require_once( 'frontend/models/class.widget.php' );
+require_once( 'admin/models/class.widget.php' );
 
 // Controller Hooks
 add_action( 'admin_init', array( 'benchmarkemaillite_admin', 'admin_init' ) );

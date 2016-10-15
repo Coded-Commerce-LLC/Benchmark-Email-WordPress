@@ -5,7 +5,9 @@
 		<field
 			type="text"
 			name="api_keys"
-			label="COM_BENCHMARKEMAILLITE_CONFIG1_LABEL"
-			description="COM_BENCHMARKEMAILLITE_CONFIG1_DESC1" />
+			label="COM_BENCHMARKEMAILLITE_CONFIG1_LABEL" />
+		<field
+			type="note"
+			description="COM_BENCHMARKEMAILLITE_CONFIG1_DESC3" />
 	</fieldset>
 </config>

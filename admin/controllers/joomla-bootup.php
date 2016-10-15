@@ -35,7 +35,7 @@ if( ! function_exists( '_e' ) ) {
 if( ! function_exists( 'wpautop' ) ) {
 	function wpautop( $arg1 ) {
 		$arg1 = str_replace( "\n\n", '</p><p>', $arg1 );
-		return "<p>{$arg1}</p>";
+		return $arg1 ? "<p>{$arg1}</p>" : '';
 	}
 }
 if( ! function_exists( 'sanitize_title' ) ) {

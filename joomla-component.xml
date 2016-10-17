@@ -20,10 +20,12 @@
 		<menu link='index.php?option=com_benchmarkemaillite'>COM_BENCHMARKEMAILLITE</menu>
 
 		<!-- Administration Main File Copy Section -->
-		<files folder="joomla_demo">
+		<files folder="component">
 			<filename>benchmarkemaillite.php</filename>
 			<filename>config.xml</filename>
 			<filename>index.html</filename>
+			<folder>assets</folder>
+			<folder>controllers</folder>
 			<folder>language</folder>
 			<folder>models</folder>
 			<folder>views</folder>

@@ -43,6 +43,11 @@ if( ! function_exists( 'sanitize_title' ) ) {
 		return $arg1;
 	}
 }
+if( ! function_exists( 'esc_attr' ) ) {
+	function esc_attr( $arg1 ) {
+		return $arg1;
+	}
+}
 if( ! function_exists( 'wp_get_current_user' ) ) {
 	function wp_get_current_user() {
 		return ( object ) array( 

@@ -2,7 +2,7 @@
 	<input type="hidden" name="option" value="com_benchmarkemaillite" />
 	<input type="hidden" name="boxchecked" value="1" />
 	<input type="hidden" name="task" value="" />
-	<input type="hidden" name="controller" value="benchmarkemaillite" />
+	<input type="hidden" name="controller" value="dashboard" />
 </form>
 
 <h2><?php _e( 'COM_BENCHMARKEMAILLITE_HEADING_LISTS' ); ?></h2>

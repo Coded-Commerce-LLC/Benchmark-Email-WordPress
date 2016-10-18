@@ -1,5 +1,9 @@
 <?php
 
+/******************************************************
+ This file is the main admin controller used by Joomla.
+*******************************************************/
+
 // No direct access to this file
 defined( '_JEXEC' ) or die( 'Restricted access' );
 

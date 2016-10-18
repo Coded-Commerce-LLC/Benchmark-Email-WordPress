@@ -3,7 +3,12 @@
 // Stand-Ins For WordPress Core Functions
 if( ! function_exists( 'get_option' ) ) {
 	function get_option( $arg ) {
-		return array(  );
+		switch( $arg ) {
+			case 'widget_benchmarkemaillite_widget':
+				break;
+			default:
+				return array();
+		}
 	}
 }
 if( ! function_exists( 'get_transient' ) ) {

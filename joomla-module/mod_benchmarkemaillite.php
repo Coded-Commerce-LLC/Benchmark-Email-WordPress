@@ -10,13 +10,11 @@ require_once( JPATH_ADMINISTRATOR . '/components/com_benchmarkemaillite/controll
 // Instantiate Widget Model
 $widget = new benchmarkemaillite_widget;
 
-// Process Submissions
-$widget->widgets_init();
-
 // Load Module Translations
 $language = JFactory::getLanguage();
 $language_tag = $language->getTag();
 $language->load( 'mod_benchmarkemaillite.sys', dirname( __FILE__ ), $language_tag, true );
+$language->load( 'mod_benchmarkemaillite', dirname( __FILE__ ), $language_tag, true );
 
 // Get Active Module And Parameters
 $module = JModuleHelper::getModule( 'mod_benchmarkemaillite' );
@@ -32,9 +30,38 @@ for( $i = 1; $i <= 10; $i ++ ) {
 	$fields_required[] = 1;
 }
 
-// Construct Widget
+// Process Any Submissions
+if( isset( $_POST['formid'] ) && strstr( $_POST['formid'], 'benchmark-email-lite' ) ) {
+
+	// Sanitize Data
+	$data = array();
+	$uniqid = esc_attr( $_POST['uniqid'] );
+	foreach( $fields as $val ) {
+		$slug = sanitize_title( $val );
+		$id = "{$slug}-{$uniqid}";
+		$data[$val] = isset( $_POST[$id] ) ? esc_attr( $_POST[$id] ) : '';
+	}
+
+	// Handle Missing Email Address
+	if( ! isset( $data['Email'] ) || ! is_email( $data['Email'] ) ) {
+		return 'MOD_BENCHMARKEMAILLITE_ERROR_EMAIL';
+	}
+	$data['email'] = $data['Email'];
+
+	// Run Live Subscription
+	$response = benchmarkemaillite_api::subscribe_simple( $params->get( 'list' ), $data );
+
+	// Handle Response
+	switch( $response ) {
+		case 'added': echo 'MOD_BENCHMARKEMAILLITE_SUB_ADDED'; break;
+		case 'error': echo 'MOD_BENCHMARKEMAILLITE_SUB_ERROR'; break;
+		case 'updated': echo 'MOD_BENCHMARKEMAILLITE_SUB_UPDATED'; break;
+	}
+}
+
+// Construct Widget For Front End Display
 $args = array( 'before_widget' => '', 'before_title' => '', 'after_title' => '', 'after_widget' => '' );
-$listdata = array( benchmarkemaillite_api::$token, 'Sample Contact List', 175166 );
+$listdata = array( benchmarkemaillite_api::$token, '', $params->get( 'list' ) );
 $instance = array(
 	'button' => 'Subscribe',
 	'description' => $params->get( 'introduction' ),

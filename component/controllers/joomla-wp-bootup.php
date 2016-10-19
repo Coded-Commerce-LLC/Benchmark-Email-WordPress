@@ -15,7 +15,12 @@ if( ! function_exists( 'get_transient' ) ) {
 	function get_transient( $arg ) { }
 }
 if( ! function_exists( 'set_transient' ) ) {
-	function set_transient( $arg1, $arg2, $arg3 ) { }
+	function set_transient( $arg1, $arg2, $arg3 ) {
+		switch( $arg1 ) {
+			case 'benchmark-email-lite_log':
+				break;
+		}
+	}
 }
 if( ! function_exists( 'current_time' ) ) {
 	function current_time( $arg1, $arg2=0 ) {
@@ -45,7 +50,7 @@ if( ! function_exists( 'wpautop' ) ) {
 }
 if( ! function_exists( 'sanitize_title' ) ) {
 	function sanitize_title( $arg1 ) {
-		return $arg1;
+		return JFilterOutput::stringURLSafe( $arg1 );
 	}
 }
 if( ! function_exists( 'esc_attr' ) ) {
@@ -61,6 +66,11 @@ if( ! function_exists( 'wp_get_current_user' ) ) {
 			'user_firstname' => '',
 			'user_lastname' => '',
 		);
+	}
+}
+if( ! function_exists( 'is_email' ) ) {
+	function is_email() {
+		return true;
 	}
 }
 

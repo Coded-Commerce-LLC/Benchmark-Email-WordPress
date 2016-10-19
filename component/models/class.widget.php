@@ -234,7 +234,7 @@ class benchmarkemaillite_widget extends WP_Widget {
 		foreach( $instance['fields'] as $key => $field ) {
 
 			// Build Unique Identifier For Field
-			$id = sanitize_title( $field ) . "-{$key}-{$widgetid}-{$uniqid}";
+			$id = sanitize_title( $field ) . "-{$uniqid}";
 
 			// Build Field Label
 			$label = isset( $instance['fields_labels'][$key] ) ? $instance['fields_labels'][$key] : $field;
@@ -279,7 +279,7 @@ class benchmarkemaillite_widget extends WP_Widget {
 			$data = array();
 			foreach( $instance['fields'] as $key => $field ) {
 				$fieldslug = sanitize_title( $field );
-				$id = "{$fieldslug}-{$key}-{$widgetid}-{$uniqid}";
+				$id = "{$fieldslug}-{$uniqid}";
 				$data[$field] = isset( $_POST[$id] ) ? esc_attr( $_POST[$id] ) : '';
 			}
 

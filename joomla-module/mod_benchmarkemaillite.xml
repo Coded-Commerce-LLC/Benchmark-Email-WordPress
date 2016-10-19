@@ -35,43 +35,108 @@
 					required="true"
 					type="ContactField"
 					name="field1"
-					label="MOD_BENCHMARKEMAILLITE_FORM_FIELD1" />
+					label="MOD_BENCHMARKEMAILLITE_FORM_FIELD" />
 				<field
 					type="ContactField"
 					name="field2"
-					label="MOD_BENCHMARKEMAILLITE_FORM_FIELD2" />
+					label="MOD_BENCHMARKEMAILLITE_FORM_FIELD" />
 				<field
 					type="ContactField"
 					name="field3"
-					label="MOD_BENCHMARKEMAILLITE_FORM_FIELD3" />
+					label="MOD_BENCHMARKEMAILLITE_FORM_FIELD" />
 				<field
 					type="ContactField"
 					name="field4"
-					label="MOD_BENCHMARKEMAILLITE_FORM_FIELD4" />
+					label="MOD_BENCHMARKEMAILLITE_FORM_FIELD" />
 				<field
 					type="ContactField"
 					name="field5"
-					label="MOD_BENCHMARKEMAILLITE_FORM_FIELD5" />
+					label="MOD_BENCHMARKEMAILLITE_FORM_FIELD" />
 				<field
 					type="ContactField"
 					name="field6"
-					label="MOD_BENCHMARKEMAILLITE_FORM_FIELD6" />
+					label="MOD_BENCHMARKEMAILLITE_FORM_FIELD" />
 				<field
 					type="ContactField"
 					name="field7"
-					label="MOD_BENCHMARKEMAILLITE_FORM_FIELD7" />
+					label="MOD_BENCHMARKEMAILLITE_FORM_FIELD" />
 				<field
 					type="ContactField"
 					name="field8"
-					label="MOD_BENCHMARKEMAILLITE_FORM_FIELD8" />
+					label="MOD_BENCHMARKEMAILLITE_FORM_FIELD" />
 				<field
 					type="ContactField"
 					name="field9"
-					label="MOD_BENCHMARKEMAILLITE_FORM_FIELD9" />
+					label="MOD_BENCHMARKEMAILLITE_FORM_FIELD" />
 				<field
 					type="ContactField"
 					name="field10"
-					label="MOD_BENCHMARKEMAILLITE_FORM_FIELD10" />
+					label="MOD_BENCHMARKEMAILLITE_FORM_FIELD" />
+				<field
+					type="ContactField"
+					name="field11"
+					label="MOD_BENCHMARKEMAILLITE_FORM_FIELD" />
+				<field
+					type="ContactField"
+					name="field12"
+					label="MOD_BENCHMARKEMAILLITE_FORM_FIELD" />
+				<field
+					type="ContactField"
+					name="field13"
+					label="MOD_BENCHMARKEMAILLITE_FORM_FIELD" />
+				<field
+					type="ContactField"
+					name="field14"
+					label="MOD_BENCHMARKEMAILLITE_FORM_FIELD" />
+				<field
+					type="ContactField"
+					name="field15"
+					label="MOD_BENCHMARKEMAILLITE_FORM_FIELD" />
+				<field
+					type="ContactField"
+					name="field16"
+					label="MOD_BENCHMARKEMAILLITE_FORM_FIELD" />
+				<field
+					type="ContactField"
+					name="field17"
+					label="MOD_BENCHMARKEMAILLITE_FORM_FIELD" />
+				<field
+					type="ContactField"
+					name="field18"
+					label="MOD_BENCHMARKEMAILLITE_FORM_FIELD" />
+				<field
+					type="ContactField"
+					name="field19"
+					label="MOD_BENCHMARKEMAILLITE_FORM_FIELD" />
+				<field
+					type="ContactField"
+					name="field20"
+					label="MOD_BENCHMARKEMAILLITE_FORM_FIELD" />
+				<field
+					type="ContactField"
+					name="field21"
+					label="MOD_BENCHMARKEMAILLITE_FORM_FIELD" />
+				<field
+					type="ContactField"
+					name="field22"
+					label="MOD_BENCHMARKEMAILLITE_FORM_FIELD" />
+				<field
+					type="ContactField"
+					name="field23"
+					label="MOD_BENCHMARKEMAILLITE_FORM_FIELD" />
+				<field
+					type="ContactField"
+					name="field24"
+					label="MOD_BENCHMARKEMAILLITE_FORM_FIELD" />
+				<field
+					type="ContactField"
+					name="field25"
+					label="MOD_BENCHMARKEMAILLITE_FORM_FIELD" />
+				<field
+					type="ContactField"
+					name="field26"
+					label="MOD_BENCHMARKEMAILLITE_FORM_FIELD" />
+
 			</fieldset>
 		</fields>
 	</config>

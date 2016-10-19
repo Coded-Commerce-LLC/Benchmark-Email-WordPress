@@ -41,7 +41,7 @@ function benchmarkemaillite_<?php echo $uniqid; ?>( theForm ) {
 	foreach( $instance['fields'] as $key => $field ) {
 		$label = isset( $instance['fields_labels'][$key] ) ? $instance['fields_labels'][$key] : $field;
 		$field = sanitize_title( $field );
-		$id = "{$field}-{$key}-{$widgetid}-{$uniqid}";
+		$id = "{$field}-{$uniqid}";
 		if( isset( $instance['fields_required'][$key] ) && $instance['fields_required'][$key] == '1' ) {
 	?>
 

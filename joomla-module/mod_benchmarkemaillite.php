@@ -7,13 +7,9 @@
 // Joomla WP Bootup, Also Sets API Key
 require_once( JPATH_ADMINISTRATOR . '/components/com_benchmarkemaillite/controllers/joomla-wp-bootup.php' );
 
-// Instantiate Widget Model
-$widget = new benchmarkemaillite_widget;
-
 // Load Module Translations
 $language = JFactory::getLanguage();
 $language_tag = $language->getTag();
-$language->load( 'mod_benchmarkemaillite.sys', dirname( __FILE__ ), $language_tag, true );
 $language->load( 'mod_benchmarkemaillite', dirname( __FILE__ ), $language_tag, true );
 
 // Get Active Module And Parameters
@@ -30,7 +26,7 @@ for( $i = 1; $i <= 10; $i ++ ) {
 	$fields_required[] = 1;
 }
 
-// Process Any Submissions
+// Process Submission
 if( isset( $_POST['formid'] ) && strstr( $_POST['formid'], 'benchmark-email-lite' ) ) {
 
 	// Sanitize Data
@@ -44,7 +40,7 @@ if( isset( $_POST['formid'] ) && strstr( $_POST['formid'], 'benchmark-email-lite
 
 	// Handle Missing Email Address
 	if( ! isset( $data['Email'] ) || ! is_email( $data['Email'] ) ) {
-		return 'MOD_BENCHMARKEMAILLITE_ERROR_EMAIL';
+		return __( 'MOD_BENCHMARKEMAILLITE_ERROR_EMAIL' );
 	}
 	$data['email'] = $data['Email'];
 
@@ -53,27 +49,31 @@ if( isset( $_POST['formid'] ) && strstr( $_POST['formid'], 'benchmark-email-lite
 
 	// Handle Response
 	switch( $response ) {
-		case 'added': echo 'MOD_BENCHMARKEMAILLITE_SUB_ADDED'; break;
-		case 'error': echo 'MOD_BENCHMARKEMAILLITE_SUB_ERROR'; break;
-		case 'updated': echo 'MOD_BENCHMARKEMAILLITE_SUB_UPDATED'; break;
+		case 'added': echo __( 'MOD_BENCHMARKEMAILLITE_SUB_ADDED' ); break;
+		case 'error': echo __( 'MOD_BENCHMARKEMAILLITE_SUB_ERROR' ); break;
+		case 'updated': echo __( 'MOD_BENCHMARKEMAILLITE_SUB_UPDATED' ); break;
 	}
+
+// No Submission
+} else {
+
+	// Construct Widget For Front End Display
+	$args = array( 'before_widget' => '', 'before_title' => '', 'after_title' => '', 'after_widget' => '' );
+	$listdata = array( benchmarkemaillite_api::$token, '', $params->get( 'list' ) );
+	$instance = array(
+		'button' => 'Subscribe',
+		'description' => $params->get( 'introduction' ),
+		'fields' => $fields,
+		'fields_labels' => $fields,
+		'fields_required' => $fields_required,
+		'filter' => 1,
+		'list' => implode( '|', $listdata ),
+		'page' => 0,
+		'title' => '',
+		'widgetid' => $module->id,
+	);
+
+	// Show Widget
+	$widget = new benchmarkemaillite_widget;
+	$widget->widget( $args, $instance );
 }
-
-// Construct Widget For Front End Display
-$args = array( 'before_widget' => '', 'before_title' => '', 'after_title' => '', 'after_widget' => '' );
-$listdata = array( benchmarkemaillite_api::$token, '', $params->get( 'list' ) );
-$instance = array(
-	'button' => 'Subscribe',
-	'description' => $params->get( 'introduction' ),
-	'fields' => $fields,
-	'fields_labels' => $fields,
-	'fields_required' => $fields_required,
-	'filter' => 1,
-	'list' => implode( '|', $listdata ),
-	'page' => 0,
-	'title' => '',
-	'widgetid' => $module->id,
-);
-
-// Show Widget
-$widget->widget( $args, $instance );

@@ -167,7 +167,32 @@ class benchmarkemaillite_api {
 		return isset( $response[0]['id'] ) ? $response[0]['id'] : false;
 	}
 
-	// Add or Update Subscriber
+	// Add Or Update Subscriber Without Queue
+	static function subscribe_simple( $listid, $data ) {
+
+		// Check for List Subscription Preexistance
+		$contactID = self::find( $data['Email'], $listid );
+
+		// Update Preexisting List Subscription
+		if( is_numeric( $contactID ) ) {
+			$response = self::query(
+				'listUpdateContactDetails', self::$token, $listid, $contactID, $data
+			);
+			if( is_array( $response ) ) {
+				return 'updated';
+			}
+			return 'error';
+		}
+
+		// Add New List Subscription
+		$response = self::query( 'listAddContactsOptin', self::$token, $listid, array( $data ), '1' );
+		if( $response === 1 ) {
+			return 'added';
+		}
+		return 'error';
+	}
+
+	// Add Or Update Subscriber To List Or Form, With Queue
 	static function subscribe( $bmelist, $data ) {
 		$matched_to_list = false;
 

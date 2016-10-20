@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<extension type="package" version="3.2.0" method="upgrade">
+
+	<name>Benchmark Email Lite</name>
+	<author>beAutomated</author>
+	<creationDate>October 2016</creationDate>
+	<packagename>benchmarkemaillite</packagename>
+	<version>1.0a</version>
+	<url>https://beautomated.com/</url>
+	<packager>Sean Conklin</packager>
+	<packagerurl>https://seanconklin.wordpress.com/</packagerurl>
+	<description>Benchmark Email Lite administrator component and front end site module extensions</description>
+
+	<files folder="packages">
+		<file type="component" id="com_benchmarkemaillite">com_benchmarkemaillite.zip</file>
+		<file type="module" id="mod_benchmarkemaillite" client="site">mod_benchmarkemaillite.zip</file>
+	</files>
+
+</extension>

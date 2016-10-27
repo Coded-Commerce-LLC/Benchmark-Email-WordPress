@@ -44,9 +44,8 @@ class BenchmarkEmailLiteControllersDashboard {
 				exit;
 		}
 
-		// Look Up Their Lists And Forms
+		// Look Up Their Lists
 		$contact_lists = benchmarkemaillite_api::lists();
-		$signup_forms = benchmarkemaillite_api::signup_forms();
 
 		// Render Default View
 		require( BMEL_DIR_PATH . 'views/dashboard.html.php' );

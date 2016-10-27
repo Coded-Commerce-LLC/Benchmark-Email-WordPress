@@ -19,7 +19,7 @@ $params = new JRegistry( $module->params );
 // Build Widget Fields List
 $fields = array();
 $fields_required = array();
-for( $i = 1; $i <= 10; $i ++ ) {
+for( $i = 1; $i <= 26; $i ++ ) {
 	$field = $params->get( 'field' . $i );
 	if( ! $field ) { continue; }
 	$fields[] = $field;

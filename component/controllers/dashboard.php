@@ -36,11 +36,23 @@ class BenchmarkEmailLiteControllersDashboard {
 		// Handle Requests
 		$task = isset( $_REQUEST['task'] ) ? $_REQUEST['task'] : '';
 		switch( $task ) {
+
+			// Add New Signup Form Instance
 			case 'add-module':
-				header( 'Location: index.php?option=com_modules&view=select' );
+				$url = 'index.php?option=com_modules&view=select';
+				$db = JFactory::getDBO();
+				$sql = 'select extension_id from #__extensions where element = "mod_benchmarkemaillite"';
+				$db->setQuery( $sql );
+				if( $row = $db->loadObject() ) {
+					$extension_id = ( int ) $row->extension_id;
+					$url = 'index.php?option=com_modules&task=module.add&eid=' . $extension_id;
+				}
+				header( "Location: {$url}" );
 				exit;
+
+			// Edit Existing Signup Form Instance
 			case 'edit-module':
-				header( 'Location: index.php?option=com_modules' );
+				header( 'Location: index.php?option=com_modules&filter[module]=mod_benchmarkemaillite' );
 				exit;
 		}
 

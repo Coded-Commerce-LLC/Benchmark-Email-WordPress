@@ -3,9 +3,19 @@
 	<fieldset name="settings" label="COM_BENCHMARKEMAILLITE_SECTION1_LABEL"
 		description="COM_BENCHMARKEMAILLITE_CONFIG1_DESC1">
 		<field
+			required="true"
 			type="text"
 			name="api_keys"
 			label="COM_BENCHMARKEMAILLITE_CONFIG1_LABEL" />
+		<field
+			required="true"
+			type="number"
+			name="timeout"
+			min="0"
+			size="2"
+			default="20"
+			hint="COM_BENCHMARKEMAILLITE_CONFIG2_DESC1"
+			label="COM_BENCHMARKEMAILLITE_CONFIG2_LABEL" />
 		<field
 			type="note"
 			description="COM_BENCHMARKEMAILLITE_CONFIG1_DESC3" />

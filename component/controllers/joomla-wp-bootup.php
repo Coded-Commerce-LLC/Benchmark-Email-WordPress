@@ -9,7 +9,15 @@ define( 'BMEL_DIR_URL', JURI::base() . 'administrator/components/com_benchmarkem
 // Stand-Ins For WordPress Core Functions
 if( ! function_exists( 'get_option' ) ) {
 	function get_option( $arg ) {
-		return array();
+		switch( $arg ) {
+			case 'benchmark-email-lite_group':
+				$benchmarkemaillite_params = JComponentHelper::getParams( 'com_benchmarkemaillite' );
+				return array(
+					5 => $benchmarkemaillite_params->get( 'timeout' ),
+				);
+			default:
+				return array();
+		}
 	}
 }
 if( ! function_exists( 'get_transient' ) ) {
@@ -78,7 +86,7 @@ if( ! class_exists( 'WP_Widget' ) ) {
 // Include XML-RPC Client
 require_once( BMEL_DIR_PATH . 'assets/lib/class-IXR.php' );
 
-// Include Models Used By Joomla!
+// Include Models Used By Joomla! Extensions
 require_once( BMEL_DIR_PATH . 'models/class.api.php' );
 require_once( BMEL_DIR_PATH . 'models/class.widget.php' );
 

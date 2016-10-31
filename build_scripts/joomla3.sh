@@ -14,7 +14,7 @@ index.html \
 joomla-component.xml \
 license.txt;
 
-zip -r ~/pkg_benchmarkemaillite.zip pkg_benchmarkemaillite.xml packages;
+zip -r pkg_benchmarkemaillite.zip pkg_benchmarkemaillite.xml packages;
 
 rm packages/com_benchmarkemaillite.zip;
 rm packages/mod_benchmarkemaillite.zip;

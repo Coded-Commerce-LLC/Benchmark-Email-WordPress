@@ -1,3 +1,18 @@
+<?php
+
+/**
+ * This file creates the sidebar administration view used by WordPress.
+ *
+ * @package	benchmarkemaillite
+ * @license	GNU General Public License version 3; see LICENSE.txt
+ *
+ */
+
+// No direct access to this file
+defined( '_JEXEC' ) or die( 'Restricted access' );
+
+?>
+
 <p>
 	<label for="<?php echo $this->get_field_id( 'list' ); ?>">
 		<?php _e( 'Contact list or signup form relationship', 'benchmark-email-lite' ); ?>:

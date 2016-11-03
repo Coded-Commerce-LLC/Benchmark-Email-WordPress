@@ -1,8 +1,15 @@
 <?php
 
-/*******************************************************
- This file is the main widget controller used by Joomla.
-********************************************************/
+/**
+ * This file is the main widget controller used by Joomla.
+ *
+ * @package	mod_benchmarkemaillite
+ * @license	GNU General Public License version 3; see LICENSE.txt
+ *
+ */
+
+// No direct access to this file
+defined( '_JEXEC' ) or die( 'Restricted access' );
 
 // Joomla WP Bootup, Also Sets API Key
 require_once( JPATH_ADMINISTRATOR . '/components/com_benchmarkemaillite/controllers/joomla-wp-bootup.php' );

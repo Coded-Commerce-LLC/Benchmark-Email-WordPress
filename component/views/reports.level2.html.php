@@ -1,3 +1,18 @@
+<?php
+
+/**
+ * This file creates the level 2 report views used by WordPress.
+ *
+ * @package	benchmarkemaillite
+ * @license	GNU General Public License version 3; see LICENSE.txt
+ *
+ */
+
+// No direct access to this file
+defined( '_JEXEC' ) or die( 'Restricted access' );
+
+?>
+
 <div style="float: left; min-width: 500px; width: 50%;">
 
 	<p>

@@ -1,3 +1,18 @@
+<?php
+
+/**
+ * This file creates the posts metabox view used by WordPress.
+ *
+ * @package	benchmarkemaillite
+ * @license	GNU General Public License version 3; see LICENSE.txt
+ *
+ */
+
+// No direct access to this file
+defined( '_JEXEC' ) or die( 'Restricted access' );
+
+?>
+
 <style type="text/css">
 
 .ui-datepicker { z-index: 3!important; }

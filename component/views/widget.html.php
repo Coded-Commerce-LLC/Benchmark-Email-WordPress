@@ -1,8 +1,19 @@
-<?php echo $before_widget; ?>
+<?php
 
-<?php echo $title; ?>
+/**
+ * This file creates the sidebar views used by WordPress and Joomla.
+ *
+ * @package	com_benchmarkemaillite
+ * @license	GNU General Public License version 3; see LICENSE.txt
+ *
+ */
 
-<?php echo $description; ?>
+// No direct access to this file
+defined( '_JEXEC' ) or die( 'Restricted access' );
+
+echo $before_widget . $title . $description;
+
+?>
 
 <form method="post" class="benchmarkemaillite-subscribe"
 	action="#benchmark-email-lite-<?php echo $uniqid; ?>"

@@ -1,3 +1,18 @@
+<?php
+
+/**
+ * This file creates the admin view used by Joomla.
+ *
+ * @package	com_benchmarkemaillite
+ * @license	GNU General Public License version 3; see LICENSE.txt
+ *
+ */
+
+// No direct access to this file
+defined( '_JEXEC' ) or die( 'Restricted access' );
+
+?>
+
 <form action="index.php" method="post" name="adminForm" id="adminForm">
 	<input type="hidden" name="option" value="com_benchmarkemaillite" />
 	<input type="hidden" name="boxchecked" value="1" />

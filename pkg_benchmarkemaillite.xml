@@ -5,6 +5,7 @@
 	<author>beAutomated</author>
 	<creationDate>October 2016</creationDate>
 	<packagename>benchmarkemaillite</packagename>
+	<license>GPLv3</license>
 	<version>2.7</version>
 	<url>https://beautomated.com/</url>
 	<packager>Sean Conklin</packager>

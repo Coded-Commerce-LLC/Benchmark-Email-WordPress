@@ -11,9 +11,10 @@ Text Domain: benchmark-email-lite
 Domain Path: /languages/
 */
 
-// Get Folders
+// Define Constants
 define( 'BMEL_DIR_PATH', plugin_dir_path( __FILE__ ) . 'component/' );
 define( 'BMEL_DIR_URL', plugin_dir_url( __FILE__ ) . 'component/' );
+define( '_JEXEC', true );
 
 // Include Plugin Object Files
 require_once( ABSPATH . WPINC . '/class-IXR.php' );

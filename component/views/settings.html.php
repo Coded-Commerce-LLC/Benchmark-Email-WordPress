@@ -1,3 +1,18 @@
+<?php
+
+/**
+ * This file creates the settings form view used by WordPress.
+ *
+ * @package	benchmarkemaillite
+ * @license	GNU General Public License version 3; see LICENSE.txt
+ *
+ */
+
+// No direct access to this file
+defined( '_JEXEC' ) or die( 'Restricted access' );
+
+?>
+
 <div class="wrap">
 
 	<?php echo get_screen_icon( 'plugins' ); ?>

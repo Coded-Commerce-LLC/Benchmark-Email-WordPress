@@ -1,5 +1,16 @@
 <?php
 
+/**
+ * This file is the benchmark email api model used by WordPress and Joomla.
+ *
+ * @package	com_benchmarkemaillite
+ * @license	GNU General Public License version 3; see LICENSE.txt
+ *
+ */
+
+// No direct access to this file
+defined( '_JEXEC' ) or die( 'Restricted access' );
+
 class benchmarkemaillite_api {
 	static $token, $listid, $campaignid, $handshake_version = '2.6', $apiurl = 'https://api.benchmarkemail.com/1.3/';
 

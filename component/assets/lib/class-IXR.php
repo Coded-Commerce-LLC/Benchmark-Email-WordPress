@@ -45,6 +45,10 @@
  * @package IXR
  * @since 1.5.0
  */
+
+// No direct access to this file
+defined( '_JEXEC' ) or die( 'Restricted access' );
+
 class IXR_Value {
     var $data;
     var $type;
@@ -91,12 +95,9 @@ class IXR_Value {
             return 'double';
         }
 
-        // Deal with IXR object types base64 and date
+        // Deal with IXR object type date
         if (is_object($this->data) && is_a($this->data, 'IXR_Date')) {
             return 'date';
-        }
-        if (is_object($this->data) && is_a($this->data, 'IXR_Base64')) {
-            return 'base64';
         }
 
         // If it is a normal PHP object convert it in to a struct
@@ -151,9 +152,6 @@ class IXR_Value {
                 return $return;
                 break;
             case 'date':
-            case 'base64':
-                return $this->data->getXml();
-                break;
         }
         return false;
     }
@@ -364,11 +362,7 @@ class IXR_Message
                 $value = (boolean)trim($this->_currentTagContents);
                 $valueFlag = true;
                 break;
-            case 'base64':
-                $value = base64_decode($this->_currentTagContents);
-                $valueFlag = true;
-                break;
-                /* Deal with stacks of arrays and structs */
+            /* Deal with stacks of arrays and structs */
             case 'data':
             case 'struct':
                 $value = array_pop($this->_arraystructs);
@@ -974,37 +968,6 @@ class IXR_Date {
 }
 
 /**
- * IXR_Base64
- *
- * @package IXR
- * @since 1.5.0
- */
-class IXR_Base64
-{
-    var $data;
-
-	/**
-	 * PHP5 constructor.
-	 */
-    function __construct( $data )
-    {
-        $this->data = $data;
-    }
-
-	/**
-	 * PHP4 constructor.
-	 */
-	public function IXR_Base64( $data ) {
-		self::__construct( $data );
-	}
-
-    function getXml()
-    {
-        return '<base64>'.base64_encode($this->data).'</base64>';
-    }
-}
-
-/**
  * IXR_IntrospectionServer
  *
  * @package IXR
@@ -1099,7 +1062,6 @@ class IXR_IntrospectionServer extends IXR_Server
                         $ok = false;
                     }
                     break;
-                case 'base64':
                 case 'string':
                     if (!is_string($arg)) {
                         $ok = false;
@@ -1156,9 +1118,6 @@ class IXR_IntrospectionServer extends IXR_Server
                     break;
                 case 'boolean':
                     $return[] = true;
-                    break;
-                case 'base64':
-                    $return[] = new IXR_Base64('base64');
                     break;
                 case 'array':
                     $return[] = array('array');

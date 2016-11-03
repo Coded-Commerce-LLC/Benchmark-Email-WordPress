@@ -1,3 +1,18 @@
+<?php
+
+/**
+ * This file creates the level 3 report views used by WordPress.
+ *
+ * @package	benchmarkemaillite
+ * @license	GNU General Public License version 3; see LICENSE.txt
+ *
+ */
+
+// No direct access to this file
+defined( '_JEXEC' ) or die( 'Restricted access' );
+
+?>
+
 <p>
 	<a href="<?php echo $url; ?>" title="<?php _e( 'Back to Email Summary', 'benchmark-email-lite' ); ?>">
 	<?php _e( 'Back to Email Summary', 'benchmark-email-lite' ); ?></a>

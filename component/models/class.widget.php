@@ -1,5 +1,16 @@
 <?php
 
+/**
+ * This file is the sidebar model used by WordPress and Joomla.
+ *
+ * @package	com_benchmarkemaillite
+ * @license	GNU General Public License version 3; see LICENSE.txt
+ *
+ */
+
+// No direct access to this file
+defined( '_JEXEC' ) or die( 'Restricted access' );
+
 class benchmarkemaillite_widget extends WP_Widget {
 	static $response = array(), $pagefilter = true, $is_shortcode=false;
 

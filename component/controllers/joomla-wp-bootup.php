@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * This file is used by Joomla to boot up core WordPress functions this shared package uses.
+ *
+ * @package	com_benchmarkemaillite
+ * @license	GNU General Public License version 3; see LICENSE.txt
+ *
+ */
+
+// No direct access to this file
 defined( '_JEXEC' ) or die( 'Restricted access' );
 
 // Define Plugin Path

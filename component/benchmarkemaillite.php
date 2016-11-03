@@ -1,8 +1,13 @@
 <?php
 
-/******************************************************
- This file is the main admin controller used by Joomla.
-*******************************************************/
+/**
+ * This file is the main admin controller used by Joomla.
+ *
+ * @package	com_benchmarkemaillite
+ * @license	GNU General Public License version 3; see LICENSE.txt
+ *
+ */
+
 
 // No direct access to this file
 defined( '_JEXEC' ) or die( 'Restricted access' );

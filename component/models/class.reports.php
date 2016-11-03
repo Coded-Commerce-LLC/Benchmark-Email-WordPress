@@ -1,5 +1,16 @@
 <?php
 
+/**
+ * This file is the reports model used by WordPress.
+ *
+ * @package	benchmarkemaillite
+ * @license	GNU General Public License version 3; see LICENSE.txt
+ *
+ */
+
+// No direct access to this file
+defined( '_JEXEC' ) or die( 'Restricted access' );
+
 class benchmarkemaillite_reports {
 	static $base_url = 'admin.php?page=benchmark-email-lite&amp;';
 

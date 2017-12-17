@@ -74,7 +74,9 @@ class benchmarkemaillite_settings {
 
 		// Check And Set Defaults For Template Settings
 		$options_template = get_option( 'benchmark-email-lite_group_template' );
-		if( ! isset( $options_template['html'] ) || ! strstr( $options_template['html'], 'BODY_HERE' ) ) {
+		$template_html = isset( $options_template['html'] ) ? $options_template['html'] : '';
+		$template_has_body = ( strstr( $template_html, 'BODY_HERE' ) || strstr( $template_html, 'EXCERPT' ) );
+		if( ! $template_html || ! $template_has_body ) {
 			$template_file = BMEL_DIR_PATH . 'assets/email_templates/simple.html';
 			$options_template['html'] = implode( '', file( $template_file ) );
 			update_option( 'benchmark-email-lite_group_template', $options_template );

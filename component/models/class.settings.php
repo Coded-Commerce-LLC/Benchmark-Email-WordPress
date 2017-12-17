@@ -85,26 +85,6 @@ class benchmarkemaillite_settings {
 		if( $handshake != benchmarkemaillite_api::$handshake_version ) {
 			benchmarkemaillite_api::handshake( $options[1] );
 		}
-
-		// Exit If Already Configured
-		if( isset( $options[1][0] ) && $options[1][0] ) { return; }
-
-		// Gather Any Configured API Keys
-		if( isset( $options[1][0] ) ) { $tokens = array_merge( $tokens, $options[1] ); }
-
-		// Actions When Tokens Are Found
-		if( $tokens ) {
-
-			// Remove Duplicate API Keys
-			$tokens = array_unique( $tokens );
-
-			// Vendor Handshake With Benchmark Email
-			benchmarkemaillite_api::handshake( $tokens );
-		}
-
-		// Save Initialized Settings
-		$args = array( 1 => $tokens, 2 => $options[2], 3 => $options[3], 4 => $options[4], 5 => $options[5] );
-		update_option( 'benchmark-email-lite_group', $args );
 	}
 
 	// Admin Load

@@ -7,7 +7,7 @@
 	<packagename>benchmarkemaillite</packagename>
 	<license>GPLv3</license>
 	<version>2.7</version>
-	<url>https://beautomated.com/</url>
+	<url>http://beautomated.com/</url>
 	<packager>Sean Conklin</packager>
 	<packagerurl>https://seanconklin.wordpress.com/</packagerurl>
 	<description>Benchmark Email Lite administrator component and front end site module extensions</description>

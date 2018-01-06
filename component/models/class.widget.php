@@ -206,7 +206,7 @@ class benchmarkemaillite_widget extends WP_Widget {
 		// Exclude from Pages/Posts Per Setting
 		if(
 			self::$pagefilter
-			&& $instance['page']
+			&& ! empty( $instance['page'] )
 			&& ( ! isset( $post->ID ) || $instance['page'] != $post->ID )
 		) { return; }
 

@@ -27,6 +27,7 @@ require_once( 'component/models/class.widget.php' );
 
 // Controller Hooks
 add_action( 'admin_init', array( 'benchmarkemaillite_admin', 'admin_init' ) );
+add_action( 'customize_controls_enqueue_scripts', array( 'benchmarkemaillite_admin', 'admin_init' ) );
 
 // Posts Hooks
 add_action( 'save_post', array( 'benchmarkemaillite_posts', 'save_post' ) );

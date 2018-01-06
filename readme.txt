@@ -1,9 +1,8 @@
 === Benchmark Email Lite ===
 Contributors: beautomated, seanconklin, randywsandberg
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=B22PPZ3SC6WZE
 Tags: api, benchmark, benchmark email, campaign, campaigns, chinese, contact form, contact forms, contacts, email, email blast, emails, email marketing, form, forms, html, join, list, lists, mail, mailing, mailing list, mailing lists, mailings, newsletter, newsletters, portuguese, register, registration, responsive, responsive emails, sign up, signup form, sidebar, spanish, widget, widgets
 Requires at least: 3.1
-Tested up to: 4.6.1
+Tested up to: 4.9.1
 Stable tag: 2.6
 License: GPLv3
 
@@ -123,8 +122,8 @@ Two reasons. First, Benchmark Email requested that we use this method because it
 
 == Screenshots ==
 
-1. This is the default shortcode on Twenty Thirteen theme.
-2. This is the default widget on Twenty Thirteen theme.
+1. This is the default widget on Twenty Sixteen theme.
+2. This is the default shortcode on Twenty Sixteen theme.
 3. This is the signup form widget control panel.
 4. This is the page/post metabox control panel.
 5. This is a sample email generated from a post.
@@ -132,8 +131,17 @@ Two reasons. First, Benchmark Email requested that we use this method because it
 7. This is the sent email campaigns listing.
 8. This is a sample email campaign report overview.
 9. This is the email template editor panel.
+10. This is the communication log.
 
 == Changelog ==
+
+= 2.7 on 2018-01-01 =
+
+* Added: WooCommerce customer to email list feature
+* Updated: Common libraries with the Joomla! plugin
+* Updated: Author URLs removed `www.` for consistency
+* Fixed: JS error when entering the theme customizer
+* Fixed: Ability to replace BODY_HERE with EXCERPT in email template
 
 = 2.6 on 2016-06-25 =
 

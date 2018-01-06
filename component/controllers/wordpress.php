@@ -18,15 +18,17 @@ class benchmarkemaillite_admin {
 
 		// WP Widgets Admin JavaScript
 		global $pagenow;
-		if ( $pagenow == 'widgets.php' ) {
+		if( in_array( $pagenow, array( 'customize.php', 'widgets.php' ) ) ) {
 			$js_file = BMEL_DIR_URL . 'assets/js/widget.js';
-			wp_enqueue_script( 'bmel_widgetadmin', $js_file, array(), false, false );
+			wp_enqueue_script( 'bmel_widgetadmin', $js_file, array( 'jquery' ), false, false );
 		}
 
 		// WP Posts Admin JavaScript
 		wp_enqueue_script( 'jquery-ui-slider', '', array( 'jquery', 'jquery-ui' ), false, true );
 		wp_enqueue_script( 'jquery-ui-datepicker', '', array( 'jquery', 'jquery-ui' ), false, true );
-		wp_enqueue_style( 'jquery-ui-theme', '//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.min.css' );
+		//wp_enqueue_style( 'jquery-ui-theme', '//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.min.css' );
+
+		// WP Posts Meta Boxes
 		$metabox_fn = array( 'benchmarkemaillite_posts', 'metabox' );
 		add_meta_box( 'benchmark-email-lite', 'Benchmark Email Lite', $metabox_fn, 'post', 'side', 'default' );
 		add_meta_box( 'benchmark-email-lite', 'Benchmark Email Lite', $metabox_fn, 'page', 'side', 'default' );

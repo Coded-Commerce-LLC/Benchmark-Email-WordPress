@@ -111,12 +111,14 @@ class benchmarkemaillite_settings {
 		// Settings API Sections Follow
 		add_settings_section( 'bmel-main', __( 'Benchmark Email Credentials', 'benchmark-email-lite' ), array( 'benchmarkemaillite_settings', 'section_main' ), 'bmel-pg1' );
 		add_settings_section( 'bmel-campaign', __( 'New Email Campaign Preferences', 'benchmark-email-lite' ), array( 'benchmarkemaillite_settings', 'section_campaign' ), 'bmel-pg1' );
+		add_settings_section( 'bmel-woocommerce', __( 'WooCommerce Integration', 'benchmark-email-lite' ), array( 'benchmarkemaillite_settings', 'section_woocommerce' ), 'bmel-pg1' );
 		add_settings_section( 'bmel-diagnostics', __( 'Diagnostics', 'benchmark-email-lite' ), array( 'benchmarkemaillite_settings', 'section_diagnostics' ), 'bmel-pg1' );
 		add_settings_section( 'bmel-template', __( 'Email Template', 'benchmark-email-lite' ), array( 'benchmarkemaillite_settings', 'section_template' ), 'bmel-pg2' );
 
 		// Settings API Fields Follow
 		add_settings_field( 'benchmark-email-lite-api-keys', __( 'API Key(s) from your Benchmark Email account(s)', 'benchmark-email-lite' ), array( 'benchmarkemaillite_settings', 'field_api_keys' ), 'bmel-pg1', 'bmel-main' );
 		add_settings_field( 'benchmark-email-lite-webpage-flag', __( 'Webpage version', 'benchmark-email-lite' ), array( 'benchmarkemaillite_settings', 'field_webpage_flag' ), 'bmel-pg1', 'bmel-campaign' );
+		add_settings_field( 'benchmark-email-lite-woo-checkout', __( 'Checkout submissions', 'benchmark-email-lite' ), array( 'benchmarkemaillite_settings', 'field_woocommerce_checkout' ), 'bmel-pg1', 'bmel-woocommerce' );
 		add_settings_field( 'benchmark-email-lite-connection-timeout', __( 'Connection Timeout (seconds)', 'benchmark-email-lite' ), array( 'benchmarkemaillite_settings', 'field_connection_timeout' ), 'bmel-pg1', 'bmel-diagnostics' );
 		add_settings_field( 'benchmark-email-lite-template-html', __( 'Email Template HTML', 'benchmark-email-lite' ), array( 'benchmarkemaillite_settings', 'field_template' ), 'bmel-pg2', 'bmel-template' );
 	}
@@ -245,6 +247,7 @@ class benchmarkemaillite_settings {
 			$links['getkey']
 		);
 	}
+	static function section_woocommerce() { }
 	static function section_diagnostics() { }
 	static function section_template() {
 		echo sprintf(
@@ -305,6 +308,17 @@ class benchmarkemaillite_settings {
 			'<input id="benchmark-email-lite_group_2" type="checkbox" name="benchmark-email-lite_group[2]" value="yes"%s /> %s ',
 			checked( 'yes', $options[2], false ),
 			__( 'Include the link to view a Webpage Version at the top of emails?', 'benchmark-email-lite' )
+		);
+	}
+
+	static function field_woocommerce_checkout() {
+		$options = get_option( 'benchmark-email-lite_group' );
+		$current = isset( $options[4] ) ? $options[4] : '';
+		$dropdown = benchmarkemaillite_api::print_lists( $options[1], $current );
+		$dropdown = '<select name="benchmark-email-lite_group[4]" id="benchmark-email-lite_group_4"><option value="">Please Select</option>' . $dropdown . '</select>';
+		echo sprintf(
+			__( 'When name and email are provided, add checkout form submissions to this list:%s', 'benchmark-email-lite' ),
+			'<br />' . $dropdown
 		);
 	}
 

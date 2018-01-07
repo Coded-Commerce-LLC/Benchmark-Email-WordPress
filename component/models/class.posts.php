@@ -21,7 +21,7 @@ class benchmarkemaillite_posts {
 		// Get Values For Form Prepopulations
 		$user = wp_get_current_user();
 		$email = isset( $user->user_email ) ? $user->user_email : get_bloginfo( 'admin_email' );
-		$bmelist = ( $val = get_transient( 'bmelist' ) ) ? esc_attr( $val ) : '';
+		$bmelist = ( $val = get_transient( 'bmelist' ) ) ? esc_attr( $val ) : 'DEFAULTED';
 		$title = ( $val = get_transient( 'bmetitle' ) ) ? esc_attr( $val ) : date( 'M d Y', $localtime ) . ' Email';
 		$from = ( $val = get_transient( 'bmefrom' ) ) ? esc_attr( $val ) : get_the_author_meta( 'display_name', get_current_user_id() );
 		$subject = ( $val = get_transient( 'bmesubject' ) ) ? esc_attr( $val ) : '';
@@ -115,11 +115,10 @@ class benchmarkemaillite_posts {
 		);
 		$content = self::compile_email_theme( $data );
 		$webpageVersion = ( $options[2] == 'yes' ) ? true : false;
-		$permissionMessage = isset( $options[4] ) ? $options[4] : '';
 
 		// Create Campaign
 		$result = benchmarkemaillite_api::campaign(
-			$bmetitle, $bmefrom, $bmesubject, $content, $webpageVersion, $permissionMessage
+			$bmetitle, $bmefrom, $bmesubject, $content, $webpageVersion
 		);
 
 		// Handle Error Condition: Preexists

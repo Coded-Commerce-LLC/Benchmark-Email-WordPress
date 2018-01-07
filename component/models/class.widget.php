@@ -136,7 +136,7 @@ class benchmarkemaillite_widget extends WP_Widget {
 			'fields_required' => array( 0, 0, 1 ),
 			'fields' => array( 'First Name', 'Last Name', 'Email' ),
 			'filter' => 0,
-			'list' => '',
+			'list' => 'DEFAULTED',
 			'page' => '',
 			'title' => __( 'Subscribe to Newsletter', 'benchmark-email-lite' ),
 		);
@@ -148,7 +148,7 @@ class benchmarkemaillite_widget extends WP_Widget {
 
 		// Get Drop Down Values
 		$options = get_option( 'benchmark-email-lite_group' );
-		if( ! isset( $options[1][0] ) || !$options[1][0] ) {
+		if( ! isset( $options[1][0] ) || ! $options[1][0] ) {
 			$val = benchmarkemaillite_settings::badconfig_message();
 			echo "<strong style='color:red;'>{$val}</strong>";
 		}

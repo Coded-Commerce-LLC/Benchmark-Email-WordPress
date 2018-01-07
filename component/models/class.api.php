@@ -81,14 +81,14 @@ class benchmarkemaillite_api {
 
 				// Handle Pre Selection Of First Choice When No Choice Exists
 				$i ++;
-				$selected = ( $select === $val ) ? " selected='selected'" : '';
-				if( ! $select && $i == 1 ) { $selected = " selected='selected'"; }
+				$is_selected = ( $select === $val || ( $select == 'DEFAULTED' && $i == 1 ) );
+				$option_selected = $is_selected ? " selected='selected'" : '';
 
 				// Skip Unsubscribe List
 				if( $name == 'Master Unsubscribe List' ) { continue; }
 
 				// Output List Choice
-				$output .= "<option value='{$val}'{$selected}>↳ {$name}</option>\n";
+				$output .= "<option value='{$val}'{$option_selected}>↳ {$name}</option>\n";
 			}
 		}
 
@@ -295,7 +295,7 @@ class benchmarkemaillite_api {
 	}
 
 	// Create Email Campaign
-	static function campaign( $title, $from, $subject, $body, $webpageVersion, $permissionMessage ) {
+	static function campaign( $title, $from, $subject, $body, $webpageVersion ) {
 		$data = array(
 			'emailName' => $title,
 			'toListID' => ( int ) self::$listid,
@@ -303,7 +303,6 @@ class benchmarkemaillite_api {
 			'subject' => $subject,
 			'templateContent' => $body,
 			'webpageVersion' => $webpageVersion,
-			'permissionReminderMessage' => $permissionMessage,
 		);
 
 		// Check For Preexistance

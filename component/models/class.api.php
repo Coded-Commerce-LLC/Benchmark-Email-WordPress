@@ -162,13 +162,15 @@ class benchmarkemaillite_api {
 	// Lookup Lists For Account
 	static function lists() {
 		$response = self::query( 'listGet', self::$token, '', 1, 100, 'name', 'asc' );
-		return isset( $response['faultCode'] ) ? $response['faultString'] : $response;
+		return isset( $response['faultCode'] ) ? array() : $response;
+		//$response['faultString']
 	}
 
 	// Lookup Lists For Account
 	static function signup_forms() {
 		$response = self::query( 'listGetSignupForms', self::$token, 1, 100, 'name', 'asc' );
-		return isset( $response['faultCode'] ) ? $response['faultString'] : $response;
+		return isset( $response['faultCode'] ) ? array() : $response;
+		//$response['faultString']
 	}
 
 	// Get Existing Subscriber Data

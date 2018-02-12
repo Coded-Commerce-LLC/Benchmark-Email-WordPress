@@ -273,7 +273,7 @@ class benchmarkemaillite_settings {
 			// Check Token
 			} else {
 				benchmarkemaillite_api::$token = $key[$i];
-				$results[$i] = is_array( benchmarkemaillite_api::lists() )
+				$results[$i] = ( sizeof( benchmarkemaillite_api::lists() ) > 0 )
 					? sprintf(
 						'<img style="vertical-align:middle;" src="images/yes.png" alt="Yes" title="%s" width="16" height="16" />',
 						self::goodconnection_message()

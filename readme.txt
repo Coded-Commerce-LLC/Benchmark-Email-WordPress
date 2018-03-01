@@ -2,8 +2,8 @@
 Contributors: beautomated, seanconklin, randywsandberg
 Tags: api, benchmark, benchmark email, campaign, campaigns, chinese, contact form, contact forms, contacts, email, email blast, emails, email marketing, form, forms, html, join, list, lists, mail, mailing, mailing list, mailing lists, mailings, newsletter, newsletters, portuguese, register, registration, responsive, responsive emails, sign up, signup form, sidebar, spanish, widget, widgets
 Requires at least: 3.1
-Tested up to: 4.9.1
-Stable tag: 2.6
+Tested up to: 4.9.4
+Stable tag: 2.7
 License: GPLv3
 
 Benchmark Email Lite lets you build an email list from your WordPress site, and easily send your subscribers email versions of your posts and pages.
@@ -53,7 +53,7 @@ New Automatic Installation
 1. (sometimes required) Enter your FTP or FTPS username and password, as provided by your web host.
 1. Click Activate Plugin link.
 1. If you are creating a new Benchmark Email account, please use the link [http://www.benchmarkemail.com/Register](http://www.benchmarkemail.com/Register "Try Benchmark Email").
-1. Obtain your Benchmark Email API Key by logging into Benchmark Email, click My Account, click My Account Settings, scroll to the big yellow box towards the bottom of the page and copy the API Key code. If the yellow box is missing, click the link to "generate your API key" first.
+1. Obtain your Benchmark Email API Key by logging into Benchmark Email, click on your Username, then click Integrations, now select the API Key option from the Left or Dropdown menu, last copy "Your API Key."
 1. Back on your site, click Benchmark Email Lite on the administration sidebar menu. Click the Settings tab. Check to ensure that your API key is properly configured.
 1. Now you can setup any number of signup form widgets on the Appearance, Widgets administration page, plus you can save any number of posts and pages to email campaigns right from the post or page editor!
 
@@ -63,7 +63,7 @@ New Manual Installation
 1. Upload the `benchmark-email-lite` folder to your `wp-content/plugins/` directory.
 1. Activate the Plugin through the Plugins menu in WordPress.
 1. If you are creating a new Benchmark Email account, please use the link [http://www.benchmarkemail.com/Register](http://www.benchmarkemail.com/Register "Try Benchmark Email").
-1. Obtain your Benchmark Email API Key by logging into Benchmark Email, click My Account, click My Account Settings, scroll to the big yellow box towards the bottom of the page and copy the API Key code. If the yellow box is missing, click the link to "generate your API key" first.
+1. Obtain your Benchmark Email API Key by logging into Benchmark Email, click on your Username, then click Integrations, now select the API Key option from the Left or Dropdown menu, last copy "Your API Key."
 1. Back on your site, click Benchmark Email Lite click Benchmark Email Lite on the administration sidebar menu. Click the Settings tab. Check to ensure that your API key is properly configured.
 1. Now you can setup any number of signup form widgets on the Appearance, Widgets administration page, plus you can save any number of posts and pages to email campaigns right from the post or page editor!
 

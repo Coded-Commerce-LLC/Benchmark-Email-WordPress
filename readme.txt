@@ -135,13 +135,14 @@ Two reasons. First, Benchmark Email requested that we use this method because it
 
 == Changelog ==
 
-= 2.7 on 2018-01-01 =
+= 2.7 on 2018-03-01 =
 
-* Added: WooCommerce customer to email list feature
+* Added: WooCommerce customer to contact list feature
 * Updated: Common libraries with the Joomla! plugin
 * Updated: Author URLs removed `www.` for consistency
 * Fixed: JS error when entering the theme customizer
 * Fixed: Ability to replace BODY_HERE with EXCERPT in email template
+* Fixed: Newsletter signup form validation code improvements from @talgat in support forum
 
 = 2.6 on 2016-06-25 =
 

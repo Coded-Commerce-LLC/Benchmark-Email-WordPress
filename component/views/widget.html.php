@@ -39,7 +39,7 @@ echo $before_widget . $title . $description;
 </form>
 
 <p id="subscribe_spinner-<?php echo $uniqid; ?>" style="display: none; text-align: center;">
-	<br /><img alt="Loading" src="<?php echo BMEL_DIR_URL . 'assets/images/wpspin.gif'; ?>" />
+	<br /><img alt="<?php _e( 'Loading - Please wait', 'benchmark-email-lite' ); ?>" src="<?php echo BMEL_DIR_URL . 'assets/images/wpspin.gif'; ?>" />
 	<br /><?php _e( 'Loading - Please wait', 'benchmark-email-lite' ); ?>
 </p>
 

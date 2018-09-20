@@ -42,7 +42,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 	<small><?php _e( 'Interesting, non-spammy subject lines help your open rates.', 'benchmark-email-lite' ); ?></small>
 </p>
 
-<p><strong>Email Delivery Options</strong></p>
+<p><strong><?php _e( 'Email Delivery Options', 'benchmark-email-lite' ); ?></strong></p>
 
 <p>
 	<input type="radio" name="bmeaction" value="1" id="bmeaction_1" checked="checked" />

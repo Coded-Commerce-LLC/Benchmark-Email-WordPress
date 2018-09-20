@@ -15,8 +15,6 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 
 <div class="wrap">
 
-	<?php echo get_screen_icon( 'plugins' ); ?>
-
 	<h2>Benchmark Email Lite</h2>
 
 	<h2 class="nav-tab-wrapper">&nbsp;
@@ -103,7 +101,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 						<td><?php echo $log['Lapsed']; ?></td>
 						<td><?php echo $log['Request'][0]; ?></td>
 						<td>
-							<a href="#" title="Show/Hide" onclick="jQuery( '#log-<?php echo $i; ?>' ).toggle();return false;">
+							<a href="#" title="<?php _e( 'Show/Hide', 'benchmark-email-lite' ); ?>" onclick="jQuery( '#log-<?php echo $i; ?>' ).toggle();return false;">
 								<div class="dashicons dashicons-sort"></div>
 							</a>
 						</td>
@@ -142,7 +140,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 						<td><?php echo $log['key']; ?></td>
 						<td><?php echo $log['list']; ?> (<?php echo $log['list_id']; ?>)</td>
 						<td>
-							<a href="#" title="Show/Hide" onclick="jQuery( '#cron-<?php echo $i; ?>' ).toggle();return false;">
+							<a href="#" title="<?php _e( 'Show/Hide', 'benchmark-email-lite' ); ?>" onclick="jQuery( '#cron-<?php echo $i; ?>' ).toggle();return false;">
 								<div class="dashicons dashicons-sort"></div>
 							</a>
 						</td>

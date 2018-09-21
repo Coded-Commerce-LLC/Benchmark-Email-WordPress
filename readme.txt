@@ -135,6 +135,12 @@ Two reasons. First, Benchmark Email requested that we use this method because it
 
 == Changelog ==
 
+= 2.8 on 2018-09-21 =
+* Added: Optional privacy policy checkbox field to subscription forms for GDPR
+* Updated: Newsletter sign up form paragraphs for better spacing in most themes
+* Fixed: One deprecated notice for admin page
+* Fixed: A few missing translation text wrappers
+
 = 2.7 on 2018-03-01 =
 
 * Added: WooCommerce customer to contact list feature

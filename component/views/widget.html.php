@@ -11,9 +11,11 @@
 // No direct access to this file
 defined( '_JEXEC' ) or die( 'Restricted access' );
 
-echo $before_widget . $title . $description;
+echo $before_widget . $title;
 
 ?>
+
+<?php if( $description ) { echo sprintf( "<p>%s</p>", $description ); } ?>
 
 <form method="post" class="benchmarkemaillite-subscribe"
 	action="#benchmark-email-lite-<?php echo $uniqid; ?>"
@@ -23,30 +25,41 @@ echo $before_widget . $title . $description;
 	<input type="hidden" name="widgetid" value="<?php echo $widgetid; ?>" />
 	<input type="hidden" name="uniqid" value="<?php echo $uniqid; ?>" />
 
-	<?php foreach( $fields as $field ) { extract( $field ); ?>
+	<?php
+	foreach( $fields as $field ) {
+		extract( $field );
+		$type = ( $label == 'Email' ) ? 'email' : 'text';
+		?>
 	<div class="form-group">
-		<label for="<?php echo $id; ?>"><?php echo $label; ?></label>
-		<input placeholder="<?php echo $label; ?>" class="form-control input-medium" type="text" maxlength="200" id="<?php echo $id; ?>" name="<?php echo $id; ?>" value="<?php echo $value; ?>" />
+		<p>
+			<label for="<?php echo $id; ?>" style="display: block;"><?php echo $label; ?></label>
+			<input placeholder="<?php echo $label; ?>" class="form-control input-medium" type="<?php echo $type; ?>"
+				maxlength="200" id="<?php echo $id; ?>" name="<?php echo $id; ?>" value="<?php echo $value; ?>" />
+		</p>
 	</div>
 	<?php } ?>
 
 	<?php if( ! empty( $options['gdpr_page'] ) ) { ?>
 	<div class="form-group">
-		<label for="accept_privacy_policy">
-			<input class="form-control" type="checkbox" id="accept_privacy_policy" name="accept_privacy_policy" value="yes" />
-			<?php echo sprintf(
-				"%s %s%s%s",
-				__( 'I agree to the', 'benchmark-email-lite' ),
-				'<a href="' . get_permalink( $options['gdpr_page'] ) . '">',
-				__( 'privacy policy', 'benchmark-email-lite' ),
-				'</a>'
-			); ?>
-		</label>
+		<p>
+			<label for="accept_privacy_policy">
+				<input class="form-control" type="checkbox" id="accept_privacy_policy" name="accept_privacy_policy" value="yes" />
+				<?php echo sprintf(
+					"%s %s%s%s",
+					__( 'I agree to the', 'benchmark-email-lite' ),
+					'<a href="' . get_permalink( $options['gdpr_page'] ) . '">',
+					__( 'privacy policy', 'benchmark-email-lite' ),
+					'</a>'
+				); ?>
+			</label>
+		</p>
 	</div>
 	<?php } ?>
 
 	<div class="form-group">
-		<button class="button btn-primary" type="submit"><?php echo $instance['button']; ?></button>
+		<p>
+			<button class="button btn-primary" type="submit"><?php echo $instance['button']; ?></button>
+		</p>
 	</div>
 
 	<div class="form-group"><?php echo $printresponse; ?></div>

@@ -30,6 +30,21 @@ echo $before_widget . $title . $description;
 	</div>
 	<?php } ?>
 
+	<?php if( ! empty( $options['gdpr_page'] ) ) { ?>
+	<div class="form-group">
+		<label for="accept_privacy_policy">
+			<input class="form-control" type="checkbox" id="accept_privacy_policy" name="accept_privacy_policy" value="yes" />
+			<?php echo sprintf(
+				"%s %s%s%s",
+				__( 'I agree to the', 'benchmark-email-lite' ),
+				'<a href="' . get_permalink( $options['gdpr_page'] ) . '">',
+				__( 'privacy policy', 'benchmark-email-lite' ),
+				'</a>'
+			); ?>
+		</label>
+	</div>
+	<?php } ?>
+
 	<div class="form-group">
 		<button class="button btn-primary" type="submit"><?php echo $instance['button']; ?></button>
 	</div>

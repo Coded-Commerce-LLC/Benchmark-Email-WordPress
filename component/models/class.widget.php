@@ -266,6 +266,7 @@ class benchmarkemaillite_widget extends WP_Widget {
 		}
 
 		// Output Widget
+		$options = get_option( 'benchmark-email-lite_group' );
 		require( BMEL_DIR_PATH . 'views/widget.html.php' );
 	}
 
@@ -294,6 +295,16 @@ class benchmarkemaillite_widget extends WP_Widget {
 				$data[$field] = isset( $_POST[$id] ) ? esc_attr( $_POST[$id] ) : '';
 			}
 
+			// Check Privacy Policy Agreement
+			$options = get_option( 'benchmark-email-lite_group' );
+			if( ! empty( $options['gdpr_page'] ) && empty( $_POST['accept_privacy_policy'] ) ) {
+				self::$response[$widgetid] = array(
+					false,
+					__( 'Please accept the privacy policy.', 'benchmark-email-lite' )
+				);
+				return false;
+			}
+
 			// Run Subscription
 			self::$response[$widgetid] = self::process_subscription( $instance['list'], $data );
 		}
@@ -304,7 +315,10 @@ class benchmarkemaillite_widget extends WP_Widget {
 
 		// Handle Missing Email Address
 		if( ! isset( $data['Email'] ) || ! is_email( $data['Email'] ) ) {
-			return __( false, 'Please enter a valid email address.', 'benchmark-email-lite' );
+			return array(
+				false,
+				__( 'Please enter a valid email address.', 'benchmark-email-lite' )
+			);
 		}
 
 		// Get List Info

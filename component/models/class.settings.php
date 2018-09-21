@@ -117,6 +117,7 @@ class benchmarkemaillite_settings {
 
 		// Settings API Fields Follow
 		add_settings_field( 'benchmark-email-lite-api-keys', __( 'API Key(s) from your Benchmark Email account(s)', 'benchmark-email-lite' ), array( 'benchmarkemaillite_settings', 'field_api_keys' ), 'bmel-pg1', 'bmel-main' );
+		add_settings_field( 'benchmark-email-lite-gdpr-page', __( 'GDPR Privacy Policy page', 'benchmark-email-lite' ), array( 'benchmarkemaillite_settings', 'field_gdpr_page' ), 'bmel-pg1', 'bmel-main' );
 		add_settings_field( 'benchmark-email-lite-webpage-flag', __( 'Webpage version', 'benchmark-email-lite' ), array( 'benchmarkemaillite_settings', 'field_webpage_flag' ), 'bmel-pg1', 'bmel-campaign' );
 		add_settings_field( 'benchmark-email-lite-woo-checkout', __( 'Checkout submissions', 'benchmark-email-lite' ), array( 'benchmarkemaillite_settings', 'field_woocommerce_checkout' ), 'bmel-pg1', 'bmel-woocommerce' );
 		add_settings_field( 'benchmark-email-lite-connection-timeout', __( 'Connection Timeout (seconds)', 'benchmark-email-lite' ), array( 'benchmarkemaillite_settings', 'field_connection_timeout' ), 'bmel-pg1', 'bmel-diagnostics' );
@@ -300,6 +301,22 @@ class benchmarkemaillite_settings {
 			$results[3], $key[3], $optional,
 			$results[4], $key[4], $optional
 		);
+	}
+
+	static function field_gdpr_page() {
+		$options = get_option( 'benchmark-email-lite_group' );
+		$selected = isset( $options['gdpr_page'] ) ? $options['gdpr_page'] : '';
+		$args = array(
+			'id' => 'benchmark-email-lite_group_gdpr_page',
+			'name' => "benchmark-email-lite_group[gdpr_page]",
+			'selected' => $selected,
+			'show_option_none' => __( '- Disabled -', 'benchmark-email-lite' ),
+		);
+		echo sprintf(
+			"<p>%s</p>",
+			__( 'Select your privacy policy page if you wish to request consent on all subscriptions.', 'benchmark-email-lite' )
+		);
+		wp_dropdown_pages( $args );
 	}
 
 	static function field_webpage_flag() {

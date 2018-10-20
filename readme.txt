@@ -1,14 +1,16 @@
 === Benchmark Email Lite ===
-Contributors: beautomated, seanconklin, randywsandberg
+Contributors: seanconklin, randywsandberg
 Tags: api, benchmark, benchmark email, campaign, campaigns, chinese, contact form, contact forms, contacts, email, email blast, emails, email marketing, form, forms, html, join, list, lists, mail, mailing, mailing list, mailing lists, mailings, newsletter, newsletters, portuguese, register, registration, responsive, responsive emails, sign up, signup form, sidebar, spanish, widget, widgets, woocommerce
 Requires at least: 3.1
-Tested up to: 4.9.4
-Stable tag: 2.7
+Tested up to: 5.0
+Stable tag: 2.8
 License: GPLv3
 
 Benchmark Email Lite lets you build an email list from your WordPress or WooCommerce site, and easily send your subscribers email versions of your posts and pages.
 
 == Description ==
+
+[youtube https://www.youtube.com/watch?v=p52XQdzNY84]
 
 If you want your blog to reach every reader, you have to use email. The Benchmark Email Lite WordPress Plugin builds an email list right from the pages of your WordPress site, and sends your subscribers email versions of your posts and pages in a flash. See when, where, and who opens or clicks on links or unsubscribes—all live from your WordPress dashboard! Benchmark Email Lite can also store WooCommerce customers into a contact list as soon as they submit their order.
 

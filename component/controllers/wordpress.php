@@ -43,10 +43,11 @@ class benchmarkemaillite_admin {
 			update_option( 'bmel_sister_dismissed', current_time( 'timestamp') );
 		}
 
-		// Check Sister Product
+		// Check Sister Product If Woo Is Active
 		$sister_dismissed = get_option( 'bmel_sister_dismissed' );
 		if(
 			$sister_dismissed < current_time( 'timestamp') - 86400 * 90
+			&& is_plugin_active( 'woocommerce/woocommerce.php' )
 			&& is_plugin_inactive( 'woo-benchmark-email/woo-benchmark-email.php' )
 			&& current_user_can( 'activate_plugins' )
 		) {

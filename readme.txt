@@ -12,7 +12,7 @@ Benchmark Email Lite lets you build an email list from your WordPress or WooComm
 
 [youtube https://www.youtube.com/watch?v=p52XQdzNY84]
 
-If you want your blog to reach every reader, you have to use email. The Benchmark Email Lite WordPress Plugin builds an email list right from the pages of your WordPress site, and sends your subscribers email versions of your posts and pages in a flash. See when, where, and who opens or clicks on links or unsubscribes—all live from your WordPress dashboard! Benchmark Email Lite can also store WooCommerce customers into a contact list as soon as they submit their order.
+If you want your blog to reach every reader, you have to use email. The Benchmark Email Lite WordPress Plugin builds an email list right from the pages of your WordPress site, and sends your subscribers email versions of your posts and pages in a flash. See when, where, and who opens or clicks on links or unsubscribes—all live from your WordPress dashboard!
 
 With this version you can:
 
@@ -137,20 +137,24 @@ Two reasons. First, Benchmark Email requested that we use this method because it
 
 == Changelog ==
 
+= 2.9 on 2018-11-01 =
+* Added: Admin dashboard notice of sister product availability if WooCommerce is active.
+* Removed: WooCommerce customers list as this has moved to our free sister product with enhancements.
+
 = 2.8 on 2018-09-21 =
-* Added: Optional privacy policy checkbox field to subscription forms for GDPR
-* Updated: Newsletter sign up form paragraphs for better spacing in most themes
-* Fixed: One deprecated notice for admin page
-* Fixed: A few missing translation text wrappers
+* Added: Optional privacy policy checkbox field to subscription forms for GDPR.
+* Updated: Newsletter sign up form paragraphs for better spacing in most themes.
+* Fixed: One deprecated notice for admin page.
+* Fixed: A few missing translation text wrappers.
 
 = 2.7 on 2018-03-01 =
 
-* Added: WooCommerce customer to contact list feature
-* Updated: Common libraries with the Joomla! plugin
-* Updated: Author URLs removed `www.` for consistency
-* Fixed: JS error when entering the theme customizer
-* Fixed: Ability to replace BODY_HERE with EXCERPT in email template
-* Fixed: Newsletter signup form validation code improvements from @talgat in support forum
+* Added: WooCommerce customer to contact list feature.
+* Updated: Common libraries with the Joomla! plugin.
+* Updated: Author URLs removed `www.` for consistency.
+* Fixed: JS error when entering the theme customizer.
+* Fixed: Ability to replace BODY_HERE with EXCERPT in email template.
+* Fixed: Newsletter signup form validation code improvements from @talgat in support forum.
 
 = 2.6 on 2016-06-25 =
 
@@ -373,6 +377,18 @@ Two reasons. First, Benchmark Email requested that we use this method because it
 * Added: Initial Plugin release.
 
 == Upgrade Notice ==
+
+= 2.9 =
+
+* Sister product notification regarding WooCommerce and updates.
+
+= 2.8 =
+
+* GDPR update and fixes.
+
+= 2.7 =
+
+* Various fixes and improvements.
 
 = 2.6 =
 

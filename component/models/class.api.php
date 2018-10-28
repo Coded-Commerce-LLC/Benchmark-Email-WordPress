@@ -362,15 +362,4 @@ class benchmarkemaillite_api {
 		return self::query( 'reportGetSummary', self::$token, (string) $id );
 	}
 
-	// WooCommerce Checkout Submission
-	static function woocommerce_after_checkout_validation( $data ) {
-		$options = get_option( 'benchmark-email-lite_group' );
-		if( empty( $options[4] ) || empty( $data['billing_email'] ) ) { return; }
-		$args = array(
-			'First Name' => isset( $data['billing_first_name'] ) ? esc_attr( $data['billing_first_name'] ) : '',
-			'Last Name' => isset( $data['billing_last_name'] ) ? esc_attr( $data['billing_last_name'] ) : '',
-			'Email' => isset( $data['billing_email'] ) ? esc_attr( $data['billing_email'] ) : '',
-		);
-		benchmarkemaillite_widget::process_subscription( $options[4], $args );
-	}
 }

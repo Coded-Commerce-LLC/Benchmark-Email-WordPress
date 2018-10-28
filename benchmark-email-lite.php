@@ -3,7 +3,7 @@
 Plugin Name: Benchmark Email Lite
 Plugin URI: http://beautomated.com/benchmark-email-lite/
 Description: Benchmark Email Lite lets you build an email list right from your WordPress site, and easily send your subscribers email versions of your blog posts.
-Version: 2.8
+Version: 2.9
 Author: beAutomated
 Author URI: http://beautomated.com/
 License: GPLv3
@@ -29,9 +29,6 @@ require_once( 'component/models/class.widget.php' );
 add_action( 'admin_init', array( 'benchmarkemaillite_admin', 'admin_init' ) );
 add_action( 'customize_controls_enqueue_scripts', array( 'benchmarkemaillite_admin', 'admin_init' ) );
 add_action( 'wp_dashboard_setup', array( 'benchmarkemaillite_admin', 'wp_dashboard_setup' ) );
-
-// WooCommerce Hooks
-add_action( 'woocommerce_after_checkout_validation', array( 'benchmarkemaillite_api', 'woocommerce_after_checkout_validation' ) );
 
 // Posts Hooks
 add_action( 'save_post', array( 'benchmarkemaillite_posts', 'save_post' ) );

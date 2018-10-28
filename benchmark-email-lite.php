@@ -28,6 +28,7 @@ require_once( 'component/models/class.widget.php' );
 // Controller Hooks
 add_action( 'admin_init', array( 'benchmarkemaillite_admin', 'admin_init' ) );
 add_action( 'customize_controls_enqueue_scripts', array( 'benchmarkemaillite_admin', 'admin_init' ) );
+add_action( 'wp_dashboard_setup', array( 'benchmarkemaillite_admin', 'wp_dashboard_setup' ) );
 
 // WooCommerce Hooks
 add_action( 'woocommerce_after_checkout_validation', array( 'benchmarkemaillite_api', 'woocommerce_after_checkout_validation' ) );

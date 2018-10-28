@@ -34,6 +34,93 @@ class benchmarkemaillite_admin {
 		add_meta_box( 'benchmark-email-lite', 'Benchmark Email Lite', $metabox_fn, 'page', 'side', 'default' );
 	}
 
+	// Sister Product Function
+	static function wp_dashboard_setup() {
+		$message = '';
+
+		// Handle Dismissal Request
+		if( ! empty( $_REQUEST['bmel_dismiss_sister'] ) && check_admin_referer( 'bmel_dismiss_sister' ) ) {
+			update_option( 'bmel_sister_dismissed', current_time( 'timestamp') );
+		}
+
+		// Check Sister Product
+		$sister_dismissed = get_option( 'bmel_sister_dismissed' );
+		if(
+			$sister_dismissed < current_time( 'timestamp') - 86400 * 90
+			&& is_plugin_inactive( 'woo-benchmark-email/woo-benchmark-email.php' )
+			&& current_user_can( 'activate_plugins' )
+		) {
+
+			// Plugin Installed But Not Activated
+			if( file_exists( WP_PLUGIN_DIR . '/woo-benchmark-email/woo-benchmark-email.php' ) ) {
+				$message =
+					__( 'Activate our sister product Woo Benchmark Email to connect carts and orders.', 'benchmark-email-lite' )
+					. sprintf(
+						' &nbsp; <strong style="font-size:1.25em;"><a href="%s">%s</a></strong>',
+						benchmarkemaillite_admin::get_sister_activate_link(),
+						__( 'Activate Now', 'benchmark-email-lite' )
+					);
+
+			// Plugin Not Installed
+			} else {
+				$message =
+					__( 'Install our sister product Woo Benchmark Email to connect carts and orders.', 'benchmark-email-lite' )
+					. sprintf(
+						' &nbsp; <strong style="font-size:1.25em;"><a href="%s">%s</a></strong>',
+						benchmarkemaillite_admin::get_sister_install_link(),
+						__( 'Install Now', 'benchmark-email-lite' )
+					);
+			}
+
+			// Dismiss Link
+			$message .= sprintf(
+				' <a style="float:right;" href="%s">%s</a>',
+				benchmarkemaillite_admin::get_sister_dismiss_link(),
+				__( 'dismiss for 90 days', 'benchmark-email-lite' )
+			);
+		}
+
+		// Output Message
+		if( $message ) {
+			echo sprintf(
+				'<div class="notice notice-info is-dismissible"><p>%s</p></div>',
+				print_r( $message, true )
+			);
+		}
+	}
+
+	// Sister Install Link
+	static function get_sister_install_link() {
+		$action = 'install-plugin';
+		$slug = 'woo-benchmark-email';
+		return wp_nonce_url(
+			add_query_arg(
+				array( 'action' => $action, 'plugin' => $slug ),
+				admin_url( 'update.php' )
+			),
+			$action . '_' . $slug
+		);
+	}
+
+	// Sister Activate Link
+	static function get_sister_activate_link( $action='activate' ) {
+		$plugin = 'woo-benchmark-email/woo-benchmark-email.php';
+		$_REQUEST['plugin'] = $plugin;
+		return wp_nonce_url(
+			add_query_arg(
+				array( 'action' => $action, 'plugin' => $plugin, 'plugin_status' => 'all', 'paged' => '1&s' ),
+				admin_url( 'plugins.php' )
+			),
+			$action . '-plugin_' . $plugin
+		);
+	}
+
+	// Sister Dismiss Notice Link
+	static function get_sister_dismiss_link() {
+		$url = wp_nonce_url( 'index.php?bmel_dismiss_sister=1', 'bmel_dismiss_sister' );
+		return $url;
+	}
+
 }
 
 class benchmarkemaillite_frontend {

@@ -224,11 +224,11 @@ class benchmarkemaillite_settings {
 	static function section_main() {
 		$links = array(
 			'signup' => sprintf(
-				'<a target="BenchmarkEmail" href="http://www.benchmarkemail.com/Register?p=68907" target="BenchmarkEmail">%s</a>',
+				'<a target="BenchmarkEmail" href="https://www.benchmarkemail.com/Register?p=68907" target="BenchmarkEmail">%s</a>',
 				__( 'Sign up for a FREE lifetime account', 'benchmark-email-lite')
 			),
 			'getkey' => sprintf(
-				'<a target="BenchmarkEmail" href="http://ui.benchmarkemail.com/EditSetting#ContentPlaceHolder1_UC_ClientSettings1_lnkGenerate" target="BenchmarkEmail">%s</a>',
+				'<a target="BenchmarkEmail" href="https://ui.benchmarkemail.com/Integrate#API" target="BenchmarkEmail">%s</a>',
 				__( 'log in to Benchmark Email to get your API key', 'benchmark-email-lite' )
 			),
 		);

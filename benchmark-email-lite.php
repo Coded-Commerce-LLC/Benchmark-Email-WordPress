@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: Benchmark Email Lite
-Plugin URI: http://beautomated.com/benchmark-email-lite/
+Plugin URI: https://codedcommerce.com/product/benchmark-email-newsletters/
 Description: Benchmark Email Lite lets you build an email list right from your WordPress site, and easily send your subscribers email versions of your blog posts.
 Version: 2.9
-Author: beAutomated
-Author URI: http://beautomated.com/
+Author: Coded Commerce, LLC
+Author URI: https://codedcommerce.com/
 License: GPLv3
 Text Domain: benchmark-email-lite
 Domain Path: /languages/

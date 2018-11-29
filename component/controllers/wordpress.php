@@ -48,7 +48,7 @@ class benchmarkemaillite_admin {
 		if(
 			$sister_dismissed < current_time( 'timestamp') - 86400 * 90
 			&& is_plugin_active( 'woocommerce/woocommerce.php' )
-			&& is_plugin_inactive( 'woo-benchmark-email/woo-benchmark-email.php' )
+			&& ! is_plugin_active( 'woo-benchmark-email/woo-benchmark-email.php' )
 			&& current_user_can( 'activate_plugins' )
 		) {
 

@@ -36,6 +36,11 @@ class benchmarkemaillite_admin {
 
 	// Sister Product Function
 	static function wp_dashboard_setup() {
+
+		// Ensure is_plugin_active() Exists
+		if( ! function_exists( 'is_plugin_active' ) ) {
+			include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+		}
 		$message = '';
 
 		// Handle Dismissal Request

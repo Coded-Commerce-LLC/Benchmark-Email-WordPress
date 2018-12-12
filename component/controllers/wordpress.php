@@ -26,7 +26,14 @@ class benchmarkemaillite_admin {
 		// WP Posts Admin JavaScript
 		wp_enqueue_script( 'jquery-ui-slider', '', array( 'jquery', 'jquery-ui' ), false, true );
 		wp_enqueue_script( 'jquery-ui-datepicker', '', array( 'jquery', 'jquery-ui' ), false, true );
-		//wp_enqueue_style( 'jquery-ui-theme', '//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.min.css' );
+
+		// jQuery UI Style Must Be Manually Included
+		$wp_scripts = wp_scripts();
+		wp_enqueue_style( 'jquery-ui-theme-smoothness', sprintf(
+				'//ajax.googleapis.com/ajax/libs/jqueryui/%s/themes/smoothness/jquery-ui.css',
+				$wp_scripts->registered['jquery-ui-core']->ver
+			)
+		);
 
 		// WP Posts Meta Boxes
 		$metabox_fn = array( 'benchmarkemaillite_posts', 'metabox' );

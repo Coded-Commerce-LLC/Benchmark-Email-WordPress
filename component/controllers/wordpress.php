@@ -23,7 +23,7 @@ class benchmarkemaillite_admin {
 			wp_enqueue_script( 'bmel_widgetadmin', $js_file, array( 'jquery' ), false, false );
 		}
 
-		// WP Posts Admin JavaScript
+		// WP Pages/Posts Admin JavaScript
 		wp_enqueue_script( 'jquery-ui-slider', '', array( 'jquery', 'jquery-ui' ), false, true );
 		wp_enqueue_script( 'jquery-ui-datepicker', '', array( 'jquery', 'jquery-ui' ), false, true );
 
@@ -35,10 +35,16 @@ class benchmarkemaillite_admin {
 			)
 		);
 
-		// WP Posts Meta Boxes
-		$metabox_fn = array( 'benchmarkemaillite_posts', 'metabox' );
-		add_meta_box( 'benchmark-email-lite', 'Benchmark Email Lite', $metabox_fn, 'post', 'side', 'default' );
-		add_meta_box( 'benchmark-email-lite', 'Benchmark Email Lite', $metabox_fn, 'page', 'side', 'default' );
+		// WP Pages/Posts Meta Boxes
+		add_meta_box(
+			'benchmark-email-lite',
+			'Benchmark Email Lite',
+			array( 'benchmarkemaillite_posts', 'metabox' ),
+			array( 'page', 'post' ),
+			'normal',
+			'default',
+			array( '__back_compat_meta_box' => false, '__block_editor_compatible_meta_box' => true )
+		);
 	}
 
 	// Sister Product Function

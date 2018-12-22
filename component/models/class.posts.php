@@ -77,7 +77,7 @@ class benchmarkemaillite_posts {
 		set_transient( 'bmetestto', $bmetestto, 15 );
 
 		// Don't Work With Post Revisions Or Other Post Actions
-		if( wp_is_post_revision($postID) || !isset($_POST['bmesubmit']) || $_POST['bmesubmit'] != 'yes' ) { return; }
+		if( wp_is_post_revision( $postID ) || ! isset( $_POST['bmesubmit'] ) || $_POST['bmesubmit'] != 'yes' ) { return; }
 
 		// Get User Info
 		if ( ! $user = wp_get_current_user() ) { return; }

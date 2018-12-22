@@ -90,11 +90,11 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 
 <script type="text/javascript">
 
-jQuery( document ).ready( function() {
+jQuery( document ).ready( function( $ ) {
 
-	jQuery( '.datepicker' ).datepicker();
+	$( '.datepicker' ).datepicker();
 
-	jQuery( '#bmetime-slider' ).slider( {
+	$( '#bmetime-slider' ).slider( {
 		value: <?php
 				$minutes = explode( ':', date( 'H:i', $localtime_quarterhour ) );
 				echo $minutes[0] * 60 + $minutes[1];
@@ -107,76 +107,94 @@ jQuery( document ).ready( function() {
 			var minutes = ui.value - ( hours * 60 );
 			hours = ( hours < 10 ) ? '0' + hours : hours;
 			minutes = ( minutes < 10 ) ? '0' + minutes : minutes;
-			jQuery( '#bmetime' ).val( hours + ':' + minutes );
+			$( '#bmetime' ).val( hours + ':' + minutes );
 		}
 	} );
 
-} );
+	$( '#bmetestto' ).click( function() {
+		$( '#bmeaction_1' ).attr( 'checked', 'checked' );
+	} );
 
-jQuery( '#bmetestto' ).click( function() {
-	jQuery( '#bmeaction_1' ).attr( 'checked', 'checked' );
-} );
+	$( '#bmedate, #bmetime' ).click( function() {
+		$( '#bmeaction_3' ).attr( 'checked', 'checked' );
+	} );
 
-jQuery( '#bmedate, #bmetime' ).click( function() {
-	jQuery( '#bmeaction_3' ).attr( 'checked', 'checked' );
-} );
+	$( '#bmesubmitbtn' ).click( function( e ) {
+		e.preventDefault();
+		var errors = [];
 
-jQuery( '#bmesubmitbtn' ).click( function( e ) {
-	e.preventDefault();
-	var errors = [];
+		// Check Email Name
+		if( $( '#bmetitle' ).val() == '' ) {
+			if( errors.length < 1 ) { $( '#bmetitle' ).focus(); }
+			$( '#bmetitle' ).css( 'border', '2px solid red' );
+			errors.push( '<?php _e( 'Please enter an email name.', 'benchmark-email-lite' ); ?>' );
+		} else {
+			$( '#bmetitle' ).css( 'border', '0' );
+		}
 
-	// Check Email Name
-	if( jQuery( '#bmetitle' ).val() == '' ) {
-		if( errors.length < 1 ) { jQuery( '#bmetitle' ).focus(); }
-		jQuery( '#bmetitle' ).css( 'border', '2px solid red' );
-		errors.push( '<?php _e( 'Please enter an email name.', 'benchmark-email-lite' ); ?>' );
-	} else {
-		jQuery( '#bmetitle' ).css( 'border', '0' );
-	}
+		// Check From Name
+		if( $( '#bmefrom' ).val() == '' ) {
+			if( errors.length < 1 ) { $( '#bmefrom' ).focus(); }
+			$( '#bmefrom' ).css( 'border', '2px solid red' );
+			errors.push( '<?php _e( 'Please enter a from name.', 'benchmark-email-lite' ); ?>' );
+		} else {
+			$( '#bmefrom' ).css( 'border', '0' );
+		}
 
-	// Check From Name
-	if( jQuery( '#bmefrom' ).val() == '' ) {
-		if( errors.length < 1 ) { jQuery( '#bmefrom' ).focus(); }
-		jQuery( '#bmefrom' ).css( 'border', '2px solid red' );
-		errors.push( '<?php _e( 'Please enter a from name.', 'benchmark-email-lite' ); ?>' );
-	} else {
-		jQuery( '#bmefrom' ).css( 'border', '0' );
-	}
+		// Check Subject
+		if( $( '#bmesubject' ).val() == '' ) {
+			if( errors.length < 1 ) { $( '#bmesubject' ).focus(); }
+			$( '#bmesubject' ).css( 'border', '2px solid red' );
+			errors.push( '<?php _e( 'Please enter a subject.', 'benchmark-email-lite' ); ?>' );
+		} else {
+			$( '#bmesubject' ).css( 'border', '0' );
+		}
 
-	// Check Subject
-	if( jQuery( '#bmesubject' ).val() == '' ) {
-		if( errors.length < 1 ) { jQuery( '#bmesubject' ).focus(); }
-		jQuery( '#bmesubject' ).css( 'border', '2px solid red' );
-		errors.push( '<?php _e( 'Please enter a subject.', 'benchmark-email-lite' ); ?>' );
-	} else {
-		jQuery( '#bmesubject' ).css( 'border', '0' );
-	}
+		// Check Test Recipients
+		if( $( '#bmetestto' ).val() == '' && $( '#bmeaction_1' ).is( ':checked' ) ) {
+			if( errors.length < 1 ) { $( '#bmetestto' ).focus(); }
+			$( '#bmetestto' ).css( 'border', '2px solid red' );
+			errors.push( '<?php _e( 'Please enter email address(es) to send the test email to.', 'benchmark-email-lite' ); ?>' );
+		} else if( $( '#bmetestto' ).val().split( /@/g ).length - 1 > 5 && $( '#bmeaction_1' ).is( ':checked' ) ) {
+			if( errors.length < 1 ) { $( '#bmetestto' ).focus(); }
+			$( '#bmetestto' ).css( 'border', '2px solid red' );
+			errors.push( '<?php _e( 'Please do not exceed the limit of 5 email addresses.', 'benchmark-email-lite' ); ?>' );
+		} else {
+			$( '#bmetestto' ).css( 'border', '0' );
+		}
 
-	// Check Test Recipients
-	if( jQuery( '#bmetestto' ).val() == '' && jQuery( '#bmeaction_1' ).is( ':checked' ) ) {
-		if( errors.length < 1 ) { jQuery( '#bmetestto' ).focus(); }
-		jQuery( '#bmetestto' ).css( 'border', '2px solid red' );
-		errors.push( '<?php _e( 'Please enter email address(es) to send the test email to.', 'benchmark-email-lite' ); ?>' );
-	} else if( jQuery( '#bmetestto' ).val().split( /@/g ).length - 1 > 5 && jQuery( '#bmeaction_1' ).is( ':checked' ) ) {
-		if( errors.length < 1 ) { jQuery( '#bmetestto' ).focus(); }
-		jQuery( '#bmetestto' ).css( 'border', '2px solid red' );
-		errors.push( '<?php _e( 'Please do not exceed the limit of 5 email addresses.', 'benchmark-email-lite' ); ?>' );
-	} else {
-		jQuery( '#bmetestto' ).css( 'border', '0' );
-	}
+		// Validation Errors Found
+		if( errors.length > 0 ) {
+			alert( errors.join( '\r\n' ) );
+			return false;
+		}
 
-	// Validation Errors Found
-	if( errors.length > 0 ) {
-		alert( errors.join( '\r\n' ) );
-	}
+		// Trigger Submission
+		$( '#bmesubmit' ).val( 'yes' );
+		$( '#bmesubmitbtn' ).prop( 'disabled', true );
 
-	// No Validation Errors
-	else {
-		jQuery( '#bmesubmit' ).val( 'yes' );
-		jQuery( '#bmesubmitbtn' ).attr( 'disabled', 'disabled' );
-		if( document.getElementById( 'save-post' ) ) { jQuery( '#save-post' ).click(); }
-		else { jQuery( '#publish' ).click(); }
-	}
+		// Handle Draft State, Classic Editor
+		if( $( 'input#save-post' ).length ) {
+			$( 'input#save-post' ).click();
+		}
+
+		// Handle Draft State, Gutenberg
+		else if( $( 'button.editor-post-save-draft' ).length ) {
+			$( 'button.editor-post-save-draft' ).click();
+			$( '#bmesubmitbtn' ).prop( 'disabled', false );
+		}
+
+		// Handle Published State, Classic Editor
+		else if( $( 'input#publish' ).length ) {
+			$( 'input#publish' ).click();
+		}
+
+		// Handle Published State, Gutenberg
+		else if( $( 'button.editor-post-publish-button' ).length ) {
+			$( 'button.editor-post-publish-button' ).click();
+			$( '#bmesubmitbtn' ).prop( 'disabled', false );
+		}
+	} );
 } );
 
 </script>

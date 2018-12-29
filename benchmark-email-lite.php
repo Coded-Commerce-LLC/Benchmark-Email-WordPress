@@ -32,6 +32,7 @@ add_action( 'wp_dashboard_setup', array( 'benchmarkemaillite_admin', 'wp_dashboa
 
 // Posts Hooks
 add_action( 'save_post', array( 'benchmarkemaillite_posts', 'save_post' ) );
+add_action( 'wp_ajax_bmel_metabox', array( 'benchmarkemaillite_posts', 'save_post_ajax' ) );
 
 // Widget Hooks
 add_action( 'widgets_init', array( 'benchmarkemaillite_widget', 'widgets_init' ) );

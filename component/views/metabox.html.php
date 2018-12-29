@@ -181,7 +181,7 @@ jQuery( document ).ready( function( $ ) {
 		// Handle Draft State, Gutenberg
 		else if( $( 'button.editor-post-save-draft' ).length ) {
 			$( 'button.editor-post-save-draft' ).click();
-			$( '#bmesubmitbtn' ).prop( 'disabled', false );
+			window.setTimeout( bmel_gutenberg, 5000 );
 		}
 
 		// Handle Published State, Classic Editor
@@ -192,9 +192,32 @@ jQuery( document ).ready( function( $ ) {
 		// Handle Published State, Gutenberg
 		else if( $( 'button.editor-post-publish-button' ).length ) {
 			$( 'button.editor-post-publish-button' ).click();
-			$( '#bmesubmitbtn' ).prop( 'disabled', false );
+			window.setTimeout( bmel_gutenberg, 5000 );
 		}
+
 	} );
+
+	// Pass To AJAX Handler, For Gutenberg Compatibility
+	function bmel_gutenberg() {
+		var bmeaction = '';
+		if( $( '#bmeaction_1' ).is( ':checked' ) ) { bmeaction = 1; }
+		if( $( '#bmeaction_2' ).is( ':checked' ) ) { bmeaction = 2; }
+		if( $( '#bmeaction_3' ).is( ':checked' ) ) { bmeaction = 3; }
+		var data = {
+			'action': 'bmel_metabox',
+			'bmelist': $( '#bmelist' ).val(),
+			'bmetitle': $( '#bmetitle' ).val(),
+			'bmefrom': $( '#bmefrom' ).val(),
+			'bmesubject': $( '#bmesubject' ).val(),
+			'bmeaction': bmeaction,
+			'bmetestto': $( '#bmetestto' ).val(),
+			'postID': <?php echo $post->ID; ?>
+		};
+		$.post( ajaxurl, data, function( response ) {
+			alert( response );
+			$( '#bmesubmitbtn' ).prop( 'disabled', false );
+		} );
+	}
 } );
 
 </script>

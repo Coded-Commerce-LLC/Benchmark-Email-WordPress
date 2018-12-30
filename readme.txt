@@ -137,6 +137,12 @@ Two reasons. First, Benchmark Email requested that we use this method because it
 
 == Changelog ==
 
+= 2.11 on 201X-XX-XX =
+
+* Fixed: Classic Editor metabox datepicker and slider are back in operation by adding jQuery UI theme.
+* Fixed: Gutenberg metabox success/error responses by adding AJAX based submission.
+* Fixed: Gutenberg metabox not processing SEND button on post-to-campaign unless you also clicked UPDATE button.
+
 = 2.10 on 2018-11-29 =
 
 * Fixed: function call outside of plugins page
@@ -383,6 +389,10 @@ Two reasons. First, Benchmark Email requested that we use this method because it
 * Added: Initial Plugin release.
 
 == Upgrade Notice ==
+
+= 2.11 =
+
+* Gutenberg related bug fix release
 
 = 2.10 =
 

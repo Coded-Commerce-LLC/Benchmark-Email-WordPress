@@ -77,17 +77,19 @@ class benchmarkemaillite_posts {
 		set_transient( 'bmetestto', $bmetestto, 15 );
 
 		// Don't Work With Post Revisions Or Other Post Actions
-		if( ! $is_ajax && ( wp_is_post_revision( $postID ) || ! isset( $_POST['bmesubmit'] ) || $_POST['bmesubmit'] != 'yes' ) ) { return POST_REVISION; }
+		if( ! $is_ajax && ( wp_is_post_revision( $postID ) || ! isset( $_POST['bmesubmit'] ) || $_POST['bmesubmit'] != 'yes' ) ) {
+			return 'POST_REVISION';
+		}
 
 		// Get User Info
-		if( ! $user = wp_get_current_user() ) { return BAD_USER; }
+		if( ! $user = wp_get_current_user() ) { return 'BAD_USER'; }
 		$user = get_userdata( $user->ID );
 		$name = isset( $user->first_name ) ? $user->first_name : '';
 		$name .= isset( $user->last_name ) ? ' ' . $user->last_name : '';
 		$name = trim( $name );
 
 		// Get Post Info
-		if( ! $post = get_post( $postID ) ) { return BAD_POST; }
+		if( ! $post = get_post( $postID ) ) { return 'BAD_POST'; }
 
 		// Prepare Campaign Data
 		$tags = wp_get_post_tags( $postID );

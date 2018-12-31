@@ -52,7 +52,7 @@ class benchmarkemaillite_posts {
 	}
 
 	// Called when Adding, Creating or Updating any Page+Post
-	static function save_post( $postID, $is_ajax=false ) {
+	static function save_post( $postID, $is_ajax = false ) {
 		$options = get_option( 'benchmark-email-lite_group' );
 
 		// Set Variables
@@ -77,7 +77,7 @@ class benchmarkemaillite_posts {
 		set_transient( 'bmetestto', $bmetestto, 15 );
 
 		// Don't Work With Post Revisions Or Other Post Actions
-		if( ! $is_ajax && ( wp_is_post_revision( $postID ) || ! isset( $_POST['bmesubmit'] ) || $_POST['bmesubmit'] != 'yes' ) ) {
+		if( ! $is_ajax && ( wp_is_post_revision( $postID ) || empty( $_POST['bmesubmit'] ) || $_POST['bmesubmit'] != 'yes' ) ) {
 			return 'POST_REVISION';
 		}
 
@@ -203,7 +203,7 @@ class benchmarkemaillite_posts {
 	}
 	static function save_post_ajax() {
 		$postID = isset( $_POST['postID'] ) ? intval( $_POST['postID'] ) : '';
-		echo self::save_post( $postID, 'ajax' );
+		echo self::save_post( $postID, true );
 		wp_die();
 	}
 

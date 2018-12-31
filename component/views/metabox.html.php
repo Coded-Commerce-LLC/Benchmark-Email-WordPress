@@ -170,27 +170,30 @@ jQuery( document ).ready( function( $ ) {
 		}
 
 		// Trigger Submission
-		$( '#bmesubmit' ).val( 'yes' );
 		$( '#bmesubmitbtn' ).prop( 'disabled', true );
 
 		// Handle Draft State, Classic Editor
 		if( $( 'input#save-post' ).length ) {
+			$( '#bmesubmit' ).val( 'yes' );
 			$( 'input#save-post' ).click();
 		}
 
 		// Handle Draft State, Gutenberg
 		else if( $( 'button.editor-post-save-draft' ).length ) {
+			$( '#bmesubmit' ).val( 'no' );
 			$( 'button.editor-post-save-draft' ).click();
 			window.setTimeout( bmel_gutenberg, 5000 );
 		}
 
 		// Handle Published State, Classic Editor
 		else if( $( 'input#publish' ).length ) {
+			$( '#bmesubmit' ).val( 'yes' );
 			$( 'input#publish' ).click();
 		}
 
 		// Handle Published State, Gutenberg
 		else if( $( 'button.editor-post-publish-button' ).length ) {
+			$( '#bmesubmit' ).val( 'no' );
 			$( 'button.editor-post-publish-button' ).click();
 			window.setTimeout( bmel_gutenberg, 5000 );
 		}

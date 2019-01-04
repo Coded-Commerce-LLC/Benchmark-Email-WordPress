@@ -217,11 +217,13 @@ jQuery( document ).ready( function( $ ) {
 				if( $( '#bmeaction_3' ).is( ':checked' ) ) { bmeaction = 3; }
 				var data = {
 					'action': 'bmel_metabox',
-					'bmelist': $( '#bmelist' ).val(),
-					'bmetitle': $( '#bmetitle' ).val(),
-					'bmefrom': $( '#bmefrom' ).val(),
-					'bmesubject': $( '#bmesubject' ).val(),
 					'bmeaction': bmeaction,
+					'bmedate': $( '#bmedate' ).val(),
+					'bmefrom': $( '#bmefrom' ).val(),
+					'bmelist': $( '#bmelist' ).val(),
+					'bmesubject': $( '#bmesubject' ).val(),
+					'bmetime': $( '#bmetime' ).val(),
+					'bmetitle': $( '#bmetitle' ).val(),
 					'bmetestto': $( '#bmetestto' ).val(),
 					'postID': <?php echo $post->ID; ?>
 				};

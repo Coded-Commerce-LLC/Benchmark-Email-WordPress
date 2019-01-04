@@ -33,34 +33,38 @@ function bmebinding() {
 	});
 	jQuery('.widget').delegate('.bmefields', 'change', function() {
 		jQuery(this).parent().parent().find('.bmelabels').val(jQuery(this).find('option:selected').text());
-		return false;
+		return true;
 	});
 	jQuery('.widget').delegate('.bmedelete', 'click', function() {
+		jQuery(this).parent().parent().find('.bmelabels').change();
 		jQuery(this).parent().parent().remove();
-		return false;
+		return true;
 	});
 	jQuery('.widget').undelegate('.bmemoveup', 'click');
 	jQuery('.widget').delegate('.bmemoveup', 'click', function() {
+		jQuery(this).parent().parent().find('.bmelabels').change();
 		var item = jQuery(this).parent().parent();
 		if (item.prev().length == 0 || item.prev().hasClass('bmebase')) { return false; }
 		item.fadeOut(250, function() {
 			item.prev().before(item);
 			item.fadeIn(500);
 		});
-		return false;
+		return true;
 	});
 	jQuery('.widget').undelegate('.bmemovedown', 'click');
 	jQuery('.widget').delegate('.bmemovedown', 'click', function() {
+		jQuery(this).parent().parent().find('.bmelabels').change();
 		var item = jQuery(this).parent().parent();
 		if (item.next().length == 0) { return false; }
 		item.fadeOut(250, function() {
 			item.next().after(item);
 			item.fadeIn(500);
 		});
-		return false;
+		return true;
 	});
 	jQuery('.widget').undelegate('.bmeadd', 'click');
 	jQuery('.widget').delegate('.bmeadd', 'click', function() {
+		jQuery(this).closest('form').trigger('change');
 		var item = jQuery(this).parent().prev().find('.bmebase');
 		var cloned = item.clone(true);
 		var key = Math.floor(Math.random() * 100000);
@@ -70,6 +74,6 @@ function bmebinding() {
 		cloned.removeAttr('style');
 		cloned.removeAttr('class');
 		cloned.appendTo(item.parent());
-		return false;
+		return true;
 	});
 }

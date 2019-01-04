@@ -24,8 +24,9 @@ class benchmarkemaillite_admin {
 		}
 
 		// WP Pages/Posts Admin JavaScript
-		wp_enqueue_script( 'jquery-ui-slider', '', array( 'jquery', 'jquery-ui' ), false, true );
 		wp_enqueue_script( 'jquery-ui-datepicker', '', array( 'jquery', 'jquery-ui' ), false, true );
+		wp_enqueue_script( 'jquery-ui-dialog', '', array( 'jquery', 'jquery-ui' ), false, true );
+		wp_enqueue_script( 'jquery-ui-slider', '', array( 'jquery', 'jquery-ui' ), false, true );
 
 		// jQuery UI Style Must Be Manually Included
 		$wp_scripts = wp_scripts();

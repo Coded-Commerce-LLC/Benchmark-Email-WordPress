@@ -167,7 +167,7 @@ class benchmarkemaillite_posts {
 				$overage = $overage ? __( 'Sending was capped at the first 5 test addresses.', 'benchmark-email-lite' ) : '';
 				$message = sprintf(
 					__( 'A test of your campaign %s was successfully sent.', 'benchmark-email-lite' ),
-					$bmetitle
+					"<em>{$bmetitle}</em>"
 				) . $overage;
 				return $is_ajax ? $message : set_transient( 'benchmark-email-lite_updated', $message );
 

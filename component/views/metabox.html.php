@@ -171,6 +171,7 @@ jQuery( document ).ready( function( $ ) {
 
 		// Trigger Submission
 		$( '#bmesubmitbtn' ).prop( 'disabled', true );
+		var bmel_go_gutes = false;
 
 		// Handle Draft State, Classic Editor
 		if( $( 'input#save-post' ).length ) {
@@ -182,7 +183,7 @@ jQuery( document ).ready( function( $ ) {
 		else if( $( 'button.editor-post-save-draft' ).length ) {
 			$( '#bmesubmit' ).val( 'no' );
 			$( 'button.editor-post-save-draft' ).click();
-			window.setTimeout( bmel_gutenberg, 5000 );
+			bmel_go_gutes = true;
 		}
 
 		// Handle Published State, Classic Editor
@@ -195,32 +196,50 @@ jQuery( document ).ready( function( $ ) {
 		else if( $( 'button.editor-post-publish-button' ).length ) {
 			$( '#bmesubmit' ).val( 'no' );
 			$( 'button.editor-post-publish-button' ).click();
-			window.setTimeout( bmel_gutenberg, 5000 );
+			bmel_go_gutes = true;
+		}
+
+		// Gutenberg Compatibility
+		if( bmel_go_gutes ) {
+
+			// Poll Gutenberg Post Save Completed
+			var bmel_gutes_interval = setInterval( function() {
+				if( ! wp.data.select('core/editor').didPostSaveRequestSucceed() ) {
+					console.log( 'BMEL waiting for Gutenberg to finish saving...' );
+					return false;
+				}
+				clearInterval( bmel_gutes_interval );
+
+				// Pass To AJAX Handler
+				var bmeaction = '';
+				if( $( '#bmeaction_1' ).is( ':checked' ) ) { bmeaction = 1; }
+				if( $( '#bmeaction_2' ).is( ':checked' ) ) { bmeaction = 2; }
+				if( $( '#bmeaction_3' ).is( ':checked' ) ) { bmeaction = 3; }
+				var data = {
+					'action': 'bmel_metabox',
+					'bmelist': $( '#bmelist' ).val(),
+					'bmetitle': $( '#bmetitle' ).val(),
+					'bmefrom': $( '#bmefrom' ).val(),
+					'bmesubject': $( '#bmesubject' ).val(),
+					'bmeaction': bmeaction,
+					'bmetestto': $( '#bmetestto' ).val(),
+					'postID': <?php echo $post->ID; ?>
+				};
+				$.post( ajaxurl, data, function( response ) {
+					$( '<div />' ).html( response ).dialog( {
+						buttons: { 'Ok': function() { $( this ).dialog( 'close' ); } },
+						close: function( event, ui ) { $( this ).remove(); },
+						resizable: false,
+						title: '<?php _e( 'Benchmark Email Lite', 'benchmark-email-lite' ); ?>',
+						modal: true
+					} );
+					$( '#bmesubmitbtn' ).prop( 'disabled', false );
+				} );
+			}, 500 );
 		}
 
 	} );
 
-	// Pass To AJAX Handler, For Gutenberg Compatibility
-	function bmel_gutenberg() {
-		var bmeaction = '';
-		if( $( '#bmeaction_1' ).is( ':checked' ) ) { bmeaction = 1; }
-		if( $( '#bmeaction_2' ).is( ':checked' ) ) { bmeaction = 2; }
-		if( $( '#bmeaction_3' ).is( ':checked' ) ) { bmeaction = 3; }
-		var data = {
-			'action': 'bmel_metabox',
-			'bmelist': $( '#bmelist' ).val(),
-			'bmetitle': $( '#bmetitle' ).val(),
-			'bmefrom': $( '#bmefrom' ).val(),
-			'bmesubject': $( '#bmesubject' ).val(),
-			'bmeaction': bmeaction,
-			'bmetestto': $( '#bmetestto' ).val(),
-			'postID': <?php echo $post->ID; ?>
-		};
-		$.post( ajaxurl, data, function( response ) {
-			alert( response );
-			$( '#bmesubmitbtn' ).prop( 'disabled', false );
-		} );
-	}
 } );
 
 </script>

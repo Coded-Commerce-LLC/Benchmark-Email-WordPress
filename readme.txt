@@ -3,7 +3,7 @@ Contributors: seanconklin, randywsandberg
 Tags: api, benchmark, benchmark email, campaign, campaigns, chinese, contact form, contact forms, contacts, email, email blast, emails, email marketing, form, forms, html, join, list, lists, mail, mailing, mailing list, mailing lists, mailings, newsletter, newsletters, portuguese, register, registration, responsive, responsive emails, sign up, signup form, sidebar, spanish, widget, widgets, woocommerce
 Requires at least: 3.1
 Tested up to: 5.0
-Stable tag: 2.10
+Stable tag: 2.11
 License: GPLv3
 
 Benchmark Email Lite lets you build an email list from your WordPress or WooCommerce site, and easily send your subscribers email versions of your posts and pages.
@@ -137,7 +137,7 @@ Two reasons. First, Benchmark Email requested that we use this method because it
 
 == Changelog ==
 
-= 2.11 on 201X-XX-XX =
+= 2.11 on 2019-01-06 =
 
 * Fixed: Classic Editor metabox datepicker and slider are back in operation by adding jQuery UI theme.
 * Fixed: Gutenberg metabox success/error responses by adding AJAX based submission.

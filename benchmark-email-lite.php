@@ -3,7 +3,7 @@
 Plugin Name: Benchmark Email Lite
 Plugin URI: https://codedcommerce.com/product/benchmark-email-newsletters/
 Description: Benchmark Email Lite lets you build an email list right from your WordPress site, and easily send your subscribers email versions of your blog posts.
-Version: 2.11
+Version: 2.12a
 Author: Coded Commerce, LLC
 Author URI: https://codedcommerce.com/
 License: GPLv3

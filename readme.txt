@@ -2,7 +2,7 @@
 Contributors: seanconklin, randywsandberg
 Tags: api, benchmark, benchmark email, campaign, campaigns, chinese, contact form, contact forms, contacts, email, email blast, emails, email marketing, form, forms, html, join, list, lists, mail, mailing, mailing list, mailing lists, mailings, newsletter, newsletters, portuguese, register, registration, responsive, responsive emails, sign up, signup form, sidebar, spanish, widget, widgets, woocommerce
 Requires at least: 3.1
-Tested up to: 5.0
+Tested up to: 5.0.3
 Stable tag: 2.11
 License: GPLv3
 
@@ -136,6 +136,11 @@ Two reasons. First, Benchmark Email requested that we use this method because it
 10. This is the communication log.
 
 == Changelog ==
+
+= 2.12 pending =
+
+* Fixed: a couple of PHP warnings for GitHub issue #29.
+* Fixed: scrolling to the submitted subscribe widget - thanks to @InDzine for reporting.
 
 = 2.11 on 2019-01-06 =
 
@@ -390,13 +395,17 @@ Two reasons. First, Benchmark Email requested that we use this method because it
 
 == Upgrade Notice ==
 
+= 2.12 =
+
+* Bug fix release.
+
 = 2.11 =
 
-* Gutenberg related bug fix release
+* Gutenberg related bug fix release.
 
 = 2.10 =
 
-* Bug fix release
+* Bug fix release.
 
 = 2.9 =
 

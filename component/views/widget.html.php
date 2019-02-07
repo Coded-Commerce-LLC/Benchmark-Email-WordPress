@@ -18,7 +18,7 @@ echo $before_widget . $title;
 <?php if( $description ) { echo sprintf( "<p>%s</p>", $description ); } ?>
 
 <form method="post" class="benchmarkemaillite-subscribe"
-	action="#benchmark-email-lite-<?php echo $uniqid; ?>"
+	action="#benchmarkemaillite_widget-<?php echo $widgetid; ?>"
 	onsubmit="return benchmarkemaillite_<?php echo $uniqid; ?>(this);">
 
 	<input type="hidden" name="formid" value="benchmark-email-lite-<?php echo $uniqid; ?>" />
